@@ -6,6 +6,6 @@ client = commands.Bot(command_prefix = ['H!','h!'],intents = discord.Intents.all
 intents.messages = True
 intents.members = True
 @client.event
-async def on_ready:
+async def on_ready():
     print("Now Online!")
 client.run(TOKEN)
