@@ -116,6 +116,7 @@ async def helper(ctx):
         return m.author == ctx.author and m.channel == ctx.channel
     lol = ['Which Language Do You Need Help With ?','Please Provide A Description Of Your Problem..','Are You Sure You Want To Send Your Request ? Reply With **``y``** To Continue Or Anything Else To Abort!']
     for i in lol:
+        await ctx.send(i)
         try:
             msg = await client.wait_for('message',timeout = 30.0)
         except asyncio.TimeoutError:
