@@ -3,7 +3,7 @@ from discord.ext import commands
 import asyncio
 intents = discord.Intents.all()
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
-client = commands.Bot(command_prefix = ['H!','h!'],intents = intents)
+client = commands.Bot(command_prefix = ['H!','h!'],intents = intents,case_insensitive = True)
 intents.messages = True
 intents.members = True
 intents.presences = True
@@ -88,5 +88,5 @@ async def on_message(message):
 
 @client.command()
 async def ping(ctx):
-    await ctx.send(round(client.latency) * 100)
+    await ctx.send(f"{(round(client.latency * 1000))}")
 client.run(TOKEN)
