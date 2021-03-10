@@ -131,7 +131,7 @@ async def helper(ctx):
             await ctx.send(f"Please Provide A Larger Description Of Your Problem! Must Be More That 10 Characters")
         else:
             embed = discord.Embed(title = f"{ctx.author.name}#{ctx.author.discriminator} Needs Your Help",colour = 0x00FFFF)
-            embed.add_field(f"Problem Description",value = f"{answers[1]}")
+            embed.add_field(name = f"Problem Description",value = f"{answers[1]}")
             embed.add_field(name = "Jump To Message",value = f"[Click Here]({ctx.message.jump_url}) To Help Them",inline = False)
             if answers[0].lower() == "python" or answers[0].lower == "py":
                 await chan.send(content = "<@&818139704612093963>",embed=embed)
