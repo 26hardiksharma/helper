@@ -25,7 +25,8 @@ async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
     role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
     await member.add_roles(role)
-    await logch.send(f"**{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")}")
+    age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
+    await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
 
 
 client.run(TOKEN)
