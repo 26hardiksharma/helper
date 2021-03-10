@@ -35,17 +35,17 @@ async def on_member_update(before,after):
     online = discord.utils.get(before.guild.roles,id = 818899971931242516)
     if before.status != after.status:
         if str(after.status) == "online":
-            await member.add_roles(online)
-            await member.remove_roles(dnd)
-            await member.remove_roles(idle)
-        elif str(afterstatus == "idle"):
-            await member.add_roles(idle)
-            await member.remove_roles(dnd)
-            await member.remove_roles(online)
+            await after.add_roles(online)
+            await after.remove_roles(dnd)
+            await after.remove_roles(idle)
+        elif str(after.status == "idle"):
+            await after.add_roles(idle)
+            await after.remove_roles(dnd)
+            await after.remove_roles(online)
         elif str(after.status) == "dnd":
-            await member.add_roles(dnd)
-            await member.remove_roles(online)
-            await member.remove_roles(idle)
+            await after.add_roles(dnd)
+            await after.remove_roles(online)
+            await after.remove_roles(idle)
 
 
 
