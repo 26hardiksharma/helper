@@ -94,9 +94,9 @@ async def ping(ctx):
 async def on_voice_state_update(member,before,after):
     logch = client.get_channel(818899394719252543)
     voice_state = member.voice     
-    if after.mute == True:
+    if after.mute == True and before.mute == False:
         await logch.send(f"**{member.name}#{member.discriminator}** Was Muted From Voice.")
-    elif after.mute == False:
+    elif after.mute == False and before.mute == True:
         await logch.send(f"**{member.name}#{member.discriminator}** Was Unmuted From Voice")
     elif voice_state != None:
         await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel :- **{after.channel.name}**")
