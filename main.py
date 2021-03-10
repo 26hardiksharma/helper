@@ -94,7 +94,7 @@ async def ping(ctx):
 async def on_voice_state_update(member,before,after):
     logch = client.get_channel(818899394719252543)
     if before.voice_state != after.voice_state:
-        if before.voice_state == None and after.voice_state != None:
+        if before.voice == None and after.voice != None:
             await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel\nTarget Channel = **{before.channel.name}**")
             
 client.run(TOKEN)
