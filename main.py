@@ -88,5 +88,5 @@ async def on_message(message):
 
 @client.command()
 async def ping(ctx):
-    await ctx.send(f"{(round(client.latency * 1000))}")
+    await ctx.send(f"**{(round(client.latency * 1000))} ms**")
 client.run(TOKEN)
