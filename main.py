@@ -65,7 +65,8 @@ async def on_member_update(before,after):
                 await after.remove_roles(online)
                 await after.remove_roles(idle)
                 await after.remove_roles(dnd)
-
+    elif before.nick != after.nick:
+        await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\nBefore :- **{before.nick}** || After :- **{after.nick}**")
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
@@ -102,4 +103,5 @@ async def on_voice_state_update(member,before,after):
         await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel :- **{after.channel.name}**")
     elif voice_state == None:
         await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")
+    
 client.run(TOKEN)
