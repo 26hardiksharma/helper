@@ -3,7 +3,7 @@ from discord.ext import commands
 import asyncio
 intents = discord.Intents.all()
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
-client = commands.Bot(command_prefix = ['H!','h!'],intents = intents,case_insensitive = True)
+client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True)
 intents.messages = True
 intents.members = True
 intents.presences = True
@@ -108,5 +108,39 @@ async def on_voice_state_update(member,before,after):
         await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel :- **{after.channel.name}**")
     elif voice_state == None:
         await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")
+@client.command()
+async def helper(ctx):
+    chan = client.get_channel(819251838883856464)
+    answers = []
+    def check(m):
+        return m.author == ctx.author and m.channel == ctx.channel
+    lol = ['Which Language Do You Need Help With ?','Please Provide A Description Of Your Problem..','Are You Sure You Want To Send Your Request ? Reply With **``y``** To Continue Or Anything Else To Abort!']
+    for i in lol:
+        try:
+            msg = await client.wait_for('message',timeout = 30.0)
+        except asyncio.TimeoutError:
+            await ctx.send(f"You Did Not Answer In Time")
+            return
+        else:
+            answers.append(msg.content)
+    if answers[2].lower() != "y":
+        await ctx.send(f"Ok, Aborted!")
+    else:
+        if len(answers[1]) < 10:
+            await ctx.send(f"Please Provide A Larger Description Of Your Problem! Must Be More That 10 Characters")
+        else:
+            embed = discord.Embed(title = f"{ctx.author.name}#{ctx.author.discriminator} Needs Your Help",colour = 0x00FFFF)
+            embed.add_field(f"Problem Description",value = f"{answers[1]}")
+            embed.add_field(name = "Jump To Message",value = f"[Click Here]({ctx.message.jump_url}) To Help Them",inline = False)
+            if answers[0].lower() == "python" or answers[0].lower == "py":
+                await chan.send(content = "<@&818139704612093963>",embed=embed)
+                await ctx.send(f"Submitted your request for help. Please keep in mind that our helpers are human and may not be available immediately.")
+            elif answers[0].lower() == "javascript" or answers[0].lower() == "js":
+                await chan.send(content = "<@&818139745430536222>",embed=embed)
+                await ctx.send("Submitted your request for help. Please keep in mind that our helpers are human and may not be available immediately.")
+            else:
+                await ctx.send(f"Invalid Language Supplied")
     
+    
+
 client.run(TOKEN)
