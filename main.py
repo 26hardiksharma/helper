@@ -18,6 +18,7 @@ async def on_user_update(before,after):
     elif before.avatar_url != after.avatar_url:
         embed = discord.Embed(title = f"{after.name}",description = f"{after.mention} Has Updated Their Avatar")
         embed.add_field(name = "Avatar",value = f"[Current]({after.avatar_url}) 𒌋━━━ [Before]({before.avatar_url})")
+        embed.set_thumbnail(url = after.avatar_url)
         await logch.send(embed=embed)
 
 client.run(TOKEN)
