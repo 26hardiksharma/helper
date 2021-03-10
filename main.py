@@ -24,7 +24,13 @@ async def on_user_update(before,after):
 async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
     role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
-    await member.add_roles(role)
+    bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
+    botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
+    if member.bot == False:
+        await member.add_roles(role,reason = "Joined The Guild As A Human")
+    else:
+        await member.add_roles(bots,reason = "Joined The Guild As A Bot")
+        await member.add_roles(botss,reason = "Joined The Guild As A Bot")
     age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
     await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
 
@@ -35,26 +41,29 @@ async def on_member_update(before,after):
     online = discord.utils.get(before.guild.roles,id = 818899971931242516)
     off = discord.utils.get(before.guild.roles,id = 819142700959793164)
     if before.status != after.status:
-        if str(after.status) == "online":
-            await after.add_roles(online,reason = "Changed Presence To ONLINE")
-            await after.remove_roles(dnd)
-            await after.remove_roles(idle)
-            await after.remove_roles(off)
-        elif str(after.status) == "idle":
-            await after.add_roles(idle,reason = "Changed Presence To IDLE")
-            await after.remove_roles(dnd)
-            await after.remove_roles(online)
-            await after.remove_roles(off)
-        elif str(after.status) == "dnd":
-            await after.add_roles(dnd,reason = "Changed Presence To DO NOT DISTURB")
-            await after.remove_roles(online)
-            await after.remove_roles(idle)
-            await after.remove_roles(off)
-        elif str(after.status) == "offline":
-            await after.add_roles(off,reason = "Changed Presence To OFFLINE")
-            await after.remove_roles(online)
-            await after.remove_roles(idle)
-            await after.remove_roles(dnd)
+        if before.bot == True:
+            pass
+        else:
+            if str(after.status) == "online":
+                await after.add_roles(online,reason = "Changed Presence To ONLINE")
+                await after.remove_roles(dnd)
+                await after.remove_roles(idle)
+                await after.remove_roles(off)
+            elif str(after.status) == "idle":
+                await after.add_roles(idle,reason = "Changed Presence To IDLE")
+                await after.remove_roles(dnd)
+                await after.remove_roles(online)
+                await after.remove_roles(off)
+            elif str(after.status) == "dnd":
+                await after.add_roles(dnd,reason = "Changed Presence To DO NOT DISTURB")
+                await after.remove_roles(online)
+                await after.remove_roles(idle)
+                await after.remove_roles(off)
+            elif str(after.status) == "offline":
+                await after.add_roles(off,reason = "Changed Presence To OFFLINE")
+                await after.remove_roles(online)
+                await after.remove_roles(idle)
+                await after.remove_roles(dnd)
 
         
 
