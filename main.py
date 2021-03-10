@@ -41,6 +41,7 @@ async def on_member_update(before,after):
     idle = discord.utils.get(before.guild.roles,id = 818899999928483900)
     online = discord.utils.get(before.guild.roles,id = 818899971931242516)
     off = discord.utils.get(before.guild.roles,id = 819142700959793164)
+    logch = client.get_channel(818899394719252543)
     if before.status != after.status:
         if before.bot == True:
             pass
@@ -66,7 +67,7 @@ async def on_member_update(before,after):
                 await after.remove_roles(idle)
                 await after.remove_roles(dnd)
     elif before.nick != after.nick:
-        await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\nBefore :- **{before.nick}** || After :- **{after.nick}**")
+        await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
