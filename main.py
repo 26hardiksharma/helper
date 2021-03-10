@@ -96,7 +96,9 @@ async def on_voice_state_update(member,before,after):
     if member.voice != None:
         await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel :- **{after.channel.name}**")
     elif member.voice == None:
-        await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")
-
-            
+        await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")     
+    elif member.mute == True:
+        await logch.send(f"**{member.name}#{member.discriminator}** Was Muted From Voice.")
+    elif member.mute == False:
+        await logch.send(f"**{member.name}#{member.discriminator}** Was Unmuted From Voice")
 client.run(TOKEN)
