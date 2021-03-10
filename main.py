@@ -7,6 +7,7 @@ client = commands.Bot(command_prefix = ['H!','h!'],intents = intents,case_insens
 intents.messages = True
 intents.members = True
 intents.presences = True
+intents.voice_states = True
 @client.event
 async def on_ready():
     print("Now Online!")
@@ -80,7 +81,7 @@ async def on_message(message):
                 await message.author.send(f"You Were Muted In {message.guild.name}\nReason :- Posting Invite Links In {message.channel.mention} || 10 Minute(s)")
             except:
                 return
-            await logch.send(f"**{client.user.name}#{client.user.discriminator}** Muted **{message.author.name}#{message.author.discriminator}**     For reason :- ``Tried Posting An Invite Link In {message.channel.name}``")
+            await logch.send(f"**{client.user.name}#{client.user.discriminator}** Muted **{message.author.name}#{message.author.discriminator}**\nReason :- ``Tried Posting An Invite Link In {message.channel.name}``")
             await asyncio.sleep(600)
             await message.author.remove_roles(muted)
             await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
@@ -89,4 +90,11 @@ async def on_message(message):
 @client.command()
 async def ping(ctx):
     await ctx.send(f"**{(round(client.latency * 1000))} ms**")
+@client.event
+async def on_voice_state_update(member,before,after):
+    logch = client.get_channel(818899394719252543)
+    if before.voice_state != after.voice_state:
+        if before.voice_state == None and after.voice_state != None:
+            await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel\nTarget Channel = **{before.channel.name}**")
+            
 client.run(TOKEN)
