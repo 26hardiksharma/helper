@@ -68,7 +68,7 @@ async def on_member_update(before,after):
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
-    muted = discord.utils.get(message.guild.roles,name = "Muted")
+    muted = discord.utils.get(message.author.guild.roles,name = "Muted")
     if "discord.gg/" in message.content.lower():
         guild = message.guild
         if message.author.guild_permissions.manage_messages:
@@ -80,12 +80,12 @@ async def on_message(message):
                 await message.author.send(f"You Were Muted In {message.guild.name} For :- Posting Invite Links In {message.channel.mention} || 10 Minute(s)")
             except:
                 return
-            await logch.send(f"{client.user.name}#{client.user.discriminator} Muted {message.author.name}#{message.author.discriminator} For reason :- ``Tried Posting An Invite Link In {message.channel.name}``")
+            await logch.send(f"**{client.user.name}#{client.user.discriminator}** Muted **{message.author.name}#{message.author.discriminator}** For reason :- ``Tried Posting An Invite Link In {message.channel.name}``")
             await asyncio.sleep(600)
             await message.author.remove_roles(muted)
             await message.author.send(f"You have Been Unmuted In {message.guild.name} For Reason :- Mute Duration Expired")
 
-
+    await client.process_commands(message)
 
 
 client.run(TOKEN)
