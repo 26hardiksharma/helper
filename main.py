@@ -38,7 +38,7 @@ async def on_member_update(before,after):
             await after.add_roles(online)
             await after.remove_roles(dnd)
             await after.remove_roles(idle)
-        elif str(after.status == "idle"):
+        elif str(after.status) == "idle":
             await after.add_roles(idle)
             await after.remove_roles(dnd)
             await after.remove_roles(online)
