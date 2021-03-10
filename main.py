@@ -79,7 +79,7 @@ async def on_message(message):
             try:
                 await message.author.send(f"You Were Muted In {message.guild.name} For :- Posting Invite Links In {message.channel.mention} || 10 Minute(s)")
             except:
-                continue
+                return
             await logch.send(f"{client.user.name}#{client.user.discriminator} Muted {message.author.name}#{message.author.discriminator} For reason :- ``Tried Posting An Invite Link In {message.channel.name}``")
             await asyncio.sleep(600)
             await message.author.remove_roles(muted)
