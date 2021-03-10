@@ -94,6 +94,9 @@ async def ping(ctx):
 async def on_voice_state_update(member,before,after):
     logch = client.get_channel(818899394719252543)
     if member.voice != None:
-        await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel\nTarget Channel = **{after.channel.name}**")
+        await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel :- **{after.channel.name}**")
+    elif member.voice == None:
+        await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{after.channel.name}**")
+
             
 client.run(TOKEN)
