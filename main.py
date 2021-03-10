@@ -33,19 +33,30 @@ async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
     idle = discord.utils.get(before.guild.roles,id = 818899999928483900)
     online = discord.utils.get(before.guild.roles,id = 818899971931242516)
+    off = discord.utils.get(before.guild.roles,id = 819142700959793164)
     if before.status != after.status:
         if str(after.status) == "online":
-            await after.add_roles(online)
+            await after.add_roles(online,reason = "Changed Presence To ONLINE")
             await after.remove_roles(dnd)
             await after.remove_roles(idle)
+            await after.remove_roles(off)
         elif str(after.status) == "idle":
-            await after.add_roles(idle)
+            await after.add_roles(idle,reason = "Changed Presence To IDLE")
             await after.remove_roles(dnd)
             await after.remove_roles(online)
+            await after.remove_roles(off)
         elif str(after.status) == "dnd":
-            await after.add_roles(dnd)
+            await after.add_roles(dnd,reason = "Changed Presence To DO NOT DISTURB")
             await after.remove_roles(online)
             await after.remove_roles(idle)
+            await after.remove_roles(off)
+        elif str(after.status) == "offline":
+            await after.add_roles(off,reason = "Changed Presence To OFFLINE")
+            await after.remove_roles(online)
+            await after.remove_roles(idle)
+            await after.remove_roles(dnd)
+
+        
 
 
 
