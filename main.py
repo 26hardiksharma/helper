@@ -2,6 +2,7 @@ import discord
 from discord.ext import commands
 import asyncio
 import datetime
+import pyjokes
 intents = discord.Intents.all()
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
 client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True)
@@ -200,5 +201,8 @@ async def on_reaction_add(reaction,user):
                 embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
                 await starb.send(embed=embed)
                 await reaction.message.clear_reactions()
-
+                await reaction.message.add_reaction('🌟')
+@client.command()
+async def joke(ctx):
+    await ctx.send(pyjokes.get_joke())
 client.run(TOKEN)
