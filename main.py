@@ -86,8 +86,12 @@ async def on_member_update(before,after):
         if after.bot == True:
             pass
         else:
-            print(after.name)
-            print(after.activities[0].type)
+            if "playing" in str(after.activities[0].type):
+                await after.add_roles(playing,reason = "Started Playing A GAME")
+                await after.remove_roles(listen)
+            elif "listening" in str(after.activities[0].type):
+                await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
+                await after.remove_roles(playing)
 
 
 @client.event
