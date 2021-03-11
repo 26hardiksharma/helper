@@ -38,6 +38,7 @@ async def on_member_join(member):
     created = member.created_at
     now = datetime.datetime.now() 
     if (now-member.created_at).days < 5:
+        await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
         await member.ban(reason = "Member Was Detected As An Alt Account")
         await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
 
