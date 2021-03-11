@@ -190,7 +190,7 @@ async def on_reaction_add(reaction,user):
         else:
             embed = discord.Embed(color = 0x00FFFF)
             embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
-            if reaction.message.attachments == True:
+            if reaction.message.attachments:
                 for i in reaction.message.attachments:
                     embed.set_image(url = i.url)
                     break
