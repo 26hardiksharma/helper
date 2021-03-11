@@ -84,10 +84,10 @@ async def on_member_update(before,after):
         await logch.send(embed=embed)
     elif before.activity != after.activity:
         if after.bot == False:
-            if str(after.activities[0].type) ==  "ActivityType.playing":
+            if after.activities[0].type ==  ActivityType.playing:
                 await after.add_roles(playing,reason = "Started Playing A GAME")
                 await after.remove_roles(listen)
-            elif str(after.activities[0].name) == "ActivityType.listening":
+            elif str(after.activities[0].name).lower() == "spotify":
                 await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
                 await after.remove_roles(playing)
 
