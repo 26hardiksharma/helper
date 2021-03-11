@@ -148,7 +148,7 @@ async def on_voice_state_update(member,before,after):
         await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")
 @client.command()
 async def helper(ctx):
-    chan = client.get_channel(819251838883856464)
+    chan = client.get_channel(819570260243382292)
     answers = []
     def check(m):
         return m.author == ctx.author and m.channel == ctx.channel
@@ -190,10 +190,8 @@ async def on_reaction_add(reaction,user):
         else:
             embed = discord.Embed(color = 0x00FFFF)
             embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
-            if reaction.message.attachments:
-                for i in reaction.message.attachments:
-                    embed.set_image(url = i.url)
-                    break
+            if reaction.message.content.lower().startwith('https://'):
+                embed.set_image(url = reaction.message.content)
             else: 
                 embed.add_field(name = "Content",value = reaction.message.content,inline=False)
             embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
