@@ -156,7 +156,7 @@ async def helper(ctx):
     for i in lol:
         await ctx.send(i)
         try:
-            msg = await client.wait_for('message',timeout = 30.0)
+            msg = await client.wait_for('message',timeout = 30.0,check = check)
         except asyncio.TimeoutError:
             await ctx.send(f"You Did Not Answer In Time")
             return
