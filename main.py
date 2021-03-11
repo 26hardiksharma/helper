@@ -41,6 +41,8 @@ async def on_member_update(before,after):
     idle = discord.utils.get(before.guild.roles,id = 818899999928483900)
     online = discord.utils.get(before.guild.roles,id = 818899971931242516)
     off = discord.utils.get(before.guild.roles,id = 819142700959793164)
+    coding = discord.utils.get(before.guild.roles,id = 819487049488793620)
+    listen = discord.utils.get(before.guild.roles,id = 819487953751506955)
     logch = client.get_channel(818899394719252543)
     if before.status != after.status:
         if before.bot == True:
@@ -80,6 +82,14 @@ async def on_member_update(before,after):
         embed.add_field(name = "Before",value =bef, inline = False)
         embed.add_field(name = "After",value = aft,inline = False)
         await logch.send(embed=embed)
+    elif before.activity != after.activity:
+        if str(after.activities[0].type) == "playing":
+            if str(after.activites[0].name).lower() == "visual studio code":
+                await after.add_roles(coding,reason = "Started Coding In Visual Studio Code")
+        elif str(after.activities[0].type) == "listening":
+            await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
+
+
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
