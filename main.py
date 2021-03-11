@@ -69,7 +69,7 @@ async def on_member_update(before,after):
     elif before.nick != after.nick:
         await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
     elif before.roles != after.roles:
-        embed = discord.Embed(title = f"{after.name}#{after.discriminator}",description = f"{after.name}#{after.discriminator}'s Roles Have Changed!")
+        embed = discord.Embed(title = f"{after.name}#{after.discriminator}",description = f"{after.name}#{after.discriminator}'s Roles Have Changed!",colour = 0xFF0000)
         bef = ""
         for role in before.roles[1:]:
             bef += f"{role.mention} "
@@ -79,6 +79,7 @@ async def on_member_update(before,after):
         embed.set_author(icon_url = after.avatar_url)
         embed.add_field(name = "Before",value =bef, inline = False)
         embed.add_field(name = "After",value = aft,inline = False)
+        await logch.send(embed=embed)
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
