@@ -68,6 +68,11 @@ async def on_member_update(before,after):
                 await after.remove_roles(dnd)
     elif before.nick != after.nick:
         await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
+    elif before.roles != after.roles:
+        embed = discord.Embed(title = f"{after.name}#{after.discriminator}",description = f"{after.name}#{after.discriminator}'s Roles Have Changed!")
+        embed.set_author(icon_url = after.avatar_url)
+        embed.add_field(name = "Before",value = role.mention for role in before.roles,inline= False)
+        embed.add_field(name = "After",value = role.mention for role in after.roles,inline =False)
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
