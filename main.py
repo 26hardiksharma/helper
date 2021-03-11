@@ -184,18 +184,21 @@ intents.reactions = True
 async def on_reaction_add(reaction,user):
     if str(reaction.emoji) == "⭐":
         starb = client.get_channel(819550103684644874)
-        users = await reaction.message.reactions[0].users().flatten()
-        if len(users) < 3:
+        if reaction.message.channel.id == 819550103684644874:
             pass
         else:
-            embed = discord.Embed(color = 0x00FFFF)
-            embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
-            if reaction.message.content.lower().startswith('https://'):
-                embed.set_image(url = reaction.message.content)
-            else: 
-                embed.add_field(name = "Content",value = reaction.message.content,inline=False)
-            embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
-            await starb.send(embed=embed)
-            await reaction.message.clear_reactions()
+            users = await reaction.message.reactions[0].users().flatten()
+            if len(users) < 3:
+                pass
+            else:
+                embed = discord.Embed(color = 0x00FFFF)
+                embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
+                if reaction.message.content.lower().startswith('https://'):
+                    embed.set_image(url = reaction.message.content)
+                else: 
+                    embed.add_field(name = "Content",value = reaction.message.content,inline=False)
+                embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
+                await starb.send(embed=embed)
+                await reaction.message.clear_reactions()
 
 client.run(TOKEN)
