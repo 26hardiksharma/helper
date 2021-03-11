@@ -34,6 +34,12 @@ async def on_member_join(member):
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
     age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
     await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+    created = member.created_at
+    now = datetime.now() 
+    age = (now - created).days 
+    if age < 1:
+        await member.ban(reason = "Member Was Detected As An Alt Account")
+        await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
 
 @client.event
 async def on_member_update(before,after):
