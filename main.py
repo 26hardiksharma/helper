@@ -83,9 +83,9 @@ async def on_member_update(before,after):
         embed.add_field(name = "After",value = aft,inline = False)
         await logch.send(embed=embed)
     elif before.activity != after.activity:
-        if str(after.activity.type) == "playing":
+        if str(after.activities[0].type) == "playing":
             await after.add_roles(playing,reason = "Started Playing A GAME")
-        elif str(after.activity.type) == "listening":
+        elif str(after.activities[0].type) == "listening":
             await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
 
 
