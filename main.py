@@ -189,8 +189,9 @@ async def on_reaction_add(reaction,user):
             pass
         else:
             embed = discord.Embed(color = 0x00FFFF)
-            embed.set_author(name = f"{reaction.message.author.name}#{message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
+            embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
             embed.add_field(name = "Content",value = reaction.message.content)
             await starb.send(embed=embed)
+            await reaction.message.clear_reactions()
 
 client.run(TOKEN)
