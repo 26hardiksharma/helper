@@ -179,7 +179,18 @@ async def helper(ctx):
                 await ctx.send("Submitted your request for help. Please keep in mind that our helpers are human and may not be available immediately.")
             else:
                 await ctx.send(f"Invalid Language Supplied")
-    
-    
+intents.reactions = True
+@client.event
+async def on_reaction_add(reaction,user):
+    if str(reaction.emoji) == "⭐":
+        starb = client.get_channel(819550103684644874)
+        users = await reaction.message.reactions[:].users().flatten()
+        if len(users) < 3:
+            pass
+        else:
+            embed = discord.Embed(color = 0x00FFFF)
+            embed.set_author(name = f"{reaction.message.author.name}#{message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
+            embed.add_field(name = "Content",value = reaction.message.content)
+            await starb.send(embed=embed)
 
 client.run(TOKEN)
