@@ -77,8 +77,8 @@ async def on_member_update(before,after):
         for rr in after.roles[1:]:
             aft += f"{rr.mention} "
         embed.set_author(icon_url = after.avatar_url)
-        embed.add_field(name = "Before",value =bef inline= False)
-        embed.add_field(name = "After",value = aft,inline =False)
+        embed.add_field(name = "Before",value =bef, inline = False)
+        embed.add_field(name = "After",value = aft,inline = False)
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
