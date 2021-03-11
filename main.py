@@ -35,9 +35,8 @@ async def on_member_join(member):
     age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
     await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
     created = member.created_at
-    now = datetime.now() 
-    age = (now - created).days 
-    if age < 1:
+    now = datetime.datetime.now() 
+    if (now-member.created_at).days < 5:
         await member.ban(reason = "Member Was Detected As An Alt Account")
         await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
 
@@ -90,7 +89,7 @@ async def on_member_update(before,after):
         await logch.send(embed=embed)
     elif before.activity != after.activity:
         if after.bot == False:
-            if after.activities[0].type ==  ActivityType.playing:
+            if after.activities[0].type ==  discord.ActivityType.playing:
                 await after.add_roles(playing,reason = "Started Playing A GAME")
                 await after.remove_roles(listen)
             elif str(after.activities[0].name).lower() == "spotify":
