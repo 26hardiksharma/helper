@@ -49,9 +49,9 @@ async def on_member_update(before,after):
             if str(after.status) == "online":
                 await after.add_roles(online,reason = "Changed Presence To ONLINE")
                 if dnd , off , idle in after.roles:
-                await after.remove_roles(dnd)
-                await after.remove_roles(idle)
-                await after.remove_roles(off)
+                    await after.remove_roles(dnd)
+                    await after.remove_roles(idle)
+                    await after.remove_roles(off)
             elif str(after.status) == "idle":
                 await after.add_roles(idle,reason = "Changed Presence To IDLE")
                 if online , off , dnd in after.roles:
