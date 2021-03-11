@@ -83,7 +83,11 @@ async def on_member_update(before,after):
         embed.add_field(name = "After",value = aft,inline = False)
         await logch.send(embed=embed)
     elif before.activity != after.activity:
-        print(after.activities[0].type)
+        if after.bot == True:
+            pass
+        else:
+            print(after.name)
+            print(after.activities[0].type)
 
 
 @client.event
