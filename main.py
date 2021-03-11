@@ -190,7 +190,13 @@ async def on_reaction_add(reaction,user):
         else:
             embed = discord.Embed(color = 0x00FFFF)
             embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
-            embed.add_field(name = "Content",value = reaction.message.content)
+            if reaction.message.attachments == True:
+                for i in reaction.message.attachments:
+                    embed.set_image(url = i.url)
+                    break
+            else: 
+                embed.add_field(name = "Content",value = reaction.message.content,inline=False)
+            embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
             await starb.send(embed=embed)
             await reaction.message.clear_reactions()
 
