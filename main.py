@@ -29,19 +29,21 @@ async def on_member_join(member):
     bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
     botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
     if member.bot == False:
-        await member.add_roles(role,reason = "Joined The Guild As A Human")
+        created = member.created_at
+        now = datetime.datetime.now() 
+        if (now-member.created_at).days < 5:
+            await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
+            await member.ban(reason = "Member Was Detected As An Alt Account")
+            await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
+        else:
+            age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
+            await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+            await member.add_roles(role,reason = "Joined The Guild As A Human")
     else:
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
-    age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-    await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
-    created = member.created_at
-    now = datetime.datetime.now() 
-    if (now-member.created_at).days < 5:
-        await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
-        await member.ban(reason = "Member Was Detected As An Alt Account")
-        await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
-
+        age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
+        await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
 @client.event
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
