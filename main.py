@@ -184,7 +184,7 @@ intents.reactions = True
 async def on_reaction_add(reaction,user):
     if str(reaction.emoji) == "⭐":
         starb = client.get_channel(819550103684644874)
-        users = await reaction.message.reactions[:].users().flatten()
+        users = await reaction.message.reactions[0].users().flatten()
         if len(users) < 3:
             pass
         else:
