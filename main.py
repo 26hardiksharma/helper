@@ -93,12 +93,16 @@ async def on_member_update(before,after):
         await logch.send(embed=embed)
     elif before.activity != after.activity:
         if after.bot == False:
-            if after.activities[0].type ==  discord.ActivityType.playing:
-                await after.add_roles(playing,reason = "Started Playing A GAME")
-                await after.remove_roles(listen)
-            elif str(after.activities[0].name).lower() == "spotify":
-                await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
+            if after.activity == None and before.activity != None:
                 await after.remove_roles(playing)
+                await after.remove_roles(listen)
+            else:
+                if after.activities[0].type ==  discord.ActivityType.playing:
+                    await after.add_roles(playing,reason = "Started Playing A GAME")
+                    await after.remove_roles(listen)
+                elif after.activities[0].type == discord.ActivityType.listening:
+                    await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
+                    await after.remove_roles(playing)
 
 
 @client.event
