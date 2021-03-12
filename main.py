@@ -134,7 +134,7 @@ async def on_message(message):
             pass
         else:
             def check(m):
-                return m.author == ctx.author and m.channel == ctx.channel
+                return m.author == message.author and m.channel == message.channel
             num = random.randint(1,10)
             if num == 7:
                 await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``Box Like A Fish``**")
