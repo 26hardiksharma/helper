@@ -111,8 +111,8 @@ async def on_member_update(before,after):
 @client.event
 async def on_message(message):
     logch = client.get_channel(818899394719252543)
-    muted = discord.utils.get(message.author.guild.roles,name = "Muted")
     if "discord.gg/" in message.content.lower():
+        muted = discord.utils.get(message.guild.roles,name = "Muted")
         guild = message.guild
         if message.author.guild_permissions.manage_messages:
             pass
