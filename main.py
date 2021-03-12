@@ -48,6 +48,7 @@ async def on_member_join(member):
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
         age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
         await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+kek = ['nigga','nigro']
 @client.event
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
@@ -84,7 +85,13 @@ async def on_member_update(before,after):
                 await after.remove_roles(playing)
                 await after.remove_roles(listen)
     elif before.nick != after.nick:
-        await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
+        for i in kek:
+            if i in str(after.nick.lower).lower():
+                await after.send(f"You Have Been Warned In {after.guild.name} For :- Triggering Automod || **``Racist Nickname``**")
+                break
+            else:
+                await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
+                break
     elif before.roles != after.roles:
         embed = discord.Embed(description = f"{after.name}#{after.discriminator}'s Roles Have Changed!",colour = 0xFF0000)
         bef = ""
@@ -148,7 +155,7 @@ async def on_message(message):
                         msg = await client.wait_for('message',timeout = 10.0)
                     except asyncio.TimeoutError:
                         await message.channel.send(f"No One Answered In Time..")
-                        pass
+                        return
                     else:
                         gg.append(msg.content)
                         ids.append(msg.author.id)
