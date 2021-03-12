@@ -137,8 +137,8 @@ async def on_message(message):
             kek = random.choice(poglist)
             def check(m):
                 return m.author == message.author and m.channel == message.channel
-            num = random.randint(1,10)
-            if num == 7:
+            num = random.randint(1,20)
+            if num == 10:
                 bruh = await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``{kek}``**")
                 for i in range(3):
                     try:
