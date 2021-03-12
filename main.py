@@ -4,6 +4,7 @@ from discord import Webhook, AsyncWebhookAdapter
 import asyncio
 import datetime
 import pyjokes
+import random
 import aiohttp
 intents = discord.Intents.all()
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
@@ -127,6 +128,21 @@ async def on_message(message):
             await asyncio.sleep(600)
             await message.author.remove_roles(muted)
             await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
+    else:
+        if message.author.bot == True:
+            pass
+        else:
+            num = random.randint(1,10)
+            if num == 7:
+                await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``Box Like A Fish``**")
+                try:
+                    msg = client.wait_for('message',timeout = 5.0)
+                except asyncio.TimeoutError:
+                    await message.channel.send(f"No One Answered In Time..")
+                else:
+                    if msg.content.lower() == "box like a fish":
+                        await message.channel.send(f"{msg.author.mention} Won The Event 🎉")
+
     await client.process_commands(message)
 
 @client.command()
