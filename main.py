@@ -132,6 +132,7 @@ async def on_message(message):
             await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
     else:
         gg = []
+        ids = []
         if message.author.bot == True:
             pass
         else:
@@ -150,20 +151,21 @@ async def on_message(message):
                         pass
                     else:
                         gg.append(msg.content)
+                        ids.append(msg.author.id)
                 if msg.author.bot == True:
                     pass
                 else:
                     if gg[0].lower() == kek.lower():
                         await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                        await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                        await bruh.edit(content = f"Event Over!\n\nWinner :- <@!{ids[0]}>")
                     else:
                         if gg[1].lower() == kek.lower():
                             await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                            await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                            await bruh.edit(content = f"Event Over!\n\nWinner :- <@!{ids[1]}>")
                         else:
                             if gg[2].lower() == kek.lower():
                                 await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                                await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                                await bruh.edit(content = f"Event Over!\n\nWinner :- <@!{ids[2]}>")
                             else:
                                 await message.channel.send(f"No One Answered Correctly")
 
