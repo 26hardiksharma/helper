@@ -133,7 +133,7 @@ async def on_message(message):
         if message.author.bot == True:
             pass
         else:
-            poglist ['box like A Fish','Our Business Is Making Memories','Lock And Load Cadet']
+            poglist = ['box like A Fish','Our Business Is Making Memories','Lock And Load Cadet']
             kek = random.choice(poglist)
             def check(m):
                 return m.author == message.author and m.channel == message.channel
