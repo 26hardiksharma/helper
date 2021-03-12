@@ -49,6 +49,7 @@ async def on_member_join(member):
         age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
         await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
 @client.event
+
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
     idle = discord.utils.get(before.guild.roles,id = 818899999928483900)
