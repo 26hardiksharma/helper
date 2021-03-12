@@ -141,7 +141,7 @@ async def on_message(message):
             if num == 7:
                 bruh = await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``{kek}``**")
                 try:
-                    msg = await client.wait_for('message',timeout = 5.0)
+                    msg = await client.wait_for('message',timeout = 10.0)
                 except asyncio.TimeoutError:
                     await message.channel.send(f"No One Answered In Time..")
                     pass
