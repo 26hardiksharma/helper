@@ -3,6 +3,7 @@ from discord.ext import commands
 import asyncio
 import datetime
 import pyjokes
+import aiohttp
 intents = discord.Intents.all()
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
 client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True)
@@ -205,4 +206,10 @@ async def on_reaction_add(reaction,user):
 @client.command()
 async def joke(ctx):
     await ctx.send(pyjokes.get_joke())
+@client.command()
+async def test(ctx):
+    async with aiohttp.ClientSession() as session:
+        webhook = Webhook.from_url('https://discord.com/api/webhooks/814525601175437342/FlvD7x4oaoNQvT9PhsvIRIpwv2Q_-J5muSQ1nP1A3U1RVI4GmTLrMELHZN17MFBr2nkt', adapter=AsyncWebhookAdapter(session))
+        await webhook.send('Test Successful', username='Foo')
+
 client.run(TOKEN)
