@@ -129,6 +129,7 @@ async def on_message(message):
             await message.author.remove_roles(muted)
             await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
     else:
+        gg = []
         if message.author.bot == True:
             pass
         else:
@@ -139,9 +140,15 @@ async def on_message(message):
                     msg = client.wait_for('message',timeout = 5.0)
                 except asyncio.TimeoutError:
                     await message.channel.send(f"No One Answered In Time..")
+                    pass
                 else:
-                    if msg.content.lower() == "box like a fish":
-                        await message.channel.send(f"{msg.author.mention} Won The Event 🎉")
+                    gg.append(msg.content)
+                if gg[0].lower() == "box like a fish":
+                    await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
+                else:
+                    await message.channel.send(f"No One Answered Correctly") 
+
+                    
 
     await client.process_commands(message)
 
