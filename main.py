@@ -148,19 +148,22 @@ async def on_message(message):
                         pass
                     else:
                         gg.append(msg.content)
-                if gg[0].lower() == kek.lower():
-                    await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                    await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                if msg.author.bot == True:
+                    pass
                 else:
-                    if gg[1].lower() == kek.lower():
+                    if gg[0].lower() == kek.lower():
                         await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
                         await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
                     else:
-                        if gg[2].lower() == kek.lower():
+                        if gg[1].lower() == kek.lower():
                             await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
                             await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
                         else:
-                            await message.channel.send(f"No One Answered Correctly")
+                            if gg[2].lower() == kek.lower():
+                                await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
+                                await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                            else:
+                                await message.channel.send(f"No One Answered Correctly")
 
 
                     
