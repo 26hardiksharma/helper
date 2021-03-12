@@ -86,7 +86,7 @@ async def on_member_update(before,after):
                 await after.remove_roles(listen)
     elif before.nick != after.nick:
         for i in kek:
-            if i in str(after.nick).lower():
+            if str(i) in str(after.nick).lower():
                 await after.send(f"You Have Been Warned In {after.guild.name} For :- Triggering Automod || **``Racist Nickname``**")
                 break
             else:
