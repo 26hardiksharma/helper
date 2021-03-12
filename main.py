@@ -81,6 +81,8 @@ async def on_member_update(before,after):
                 await after.remove_roles(online)
                 await after.remove_roles(idle)
                 await after.remove_roles(dnd)
+                await after.remove_roles(playing)
+                await after.remove_roles(listen)
     elif before.nick != after.nick:
         await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
     elif before.roles != after.roles:
