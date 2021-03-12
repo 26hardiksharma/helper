@@ -1,5 +1,6 @@
 import discord
 from discord.ext import commands
+from discord import Webhook, AsyncWebhookAdapter
 import asyncio
 import datetime
 import pyjokes
