@@ -140,18 +140,28 @@ async def on_message(message):
             num = random.randint(1,10)
             if num == 7:
                 bruh = await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``{kek}``**")
-                try:
-                    msg = await client.wait_for('message',timeout = 10.0)
-                except asyncio.TimeoutError:
-                    await message.channel.send(f"No One Answered In Time..")
-                    pass
-                else:
-                    gg.append(msg.content)
+                for i in range(3):
+                    try:
+                        msg = await client.wait_for('message',timeout = 10.0)
+                    except asyncio.TimeoutError:
+                        await message.channel.send(f"No One Answered In Time..")
+                        pass
+                    else:
+                        gg.append(msg.content)
                 if gg[0].lower() == kek.lower():
                     await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
                     await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
                 else:
-                    await message.channel.send(f"No One Answered Correctly") 
+                    if gg[1].lower() == kek.lower():
+                        await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
+                        await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                    else:
+                        if gg[2].lower() == kek.lower():
+                            await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
+                            await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
+                        else:
+                            await message.channel.send(f"No One Answered Correctly")
+
 
                     
 
