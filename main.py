@@ -133,6 +133,8 @@ async def on_message(message):
         if message.author.bot == True:
             pass
         else:
+            def check(m):
+                return m.author == ctx.author and m.channel == ctx.channel
             num = random.randint(1,10)
             if num == 7:
                 await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``Box Like A Fish``**")
