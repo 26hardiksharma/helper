@@ -133,11 +133,13 @@ async def on_message(message):
         if message.author.bot == True:
             pass
         else:
+            poglist ['box like A Fish','Our Business Is Making Memories','Lock And Load Cadet']
+            kek = random.choice(poglist)
             def check(m):
                 return m.author == message.author and m.channel == message.channel
             num = random.randint(1,10)
             if num == 7:
-                await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``Box Like A Fish``**")
+                bruh = await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``{kek}``**")
                 try:
                     msg = await client.wait_for('message',timeout = 5.0)
                 except asyncio.TimeoutError:
@@ -145,8 +147,9 @@ async def on_message(message):
                     pass
                 else:
                     gg.append(msg.content)
-                if gg[0].lower() == "box like a fish":
+                if gg[0].lower() == kek.lower():
                     await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
+                    await bruh.edit(content = f"Event Over!\n\nWinner :- {msg.author.mention}")
                 else:
                     await message.channel.send(f"No One Answered Correctly") 
 
