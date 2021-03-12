@@ -240,6 +240,6 @@ async def test(ctx):
 @client.command()
 async def chatrevive(ctx):
     if ctx.author.guild_permissions.administrator:
-        embed = discord.Embed(title = "Chat Revival",description = "Revivers, I Summon You To Bring Life To The Chat!")
+        embed = discord.Embed(title = "Chat Revival",description = "Revivers, I Summon You To Bring Life To The Chat!",color = 0x769CCB)
         await ctx.send(content = "<@&819619194626113587>",embed=embed)
 client.run(TOKEN)
