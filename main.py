@@ -97,7 +97,7 @@ async def on_member_update(before,after):
         await logch.send(embed=embed)
     elif before.activity != after.activity:
         if after.bot == False:
-            if after.activity == None and before.activity != None:
+            if after.activity == None:
                 await after.remove_roles(playing)
                 await after.remove_roles(listen)
             else:
