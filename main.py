@@ -131,48 +131,12 @@ async def on_message(message):
             await asyncio.sleep(600)
             await message.author.remove_roles(muted)
             await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
-    else:
-        gg = []
-        ids = []
-        if message.author.bot == True:
+    elif "hm" in message.content.lower():
+        if message.author.guild_permissions.manage_messages:
             pass
         else:
-            poglist = ['box like A Fish','Our Business Is Making Memories','Lock And Load Cadet']
-            kek = random.choice(poglist)
-            def check(m):
-                return m.author == message.author and m.channel == message.channel
-            num = random.randint(1,30)
-            if num == 29:
-                bruh = await message.channel.send(f"Event Time!\n\nFirst One To Type The phrase Wins\n\n**``{kek}``**")
-                for i in range(3):
-                    try:
-                        msg = await client.wait_for('message',timeout = 10.0)
-                    except asyncio.TimeoutError:
-                        await message.channel.send(f"No One Answered In Time..")
-                        return
-                    else:
-                        gg.append(msg.content)
-                        ids.append(msg.author.id)
-                if msg.author.bot == True:
-                    pass
-                else:
-                    if gg[0].lower() == kek.lower():
-                        await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                        await bruh.edit(content = f"Event Over!\n\nWinner :- <@!{ids[0]}>")
-                    else:
-                        if gg[1].lower() == kek.lower():
-                            await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                            await bruh.edit(content = f"Event Over!\n\nWinner :- <@!{ids[1]}>")
-                        else:
-                            if gg[2].lower() == kek.lower():
-                                await message.channel.send(f"{msg.author.mention} Has Won The Event 🎉")
-                                await bruh.edit(content = f"Event Over!\n\nWinner :- <@!{ids[2]}>")
-                            else:
-                                await message.channel.send(f"No One Answered Correctly")
-
-
-                    
-
+            await message.author.add_roles(muted,reason = "Said Hmm, ;(")
+            await message.channel.send(f"{message.author.mention} Keeps A 1 Minute Mute For Saying Hmm")
     await client.process_commands(message)
 
 @client.command()
@@ -257,7 +221,7 @@ async def joke(ctx):
 async def test(ctx):
     async with aiohttp.ClientSession() as session:
         webhook = Webhook.from_url('https://discord.com/api/webhooks/814525601175437342/FlvD7x4oaoNQvT9PhsvIRIpwv2Q_-J5muSQ1nP1A3U1RVI4GmTLrMELHZN17MFBr2nkt', adapter=AsyncWebhookAdapter(session))
-        await webhook.send('Test Successful', username='Foo')
+        await webhook.send('Test Successful', username='x')
 @client.command()
 async def chatrevive(ctx):
     if ctx.author.guild_permissions.administrator:
