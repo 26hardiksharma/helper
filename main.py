@@ -139,6 +139,8 @@ async def on_message(message):
         else:
             await message.author.add_roles(muted,reason = "Said Hmm, ;(")
             await message.channel.send(f"{message.author.mention} Keeps A 1 Minute Mute For Saying Hmm")
+            await asyncio.sleep(60)
+            await message.author.remove_roles(muted,reason = "Mute Duration Expired :)")
     await client.process_commands(message)
 
 @client.command()
