@@ -134,7 +134,7 @@ async def on_message(message):
             await message.author.remove_roles(muted)
             await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
     elif "hm" in message.content.lower():
-        if message.author.guild_permissions.manage_messages:
+        if message.author.id != 747065520158801951:
             pass
         else:
             await message.author.add_roles(muted,reason = "Said Hmm, ;(")
