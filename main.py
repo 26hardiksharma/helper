@@ -231,4 +231,31 @@ async def chatrevive(ctx):
     if ctx.author.guild_permissions.administrator:
         embed = discord.Embed(title = "Chat Revival",description = "Revivers, I Summon You To Bring Life To The Chat!",color = 0x769CCB)
         await ctx.send(content = "<@&819619194626113587>",embed=embed)
+@client.command()
+async def modapply(ctx):
+    channel = client.get_channel(820291816280424448)
+    qlist = ['1. Why Do You Want To Become A Mod?','2. What Things Can You Do If We Appoint You As A Mod?','3. How Much Time Can You Give To This Server?','4. How Much Time Are You Active For A Day?','5. Do You Know How To Develop A Bot?','6. What Coding Languages Are You Expert At?','7. Why Are You Here?','8. Lemme Know Some Commands Which You Would Execute By The Following Bots For Moderation:- Mee6, Furious, Vortex, Carl-Bot.','9. What VC Time Will You Give Us?','10. Can You Attend Meetings At Any Time If We Organise?','11. Tell Me Some Steps You Will Take To Increase The Server Activity.','12. What Actions Will You Take If Someone Disobeys The Server Rules?','13. What Action Will You Take If Someone Spams In The Server?','14. What Actions Will You Take If Someone Abuses In The Chat?','15. What Actions Will You Take If Someone Promotes Their Server Or Bot In The Server?']
+    answers = []
+    def check(m):
+        return m.author == ctx.author and m.channel == ctx.channel
+    await ctx.send("Rules To Agree Before You Answer All The Questions:-\n1. All Your Answers Must Be Accurate And Question Related.\n2. You Must Answer All The Questions In 30 Mins Or Else There Will Be A Timeout Error And Your Application Will Not Be Submitted.\n3. Always Specify The Time And Duration When Asked To Do So.\n4. You Must Agree To Be Able To Join A VC Before You Are Given The Reputed Supreme Roles.\n")
+    for i in qlist:
+        await ctx.send(i)
+        try:
+            msg = await client.wait_for('message',timeout = 60.0,check = check)
+        except asyncio.TimeoutError:
+            await ctx.send(f"You Didnt Answer In Time, Try Running The Command Again")
+            return
+        else:
+            answers.append(msg.content)
+        lol = ""
+        for i in answers:
+            lol += f"{i}\n"
+        embed = discord.Embed(color = 0x00FFFF)
+        embed.set_author(name = f"{ctx.author.name}#{ctx.author.discriminator}",icon_url=ctx.author.avatar_url)
+        embed.add_field(name = "Answers",value = lol)
+        await channel.send(embed=embed)
+        
+        
+
 client.run(TOKEN)
