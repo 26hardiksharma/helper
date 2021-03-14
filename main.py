@@ -248,13 +248,13 @@ async def modapply(ctx):
             return
         else:
             answers.append(msg.content)
-        lol = ""
-        for i in answers:
-            lol += f"{i}\n"
-        embed = discord.Embed(color = 0x00FFFF)
-        embed.set_author(name = f"{ctx.author.name}#{ctx.author.discriminator}",icon_url=ctx.author.avatar_url)
-        embed.add_field(name = "Answers",value = lol)
-        await channel.send(embed=embed)
+    lol = ""
+    for i in answers:
+        lol += f"{i}\n"
+    embed = discord.Embed(color = 0x00FFFF)
+    embed.set_author(name = f"{ctx.author.name}#{ctx.author.discriminator}",icon_url=ctx.author.avatar_url)
+    embed.add_field(name = "Answers",value = lol)
+    await channel.send(embed=embed)
         
         
 
