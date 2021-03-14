@@ -225,7 +225,7 @@ async def joke(ctx):
 async def test(ctx):
     async with aiohttp.ClientSession() as session:
         webhook = Webhook.from_url('https://discord.com/api/webhooks/814525601175437342/FlvD7x4oaoNQvT9PhsvIRIpwv2Q_-J5muSQ1nP1A3U1RVI4GmTLrMELHZN17MFBr2nkt', adapter=AsyncWebhookAdapter(session))
-        await webhook.send('Test Successful', username='x')
+        await webhook.send('Test Successful', username='Furious Helper')
 @client.command()
 async def chatrevive(ctx):
     if ctx.author.guild_permissions.administrator:
