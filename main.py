@@ -265,7 +265,7 @@ async def load(ctx,type):
     if ctx.author.guild_permissions.administrator:
         if type == "rr":
             embed = discord.Embed(title = "Helper Roles || 🤝",description = "Roles Which Will Be Pinged When Someone Uses **`,helper`** With <@!818894320165847041>",color = 0x6E99CF)
-            embed.add_field(name = "Roles Choices",value = "<:emoji_0:810202224947888249> :- <@&818139704612093963>\n<:emoji_2:810202313142566992> :- <@&818139745430536222>")
+            embed.add_field(name = "Role Choices",value = "<:emoji_0:810202224947888249> :- <@&818139704612093963>\n<:emoji_2:810202313142566992> :- <@&818139745430536222>")
             await ctx.send(embed=embed)
 
 
