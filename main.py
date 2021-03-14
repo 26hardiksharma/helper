@@ -238,7 +238,10 @@ async def modapply(ctx):
     answers = []
     def check(m):
         return m.author == ctx.author and m.channel == ctx.channel
-    await ctx.send("Rules To Agree Before You Answer All The Questions:-\n1. All Your Answers Must Be Accurate And Question Related.\n2. You Must Answer All The Questions In 30 Mins Or Else There Will Be A Timeout Error And Your Application Will Not Be Submitted.\n3. Always Specify The Time And Duration When Asked To Do So.\n4. You Must Agree To Be Able To Join A VC Before You Are Given The Reputed Supreme Roles.\n")
+    await ctx.send("**Rules To Agree Before You Answer All The Questions:-\n1. All Your Answers Must Be Accurate And Question Related.\n2. You Will Be Given 1 Minute To Answer 1 Question. If You Fail To Answer Within The Time, The Application Will Be Closed By Itself And Your Answers Will Not Be Stored!\n4. You Must Agree To Be Able To Join A VC Before You Are Given The Reputed Supreme Roles.**")
+    await ctx.send(f"Questions Will Be Sent To You After 20 Seconds..")
+    await asyncio.sleep(20)
+
     for i in qlist:
         await ctx.send(i)
         try:
