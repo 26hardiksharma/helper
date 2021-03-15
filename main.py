@@ -275,5 +275,18 @@ async def on_member_ban(guild,user):
     async for entry in guild.audit_logs(action=discord.AuditLogAction.ban,limit = 1):
         await logch.send(f"{entry.user} Banned {entry.target} For Reason : ``{entry.reason}``")
         break
-
+@client.event
+async def on_message_edit(before,after):
+    logs = client.get_channel(818899394719252543)
+    muted = discord.utils.get(after.guild.roles,name = Muted)
+    guild = after.guild
+    if after.bot == True:
+        pass
+    else:
+        if "discord.gg" in after.content.lower():
+            if after.author.guild_permissions.manage_messages:
+                pass
+            else:
+                await after.author.add_roles(muted,reason = f"Tried Posting An Invite Link In {after.channel.name} By Editing A Message")
+                await logs.send(f"**{client.user.name}#{client.user.discriminator}** Muted {after.author.name}#{author.author.discriminator}\n\n`[Reason]` : **[`Tried Posting An Invite Link In`** {after.channel.mention}]")
 client.run(TOKEN)
