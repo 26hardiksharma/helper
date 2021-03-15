@@ -267,6 +267,12 @@ async def load(ctx,type):
             embed = discord.Embed(title = "Helper Roles || 🤝",description = "Roles Which Will Be Pinged When Someone Uses **`,helper`** With <@!818894320165847041>",color = 0x6E99CF)
             embed.add_field(name = "Role Choices",value = "<:emoji_0:810202224947888249> :- <@&818139704612093963>\n<:emoji_2:810202313142566992> :- <@&818139745430536222>")
             await ctx.send(embed=embed)
-
+intents.bans = True 
+@client.event
+async def on_member_ban(guild,user):
+    logch = await client.get_channel(818899394719252543)
+    async for entry in guild.audit_logs(action=discord.AuditLogAction.ban,limit = 1):
+        await logch.send(f'{0.user} Banned {0.target} For Reason :-'.format(entry))
+        break
 
 client.run(TOKEN)
