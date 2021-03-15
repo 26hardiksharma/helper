@@ -289,5 +289,5 @@ async def on_message_edit(before,after):
             else:
                 await after.delete()
                 await after.author.add_roles(muted,reason = f"Tried Posting An Invite Link In {after.channel.name} By Editing A Message")
-                await logs.send(f"**{client.user.name}#{client.user.discriminator}** Muted {after.author.name}#{author.author.discriminator}\n\n`[Reason]` : **[`Tried Posting An Invite Link In`** {after.channel.mention}]")
+                await logs.send(f"**{client.user.name}#{client.user.discriminator}** Muted {after.author.name}#{after.author.discriminator}\n\n`[Reason]` : **[`Tried Posting An Invite Link In`** {after.channel.mention}]")
 client.run(TOKEN)
