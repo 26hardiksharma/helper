@@ -272,7 +272,7 @@ intents.bans = True
 async def on_member_ban(guild,user):
     logch = await client.get_channel(818899394719252543)
     async for entry in guild.audit_logs(action=discord.AuditLogAction.ban,limit = 1):
-        await logch.send(f'{0.user} Banned {0.target} For Reason :-'.format(entry))
+        await logch.send(f"{0.user} Banned {0.target} For Reason :-".format(entry))
         break
 
 client.run(TOKEN)
