@@ -251,12 +251,12 @@ async def modapply(ctx):
             return
         else:
             answers.append(msg.content)
-    lol = ""
+    mystring = ""
     for i in answers:
-        lol += f"**• {i}**\n"
+        mystring += f"**• {i}**\n"
     embed = discord.Embed(color = 0x00FFFF,description = "Recieved A Mod Application!")
     embed.set_author(name = f"{ctx.author.name}#{ctx.author.discriminator}",icon_url=ctx.author.avatar_url)
-    embed.add_field(name = "Answers",value = lol)
+    embed.add_field(name = "Answers",value = mystring)
     await channel.send(embed=embed)
     await ctx.send("Submitted Your Application For Being A Mod, Please Be Patient And Wait For It To Be Reviewed")
         
