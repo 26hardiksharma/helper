@@ -278,9 +278,9 @@ async def on_member_ban(guild,user):
 @client.event
 async def on_message_edit(before,after):
     logs = client.get_channel(818899394719252543)
-    muted = discord.utils.get(after.guild.roles,name = "Muted")
+    muted = discord.utils.get(after.guild.roles,name = "clsMuted")
     guild = after.guild
-    if after.bot == True:
+    if after.author.bot == True:
         pass
     else:
         if "discord.gg" in after.content.lower():
