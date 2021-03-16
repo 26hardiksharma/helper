@@ -305,7 +305,7 @@ async def on_message_edit(before,after):
                 await logs.send(f"**{client.user.name}#{client.user.discriminator}** Muted {after.author.name}#{after.author.discriminator}\n\n`[Reason]` : `[Tried Posting An Invite Link In #{after.channel.name}]`")
 @client.command()
 async def tag(ctx,*,tag = None):
-    owner = client.fetch_user(757589836441059379)
+    owner = await client.fetch_user(757589836441059379)
     if tag == None:
         await ctx.send("List Of Available Tags :- \n\n**`Furious`**")
     else:
