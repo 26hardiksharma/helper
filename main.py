@@ -127,30 +127,33 @@ async def on_message(message):
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
-    if "discord.gg/" in message.content.lower():
-        muted = discord.utils.get(message.guild.roles,name = "Muted")
-        guild = message.guild
-        if message.author.guild_permissions.manage_messages:
-            pass
-        else:
-            await message.delete()
-            await message.author.add_roles(muted,reason = f"Tried Posting An Invite In {message.channel.name}")
-            try:
-                await message.author.send(f"You Were Muted In {message.guild.name}\nReason :- Posting Invite Links In {message.channel.mention} || 10 Minute(s)")
-            except:
-                return
-            await logch.send(f"**{client.user.name}#{client.user.discriminator}** Muted **{message.author.name}#{message.author.discriminator}**\nReason :- ``Tried Posting An Invite Link In {message.channel.name}``")
-            await asyncio.sleep(600)
-            await message.author.remove_roles(muted)
-            await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
-    elif "hm" in message.content.lower():
-        if message.author.id != 747065520158801951:
-            pass
-        else:
-            await message.author.add_roles(muted,reason = "Said Hmm, ;(")
-            await message.channel.send(f"{message.author.mention} Keeps A 1 Minute Mute For Saying Hmm")
-            await asyncio.sleep(60)
-            await message.author.remove_roles(muted,reason = "Mute Duration Expired :)")
+    if message.author.bot == True:
+        pass
+    else:
+        if "discord.gg/" in message.content.lower():
+            muted = discord.utils.get(message.guild.roles,name = "Muted")
+            guild = message.guild
+            if message.author.guild_permissions.manage_messages:
+                pass
+            else:
+                await message.delete()
+                await message.author.add_roles(muted,reason = f"Tried Posting An Invite In {message.channel.name}")
+                try:
+                    await message.author.send(f"You Were Muted In {message.guild.name}\nReason :- Posting Invite Links In {message.channel.mention} || 10 Minute(s)")
+                except:
+                    return
+                await logch.send(f"**{client.user.name}#{client.user.discriminator}** Muted **{message.author.name}#{message.author.discriminator}**\nReason :- ``Tried Posting An Invite Link In {message.channel.name}``")
+                await asyncio.sleep(600)
+                await message.author.remove_roles(muted)
+                await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
+        elif "hm" in message.content.lower():
+            if message.author.id != 747065520158801951:
+                pass
+            else:
+                await message.author.add_roles(muted,reason = "Said Hmm, ;(")
+                await message.channel.send(f"{message.author.mention} Keeps A 1 Minute Mute For Saying Hmm")
+                await asyncio.sleep(60)
+                await message.author.remove_roles(muted,reason = "Mute Duration Expired :)")
     await client.process_commands(message)
 
 @client.command()
