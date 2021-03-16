@@ -94,7 +94,7 @@ async def on_member_update(before,after):
             bef += f"{role.mention} "
             befct += 1
         aft = ""
-        aftct
+        aftct = 0
         for rr in after.roles[1:]:
             aft += f"{rr.mention} "
             aftct += 1
