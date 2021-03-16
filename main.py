@@ -317,8 +317,8 @@ async def upload_emoji(ctx,name,*,url):
         async with aiohttp.ClientSession() as ses:
             async with ses.get(url) as r:
                 try:
-                    img_or_gif = BytesIO(await r.read())
-					b_value = img_or_gif.getvalue()
+                    imgop = BytesIO(await r.read())
+					b_value = imgop.getvalue()
 					if r.status in range(200, 299):
                         emoji = await guild.create_custom_emoji(image=b_value, name=name)
 						await ctx.send(f'Successfully created emoji: <:{name}:{emoji.id}>')
