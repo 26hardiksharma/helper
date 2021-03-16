@@ -312,10 +312,17 @@ async def tag(ctx,*,tag = None):
         if tag.lower() == "furious":
             await ctx.send(f"**___Furious___**\n\n**1). What Is Furious And Whats It's Purpose ?**\n\nFurious Is A Discord Bot Created By {owner.name}#{owner.discriminator} Designed To Moderate And Manage Your Server(s)!\nIt Serves In More Than 130 Servers And Has More Than 30k Users ;)\n\n**2). How Do Add Furious To My Server ?**\n\nTo Add Furious To Your Server, Please Follow This Link\n\n**https://discord.com/api/oauth2/authorize?client_id=790478502909837333&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2F4DqmNbUTXa&scope=bot**")
 @client.command()
-async def upload_emoji(ctx,name):
+async def upload_emoji(ctx,name,*,url):
     if ctx.author.guild_permissions.manage_emojis:
-        if ctx.message.attachments:
-            image = ctx.message.attachments[0]
-            emote = await ctx.guild.create_custom_emoji(name = name,image = image)
-            await ctx.send(f"Created Emoji {emote}")
+        async with aiohttp.ClientSession() as ses:
+            async with ses.get(url) as r:
+                try:
+                    img_or_gif = BytesIO(await r.read())
+					b_value = img_or_gif.getvalue()
+					if r.status in range(200, 299):
+                        emoji = await guild.create_custom_emoji(image=b_value, name=name)
+						await ctx.send(f'Successfully created emoji: <:{name}:{emoji.id}>')
+						await ses.close()
+                except:
+                    await ctx.send('File size is too big!')
 client.run(TOKEN)
