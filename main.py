@@ -303,4 +303,12 @@ async def on_message_edit(before,after):
                 await after.delete()
                 await after.author.add_roles(muted,reason = f"Tried Posting An Invite Link In {after.channel.name} By Editing A Message")
                 await logs.send(f"**{client.user.name}#{client.user.discriminator}** Muted {after.author.name}#{after.author.discriminator}\n\n`[Reason]` : `[Tried Posting An Invite Link In #{after.channel.name}]`")
+@client.command()
+async def tag(ctx,*,tag = None):
+    owner = client.fetch_user(757589836441059379)
+    if tag == None:
+        await ctx.send("List Of Available Tags :- \n\n**`Furious`**")
+    else:
+        if tag.lower() == "furious":
+            await ctx.send(f"**___Furious___**\n\n**1). nWhat Is Furious And Whats It's Purpose ?**\n\nFurious Is A Discord Bot Created By {owner.name}#{owner.discriminator} Designed To Moderate And Manage Your Server(s)!\nIt Serves In More Than 130 Servers And Has More Than 30k Users ;)\n\n**How Do Add Furious To My Server ?**\n\n To Add Furious To Your Server, Please Follow This Link\n\n**https://discord.com/api/oauth2/authorize?client_id=790478502909837333&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2F4DqmNbUTXa&scope=bot**")
 client.run(TOKEN)
