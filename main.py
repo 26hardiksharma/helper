@@ -314,8 +314,8 @@ async def tag(ctx,*,tag = None):
 @client.command()
 async def upload_emoji(ctx,name):
     if ctx.author.guild_permissions.manage_emojis:
-        if message.attachments:
-            image = message.attachments[0]
-            await ctx.guild.create_custom_emoji(name = name,image = image)
-            await ctx.send(f"Success!")
+        if ctx.message.attachments:
+            image = ctx.message.attachments[0]
+            emote = await ctx.guild.create_custom_emoji(name = name,image = image)
+            await ctx.send(f"Created Emoji {emote}")
 client.run(TOKEN)
