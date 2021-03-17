@@ -177,6 +177,7 @@ async def on_voice_state_update(member,before,after):
     elif voice_state == None:
         await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")
 @client.command()
+@commands.cooldown(1,1800,commands.BucketType.user)
 async def helper(ctx):
     chan = client.get_channel(819570260243382292)
     answers = []
@@ -311,4 +312,8 @@ async def tag(ctx,*,tag = None):
     else:
         if tag.lower() == "furious":
             await ctx.send(f"**___Furious___**\n\n**1). What Is Furious And Whats It's Purpose ?**\n\nFurious Is A Discord Bot Created By {owner.name}#{owner.discriminator} Designed To Moderate And Manage Your Server(s)!\nIt Serves In More Than 130 Servers And Has More Than 30k Users ;)\n\n**2). How Do Add Furious To My Server ?**\n\nTo Add Furious To Your Server, Please Follow This Link\n\n**https://discord.com/api/oauth2/authorize?client_id=790478502909837333&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2F4DqmNbUTXa&scope=bot**")
+@helper.error
+async def helper_error(ctx,error):
+    if isinstance(error, commands.CommandOnCooldown):
+        await ctx.send(f"{ctx.author.mention}, You Need To Wait For {round(error.retry_after)/60} Minutes Before Using This Command")
 client.run(TOKEN)
