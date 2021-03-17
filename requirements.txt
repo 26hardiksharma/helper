@@ -2,3 +2,5 @@ discord
 pyjokes
 aiohttp
 pymongo
+dnspython
+pymongo[srv]
