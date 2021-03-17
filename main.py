@@ -315,5 +315,5 @@ async def tag(ctx,*,tag = None):
 @helper.error
 async def helper_error(ctx,error):
     if isinstance(error, commands.CommandOnCooldown):
-        await ctx.send(f"{ctx.author.mention}, You Need To Wait For {round(error.retry_after)/60} Minutes Before Using This Command")
+        await ctx.send(f"{ctx.author.mention}, You Need To Wait For {round(error.retry_after/60)} Minutes Before Using This Command")
 client.run(TOKEN)
