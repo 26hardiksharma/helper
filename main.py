@@ -228,7 +228,7 @@ async def on_reaction_add(reaction,user):
                 embed = discord.Embed(color = 0x00FFFF)
                 embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
                 if reaction.message.attachments:
-                    url = message.attachments[0].url
+                    url = reaction.message.attachments[0].url
                     embed.set_image(url = url)
                 else: 
                     embed.add_field(name = "Content",value = reaction.message.content,inline=False)
