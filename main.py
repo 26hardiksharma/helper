@@ -22,7 +22,8 @@ async def on_ready():
 @client.event
 async def on_user_update(before,after):
     logch = client.get_channel(818899394719252543)
-    support = discord.utils.get(after.guild.roles,id = 822070800717709333)
+    mg = cliet.get_guild(810190584059789323)
+    support = discord.utils.get(guild.roles,id = 822070800717709333)
     if before.name != after.name:
         if "furious" in str(after.name).lower():
             await after.add_roles(support,reason = "Added 'Furious' In Their Username")
