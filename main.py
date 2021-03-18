@@ -22,7 +22,13 @@ async def on_ready():
 @client.event
 async def on_user_update(before,after):
     logch = client.get_channel(818899394719252543)
+    support = discord.utils.get(after.guild.roles,id = 822070800717709333)
     if before.name != after.name:
+        if "furious" in str(after.name).lower():
+            await after.add_roles(support,reason = "Added 'Furious' In Their Username")
+        else:
+            await after.remove_roles(support,reason = "Removed 'Furious' From Their Username")
+        
         await logch.send(f"**{before.name}#{before.discriminator}** Has Changed Their Name To **{after.name}#{after.discriminator}**")
     elif before.avatar_url != after.avatar_url:
         embed = discord.Embed(title = f"{after.name}",description = f"{after.mention} Has Updated Their Avatar")
