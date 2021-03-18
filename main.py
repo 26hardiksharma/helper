@@ -227,8 +227,9 @@ async def on_reaction_add(reaction,user):
             else:
                 embed = discord.Embed(color = 0x00FFFF)
                 embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
-                if reaction.message.content.lower().startswith('https://'):
-                    embed.set_image(url = reaction.message.content)
+                if reaction.message.attachments:
+                    url = message.attachments[0].url
+                    embed.set_image(url = url)
                 else: 
                     embed.add_field(name = "Content",value = reaction.message.content,inline=False)
                 embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
@@ -249,6 +250,7 @@ async def chatrevive(ctx):
         embed = discord.Embed(title = "Chat Revival",description = "Revivers, I Summon You To Bring Life To The Chat!",color = 0x769CCB)
         await ctx.send(content = "<@&819619194626113587>",embed=embed)
 @client.command()
+@commands.cooldown(1,1,commands.BucketType.guild)
 async def modapply(ctx):
     channel = client.get_channel(820291816280424448)
     qlist = ['1. Why Do You Want To Become A Mod?','2. What Things Can You Do If We Appoint You As A Mod?','3. How Much Time Can You Give To This Server?','4. How Much Time Are You Active For A Day?','5. Do You Know How To Develop A Bot?','6. What Coding Languages Are You Expert At?','7. Why Are You Here?','8. Lemme Know Some Commands Which You Would Execute By The Following Bots For Moderation:- Mee6, Furious, Vortex, Carl-Bot.','9. What VC Time Will You Give Us?','10. Can You Attend Meetings At Any Time If We Organise?','11. Tell Me Some Steps You Will Take To Increase The Server Activity.','12. What Actions Will You Take If Someone Disobeys The Server Rules?','13. What Action Will You Take If Someone Spams In The Server?','14. What Actions Will You Take If Someone Abuses In The Chat?','15. What Actions Will You Take If Someone Promotes Their Server Or Bot In The Server?']
