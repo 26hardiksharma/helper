@@ -320,15 +320,4 @@ async def helper_error(ctx,error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(f"{ctx.author.mention}, You Need To Wait For {round(error.retry_after/60)} Minutes Before Using This Command")
 mongo_url = "mongodb+srv://EternalSlayer:<password>@cluster0.7dkai.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
-@client.command()
-async def db_add(ctx,query):
-    if ctx.author.id == 757589836441059379:
-        cluster = MongoClient(mongo_url)
-        db = cluster["testdb"]
-        collection = db["testdbcollection"]
-        bruh = {"registry": query}
-        collection.insert_one(bruh)
-        await ctx.send(f"Success")
-
-
 client.run(TOKEN)
