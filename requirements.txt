@@ -4,3 +4,4 @@ aiohttp
 pymongo
 dnspython
 pymongo[srv]
+prsaw

@@ -9,7 +9,9 @@ import aiohttp
 import pymongo
 from pymongo import MongoClient
 import dns
+from prsaw import RandomStuff
 intents = discord.Intents.all()
+rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
 client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True)
 intents.messages = True
@@ -37,7 +39,7 @@ async def on_user_update(before,after):
         embed.set_thumbnail(url = after.avatar_url)
         await logch.send(embed=embed)
     elif before.discriminator != after.discriminator:
-        await logch.send(f"**{after.name}** Has Changed Their Discriminator From **{before.discriminator}** To **{after.discriminator}**")
+        await logch.send(f"**{after.name}**[ID : {after.id}] Has Changed Their Discriminator From **{before.discriminator}** To **{after.discriminator}**")
 
 @client.event
 async def on_member_join(member):
@@ -159,14 +161,10 @@ async def on_message(message):
                 await asyncio.sleep(600)
                 await message.author.remove_roles(muted)
                 await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
-        elif "hm" in message.content.lower():
-            if message.author.id != 747065520158801951:
-                pass
-            else:
-                await message.author.add_roles(muted,reason = "Said Hmm, ;(")
-                await message.channel.send(f"{message.author.mention} Keeps A 1 Minute Mute For Saying Hmm")
-                await asyncio.sleep(60)
-                await message.author.remove_roles(muted,reason = "Mute Duration Expired :)")
+        else:
+            if message.channel.id ==826043636063273010:
+                response = rs.get_ai_response(message.content.lower())
+                await message.reply(response)
     await client.process_commands(message)
 
 @client.command()
