@@ -164,6 +164,7 @@ async def on_message(message):
         else:
             if message.channel.id ==826043636063273010:
                 response = await rs.get_ai_response(message.content.lower())
+                await asyncio.sleep(1)
                 await message.reply(response)
     await client.process_commands(message)
 
