@@ -36,6 +36,9 @@ async def on_user_update(before,after):
         embed.add_field(name = "Avatar",value = f"[Current]({after.avatar_url}) 𒌋━━━ [Before]({before.avatar_url})")
         embed.set_thumbnail(url = after.avatar_url)
         await logch.send(embed=embed)
+    elif before.discriminator != after.discriminator:
+        await logch.send(f"**{after.name}** Has Changed Their Discriminator From **{before.discriminator}** To **{after.discriminator}**")
+
 @client.event
 async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
@@ -326,7 +329,7 @@ async def tag(ctx,*,tag = None):
         await ctx.send("List Of Available Tags :- \n\n**`Furious`**")
     else:
         if tag.lower() == "furious":
-            await ctx.send(f"**___Furious___**\n\n**1). What Is Furious And Whats It's Purpose ?**\n\nFurious Is A Discord Bot Created By {owner.name}#{owner.discriminator} Designed To Moderate And Manage Your Server(s)!\nIt Serves In More Than 130 Servers And Has More Than 30k Users ;)\n\n**2). How Do Add Furious To My Server ?**\n\nTo Add Furious To Your Server, Please Follow This Link\n\n**https://discord.com/api/oauth2/authorize?client_id=790478502909837333&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2F4DqmNbUTXa&scope=bot**")
+            await ctx.send(f"**___Furious___**\n\n**1). What Is Furious And Whats It's Purpose ?**\n\nFurious Is A Discord Bot Created By {owner.name}#{owner.discriminator} Designed To Moderate And Manage Your Server(s)!\nIt Serves In More Than 150 Servers And Has More Than 30k Users ;)\n\n**2). How To Add Furious To My Server ?**\n\nTo Add Furious To Your Server, Please Follow This Link\n\n**https://discord.com/api/oauth2/authorize?client_id=790478502909837333&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2F4DqmNbUTXa&scope=bot**")
 @helper.error
 async def helper_error(ctx,error):
     if isinstance(error, commands.CommandOnCooldown):
