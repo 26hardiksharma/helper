@@ -163,9 +163,12 @@ async def on_message(message):
                 await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
         else:
             if message.channel.id ==826043636063273010:
-                response = await rs.get_ai_response(message.content.lower())
-                await asyncio.sleep(1)
-                await message.reply(response)
+                if message.is_system():
+                    pass
+                else:
+                    response = await rs.get_ai_response(message.content.lower())
+                    await asyncio.sleep(1)
+                    await message.reply(response)
     await client.process_commands(message)
 
 @client.command()
