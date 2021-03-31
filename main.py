@@ -143,7 +143,7 @@ async def on_message(message):
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
-    if isinstance(message.channel, discord.channel.DMChannel):
+    if isinstance(message.channel, discord.DMChannel):
         return
     if message.author.bot == True:
         pass
