@@ -177,7 +177,7 @@ async def on_message(message):
             else:
                 for i in message.mentions:
                     if i.id == 757589836441059379:
-                        await message.channel.send("The Person You Have Mentioned has Left Discord, Please try Again Later")
+                        await message.channel.send("The Person You Have Mentioned has Left Discord, Please try Again Later :)")
                         break
     await client.process_commands(message)
 
