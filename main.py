@@ -62,7 +62,7 @@ async def on_member_join(member):
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
         age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-        await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+        await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID : {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
 @client.event
 
 async def on_member_update(before,after):
@@ -338,4 +338,14 @@ async def helper_error(ctx,error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(f"{ctx.author.mention}, You Need To Wait For {round(error.retry_after/60)} Minutes Before Using This Command")
 mongo_url = "mongodb+srv://EternalSlayer:<password>@cluster0.7dkai.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+@client.event
+async def on_guild_channel_create(channel):
+    logs = client.get_channel(818899394719252543)
+    async for entry in guild.audit_logs(action=discord.AuditLogAction.channel_create,limit = 1):
+        member = entry.user
+        break
+    embed = discord.Embed(title = "Channel Created",description = f"Channel Name : **{channel.name}**\nCategory : **{channel.category}**",colour = 0xF2922D)
+    embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
+    embed.set_footer(text= f"ID : {channel.id}")
+    await logs.send(embed = embed)
 client.run(TOKEN)
