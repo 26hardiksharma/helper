@@ -401,7 +401,7 @@ async def on_message_edit(before,after):
     if message.embeds:
         return
     else:
-        embed = discord.Embed(description = f"Message Edited In {after.channel.mention}\nBefore: `{before.content}`\nAfter: `{after.content}`")
+        embed = discord.Embed(description = f"Message Edited In {after.channel.mention}\nBefore: `{before.content}`\nAfter: `{after.content}`",colour = 0xF2922D)
         embed.set_author(name = after.author,icon_url= after.author.avatar_url)
         embed.set_footer(text=f"Author ID : {after.author.id}")
         await logs.send(embed=embed)
