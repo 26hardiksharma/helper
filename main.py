@@ -145,6 +145,7 @@ async def on_message(message):
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
+    eternal = await client.fetch_user(757589836441059379)
     if message.author.bot == True:
         pass
     else:
@@ -164,9 +165,8 @@ async def on_message(message):
                 await asyncio.sleep(600)
                 await message.author.remove_roles(muted)
                 await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
-        elif "<@!757589836441059379>" in message.content.lower():
-            await message.channel.send("The Person You Have Mentioned Has Left Discord, Please Try Again Later :)")
-
+        elif eternal.mention in message.mentions:
+            await message.channel.send("The Person You Have Mentioned Has Left Discord, Please Try Again Later :)") 
         else:
             if message.channel.id ==826043636063273010:
                 if message.is_system():
