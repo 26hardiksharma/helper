@@ -140,7 +140,8 @@ async def on_member_update(before,after):
 
 @client.event
 async def on_message(message):
-    print(message.channel.type)
+    if str(message.channel.type) == "private":
+        return
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
