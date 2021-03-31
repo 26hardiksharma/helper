@@ -385,5 +385,11 @@ async def on_member_remove(member):
         if member == entry.target:
             await logs.send(f"**{entry.user}** Kicked **{entry.target}**`[ID : {entry.target.id}]` For Reason : `{entry.reason}`")
             break
-
+@client.event
+async def on_message_delete(message):
+    logs = client.get_channel(826744984187043850)
+    embed = discord.Embed(description = f"Message Deleted In {message.channel.mention}\n\n`{message.content}`")
+    embed.set_author(name = message.author,icon_url= message.author.avatar_url)
+    embed.set_footer(text=f"Author ID : {message.author.id}")
+    await logs.send(embed=embed)
 client.run(TOKEN)
