@@ -390,6 +390,8 @@ async def on_message_delete(message):
     logs = client.get_channel(826744984187043850)
     if message.embeds:
         return
+    elif message.author.bot:
+        return
     else:
         embed = discord.Embed(description = f"Message Deleted In {message.channel.mention}\n`{message.content}`",colour = 0xF2922D)
         embed.set_author(name = message.author,icon_url= message.author.avatar_url)
@@ -399,6 +401,8 @@ async def on_message_delete(message):
 async def on_message_edit(before,after):
     logs = client.get_channel(826744984187043850)
     if after.embeds:
+        return
+    elif after.author.bot:
         return
     else:
         embed = discord.Embed(description = f"Message Edited In {after.channel.mention}\nBefore: `{before.content}`\nAfter: `{after.content}`",colour = 0xF2922D)
