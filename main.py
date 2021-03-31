@@ -382,8 +382,8 @@ async def on_member_remove(member):
     guild = client.get_guild(810190584059789323)
     await logs.send(f"**{member.name}#{member.discriminator}**`[ID : {member.id}]` Has Left The Server")
     async for entry in guild.audit_logs(action=discord.AuditLogAction.kick,limit = 1):
-        if member = entry.target:
+        if member == entry.target:
             await logs.send(f"{entry.user} Kicked {entry.target} For Reason : `{entry.reason}`")
             break
-        
+
 client.run(TOKEN)
