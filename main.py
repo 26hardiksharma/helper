@@ -398,7 +398,7 @@ async def on_message_delete(message):
 @client.event
 async def on_message_edit(before,after):
     logs = client.get_channel(826744984187043850)
-    if message.embeds:
+    if after.embeds:
         return
     else:
         embed = discord.Embed(description = f"Message Edited In {after.channel.mention}\nBefore: `{before.content}`\nAfter: `{after.content}`",colour = 0xF2922D)
