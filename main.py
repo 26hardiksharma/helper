@@ -143,8 +143,7 @@ async def on_message(message):
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
-    if str(message.channel.type) == "dm" or str(message.channel.type)== "private":
-        return
+    print(message.channel.type)
     if message.author.bot == True:
         pass
     else:
