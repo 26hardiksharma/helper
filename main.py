@@ -365,7 +365,7 @@ async def on_guild_channel_update(before, after):
         member = entry.user
         break
     embed = discord.Embed(title = "Channel Updated",description = after.mention,colour = 0xF2922D)
-    embed.set_footer(text = after.id)
+    embed.set_footer(text = f"ID : {after.id}")
     if before.name != after.name:
         embed.add_field(name = "Name [Before]", value = before.name)
         embed.add_field(name = "Name [After]",value = after.name,inline = False)
