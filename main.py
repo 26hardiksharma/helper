@@ -358,5 +358,20 @@ async def on_guild_channel_delete(channel):
     embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
     embed.set_footer(text= f"ID : {channel.id}")
     await logs.send(embed = embed)
-
+@client.event
+async def on_guild_channel_update(before, after):
+    logs = client.get_channel(818899394719252543)
+    async for entry in after.guild.audit_logs(action=discord.AuditLogAction.channel_update,limit = 1):
+        member = entry.user
+        break
+    embed = discord.Embed(title = "Channel Updated",description = channel.mention,colour = 0xF2922D)
+    if before.name != after.name:
+        embed.add_field(name = "Name [Before]", value = before.name)
+        embed.add_field(name = "Name [After]",value = after.name,inline = False)
+        embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
+        await logs.send(embed=embed)
+    elif before.topic != after.topic:
+        embed.add_field(name = "Topic [Before]",value = before.topic)
+        embed.add_field(name = "Topic [After]",value = after.topic,inline = False)
+        embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
 client.run(TOKEN)
