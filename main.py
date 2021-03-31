@@ -374,4 +374,5 @@ async def on_guild_channel_update(before, after):
         embed.add_field(name = "Topic [Before]",value = before.topic)
         embed.add_field(name = "Topic [After]",value = after.topic,inline = False)
         embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
+        await logs.send(embed=embed)
 client.run(TOKEN)
