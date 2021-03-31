@@ -364,7 +364,8 @@ async def on_guild_channel_update(before, after):
     async for entry in after.guild.audit_logs(action=discord.AuditLogAction.channel_update,limit = 1):
         member = entry.user
         break
-    embed = discord.Embed(title = "Channel Updated",description = channel.mention,colour = 0xF2922D)
+    embed = discord.Embed(title = "Channel Updated",description = after.mention,colour = 0xF2922D)
+    embed.set_footer(text = after.id)
     if before.name != after.name:
         embed.add_field(name = "Name [Before]", value = before.name)
         embed.add_field(name = "Name [After]",value = after.name,inline = False)
