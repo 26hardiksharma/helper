@@ -417,8 +417,7 @@ async def on_invite_create(invite):
     logs = client.get_channel(826794273357561896)
     if invite.inviter.bot:
         return
-    exact = datetime.datetime.now().strftime("%H:%M")
-    embed = discord.Embed(description = f"An Invite Has Been Created By {invite.inviter}\n\nInvite Channel: {invite.channel.name}\nInvite Url : {invite.url}\nMax Uses : {invite.max_uses}",colour = 0xF2922D,timestamp = datetime.datetime)
+    embed = discord.Embed(description = f"An Invite Has Been Created By {invite.inviter}\n\nInvite Channel: {invite.channel.name}\nInvite Url : {invite.url}\nMax Uses : {invite.max_uses}",colour = 0xF2922D,timestamp = datetime.datetime.now())
     embed.set_author(name = invite.inviter,icon_url = invite.inviter.avatar_url)
     await logs.send(embed=embed)
 
