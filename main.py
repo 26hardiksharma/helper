@@ -165,8 +165,6 @@ async def on_message(message):
                 await asyncio.sleep(600)
                 await message.author.remove_roles(muted)
                 await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
-        elif eternal.mention in message.mentions:
-            await message.channel.send("The Person You Have Mentioned Has Left Discord, Please Try Again Later :)") 
         else:
             if message.channel.id ==826043636063273010:
                 if message.is_system():
@@ -176,6 +174,11 @@ async def on_message(message):
                     await asyncio.sleep(1)
                     await message.reply(response)
                     rs.close()
+            else:
+                for i in message.mentions:
+                    if i.id == 757589836441059379:
+                        await message.channel.send("The Person You Have Mentioned has Left Discord, Please try Again Later")
+                        break
     await client.process_commands(message)
 
 @client.command()
