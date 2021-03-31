@@ -341,7 +341,7 @@ mongo_url = "mongodb+srv://EternalSlayer:<password>@cluster0.7dkai.mongodb.net/m
 @client.event
 async def on_guild_channel_create(channel):
     logs = client.get_channel(818899394719252543)
-    async for entry in guild.audit_logs(action=discord.AuditLogAction.channel_create,limit = 1):
+    async for entry in channel.guild.audit_logs(action=discord.AuditLogAction.channel_create,limit = 1):
         member = entry.user
         break
     embed = discord.Embed(title = "Channel Created",description = f"Channel Name : **{channel.name}**\nCategory : **{channel.category}**",colour = 0xF2922D)
