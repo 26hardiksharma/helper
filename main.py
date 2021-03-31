@@ -376,4 +376,14 @@ async def on_guild_channel_update(before, after):
         embed.add_field(name = "Topic [After]",value = after.topic,inline = False)
         embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
         await logs.send(embed=embed)
+@client.event
+async def on_member_remove(member):
+    logs = client.get_channel(818899394719252543)
+    guild = client.get_guild(810190584059789323)
+    await logs.send(f"**{member.name}#{member.discriminator}**`[ID : {member.id}]` Has Left The Server")
+    async for entry in guild.audit_logs(action=discord.AuditLogAction.kick,limit = 1):
+        if member = entry.target:
+            await logs.send(f"{entry.user} Kicked {entry.target} For Reason : `{entry.reason}`")
+            break
+        
 client.run(TOKEN)
