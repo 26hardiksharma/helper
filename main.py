@@ -18,6 +18,7 @@ intents.messages = True
 intents.members = True
 intents.presences = True
 intents.voice_states = True
+intents.invites = True
 @client.event
 async def on_ready():
     print("Now Online!")
@@ -142,6 +143,8 @@ async def on_message(message):
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
+    if isinstance(message.channel, discord.channel.DMChannel):
+        return
     if message.author.bot == True:
         pass
     else:
@@ -409,4 +412,14 @@ async def on_message_edit(before,after):
         embed.set_author(name = after.author,icon_url= after.author.avatar_url)
         embed.set_footer(text=f"Author ID : {after.author.id}")
         await logs.send(embed=embed)
+@client.event
+async def on_invite_create(invite):
+    logs = client.get_channel(826794273357561896)
+    if invite.inviter.bot:
+        return
+    exact = datetime.datetime.now().strftime("%H:%M")
+    embed = discord.Embed(description = f"An Invite Has Been Created By {invite.inviter}\n\nInvite Channel: {invite.channel.name}\nInvite Url : {invite.url}\nMax Uses : {invite.max_uses}",colour = 0xF2922D,timestamp = exact)
+    embed.set_author(name = invite.inviter,icon_url = invite.inviter.avatar_url)
+    await logs.send(embed=embed)
+
 client.run(TOKEN)
