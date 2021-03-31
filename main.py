@@ -140,10 +140,10 @@ async def on_member_update(before,after):
 
 @client.event
 async def on_message(message):
+    print(message.channel.type)
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
-    print(message.channel.type)
     if message.author.bot == True:
         pass
     else:
