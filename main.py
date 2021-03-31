@@ -13,7 +13,7 @@ from prsaw import RandomStuff
 intents = discord.Intents.all()
 rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
-client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True)
+client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True,strip_after_prefix = True)
 intents.messages = True
 intents.members = True
 intents.presences = True
