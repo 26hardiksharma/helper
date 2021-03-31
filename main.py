@@ -165,8 +165,8 @@ async def on_message(message):
                 await message.author.remove_roles(muted)
                 await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
         elif "<@!757589836441059379>" in message.content.lower():
-            await ctx.send("The Person You Have Mentioned Has Left Discord, Please Try Again Later :)")
-            
+            await message.channel.send("The Person You Have Mentioned Has Left Discord, Please Try Again Later :)")
+
         else:
             if message.channel.id ==826043636063273010:
                 if message.is_system():
