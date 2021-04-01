@@ -455,4 +455,8 @@ async def on_guild_update(before,after):
         embed.add_field(name = "Changes",value = f"Target: System Channel\nBefore: {before.system_channel.mention}\nAfter: {after.system_channel.mention}")
         embed.add_field(name = "Responsible User",value = member)
         await logs.send(embed=embed)
+@client.event
+async def on_command_error(ctx,error):
+    if isinstance(error,commands.MissingRequiredArgument):
+        await ctx.send(f"{param} Is An Argument Required For This Command!")
 client.run(TOKEN)
