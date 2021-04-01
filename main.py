@@ -439,7 +439,7 @@ async def on_invite_create(invite):
 async def on_guild_update(before,after):
     logs = client.get_channel(818899394719252543)
     embed = discord.Embed(description = "The Server Has Been Updated",colour = 0xF2922D,timestamp = datetime.datetime.now())
-    async for entry in guild.audit_logs(action=discord.AuditLogAction.guild_update,limit = 1):
+    async for entry in after.audit_logs(action=discord.AuditLogAction.guild_update,limit = 1):
         member = entry.user
         break
     if before.name != after.name:
