@@ -386,8 +386,8 @@ async def on_guild_channel_update(before, after):
         embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
         await logs.send(embed=embed)
     elif before.type != after.type:
-        embed.add_field(name = "Type[Before]",value = str(before.type).capitalize())
-        embed.add_field(name = "Type[After]",value = str(after.type).capitalize())
+        embed.add_field(name = "Type[Before]",value = str(before.type).capitalize(),inline = False)
+        embed.add_field(name = "Type[After]",value = str(after.type).capitalize(),inline = False)
         embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
         await logs.send(embed=embed)
 @client.event
