@@ -435,5 +435,17 @@ async def on_invite_create(invite):
     embed = discord.Embed(description = f"An Invite Has Been Created By {invite.inviter}\n\nInvite Channel: {invite.channel.name}\nInvite Url : {invite.url}\nMax Uses : {lmfao}",colour = 0xF2922D,timestamp = datetime.datetime.now())
     embed.set_author(name = invite.inviter,icon_url = invite.inviter.avatar_url)
     await logs.send(embed=embed)
+@client.event
+async def on_guild_update(before,after):
+    logs = client.get_channel(818899394719252543)
+    embed = discord.Embed(description = "The Server Has Been Updated",colour = 0xF2922D,timestamp = datetime.datetime.now())
+    async for entry in guild.audit_logs(action=discord.AuditLogAction.guild_update,limit = 1):
+        member = entry.user
+        break
+    if before.name != after.name:
+        embed.add_field(name = "Changes",value = f"Target : Name\nBefore: {before.name}\nAfter: {after.name}")
+        embed.add_field(name = "Responsible User",value = member)
+        await logs.send(embed=embed)
+    
 
 client.run(TOKEN)
