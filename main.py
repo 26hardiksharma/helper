@@ -455,6 +455,9 @@ async def on_guild_update(before,after):
         embed.add_field(name = "Changes",value = f"Target: System Channel\nBefore: {before.system_channel.mention}\nAfter: {after.system_channel.mention}")
         embed.add_field(name = "Responsible User",value = member)
         await logs.send(embed=embed)
+    elif before.owner_id != after.owner_id:
+        embed.add_field(name = "Changes",value = f"Target: Owner\nBefore: {before.owner}\nAfter: {after.owner}")
+        await logs.send(embed=embed)
 @client.event
 async def on_command_error(ctx,error):
     if isinstance(error,commands.MissingRequiredArgument):
