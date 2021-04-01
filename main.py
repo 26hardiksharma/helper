@@ -459,4 +459,6 @@ async def on_guild_update(before,after):
 async def on_command_error(ctx,error):
     if isinstance(error,commands.MissingRequiredArgument):
         await ctx.send(f"{param} Is An Argument Required For This Command!")
+    else:
+        raise error
 client.run(TOKEN)
