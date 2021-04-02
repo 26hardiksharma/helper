@@ -215,6 +215,7 @@ async def helper(ctx):
             msg = await client.wait_for('message',timeout = 30.0,check = check)
         except asyncio.TimeoutError:
             await ctx.send(f"You Did Not Answer In Time")
+            ctx.command.reset_cooldown(ctx)
             return
         else:
             answers.append(msg.content)
