@@ -338,10 +338,12 @@ async def on_message_edit(before,after):
 async def tag(ctx,*,tag = None):
     owner = await client.fetch_user(757589836441059379)
     if tag == None:
-        await ctx.send("List Of Available Tags :- \n\n**`Furious`**")
+        await ctx.send("List Of Available Tags :- \n\n**`Furious`**\n\n**`Spoonfeed`**")
     else:
         if tag.lower() == "furious":
             await ctx.send(f"**___Furious___**\n\n**1). What Is Furious And Whats It's Purpose ?**\n\nFurious Is A Discord Bot Created By {owner.name}#{owner.discriminator} Designed To Moderate And Manage Your Server(s)!\nIt Serves In More Than 150 Servers And Has More Than 30k Users ;)\n\n**2). How To Add Furious To My Server ?**\n\nTo Add Furious To Your Server, Please Follow This Link\n\n**https://discord.com/api/oauth2/authorize?client_id=790478502909837333&permissions=8&redirect_uri=https%3A%2F%2Fdiscord.gg%2F4DqmNbUTXa&scope=bot**")
+        elif tag.lower() == "spoonfeeding" or tag.lower() =="spoonfeed":
+            await ctx.send(f"**Spoonfeeding Is Against The Rules Of The Server, Can Get You Muted Upon Getting Spotted Or Being Reported!**\n\n**P.S:** We Have Functioning Message Logs 😁")
 @helper.error
 async def helper_error(ctx,error):
     if isinstance(error, commands.CommandOnCooldown):
