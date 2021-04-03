@@ -476,4 +476,14 @@ async def on_command_error(ctx,error):
         await ctx.send(f"{error.param} Is An Argument Required For This Command!")
     else:
         raise error
+@client.event
+async def on_bulk_message_delete(messages):
+    logs = await client.get_channel(826744984187043850)
+    msgs = ""
+    for i in range(10):
+        msgs += f"{i}) {messages[i].author}: {messages[i]}\n"
+    async for entry in messages[0].guild.audit_logs(action = discord.AuditLogAction.message_bulk_delete,limit = 1):
+        text = f"A Bulk Message Delete Was Triggered By {entry.user}\n\nTarget Channel: <#{entry.target.id}>\n\nNumber Of Messages Deleted: {len(messages)}\n\nTop 10 Messages Retrieved: {msgs}"
+        await logs.send(text)
+        break
 client.run(TOKEN)
