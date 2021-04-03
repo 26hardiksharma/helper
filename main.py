@@ -217,19 +217,20 @@ async def helper(ctx):
         try:
             msg = await client.wait_for('message',timeout = 30.0,check = check)
         except asyncio.TimeoutError:
-            await ctx.send(f"You Did Not Answer In Time")
+            await ctx.send(f"You Did Not Answer In Time. F")
             ctx.command.reset_cooldown(ctx)
             return
         else:
             answers.append(msg.content)
     if answers[2].lower() != "y":
         await ctx.send(f"Ok, Aborted!")
+        ctx.command.reset_cooldown(ctx)
     else:
         if len(answers[1]) < 10:
             await ctx.send(f"Please Provide A Larger Description Of Your Problem! Must Be More That 10 Characters")
             ctx.command.reset_cooldown(ctx)
         else:
-            embed = discord.Embed(title = f"{ctx.author.name}#{ctx.author.discriminator} Needs Your Help",colour = 0x00FFFF)
+            embed = discord.Embed(title = f"{ctx.author.name}#{ctx.author.discriminator} Needs Your Help",colour = 0x00FFFF,timestamp = datetime.datetime.now())
             embed.add_field(name = f"Problem Description",value = f"{answers[1]}")
             embed.add_field(name = "Jump To Message",value = f"[Click Here]({ctx.message.jump_url}) To Help Them",inline = False)
             if answers[0].lower() == "python" or answers[0].lower() == "py":
