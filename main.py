@@ -227,6 +227,7 @@ async def helper(ctx):
     else:
         if len(answers[1]) < 10:
             await ctx.send(f"Please Provide A Larger Description Of Your Problem! Must Be More That 10 Characters")
+            ctx.command.reset_cooldown(ctx)
         else:
             embed = discord.Embed(title = f"{ctx.author.name}#{ctx.author.discriminator} Needs Your Help",colour = 0x00FFFF)
             embed.add_field(name = f"Problem Description",value = f"{answers[1]}")
@@ -239,6 +240,7 @@ async def helper(ctx):
                 await ctx.send("Submitted your request for help. Please keep in mind that our helpers are human and may not be available immediately.")
             else:
                 await ctx.send(f"Invalid Language Supplied")
+                ctx.command.reset_cooldown(ctx)
 intents.reactions = True
 @client.event
 async def on_reaction_add(reaction,user):
