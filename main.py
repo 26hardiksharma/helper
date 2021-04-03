@@ -399,7 +399,7 @@ async def on_guild_channel_update(before, after):
         await logs.send(embed=embed)
     elif before.slowmode_delay != after.slowmode_delay:
         embed.add_field(name = "Slowmode[Before]",value = before.slowmode_delay)
-        embed.add_field(name = "Slodmode[After]",value = after.slowmode_delay,inline=False)
+        embed.add_field(name = "Slowmode[After]",value = after.slowmode_delay,inline=False)
         embed.add_field(name = "Resposible User",value = member)
         await logs.send(embed=embed)
 @client.event
