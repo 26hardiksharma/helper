@@ -482,7 +482,7 @@ async def on_bulk_message_delete(messages):
     msgs = ""
     if len(messages) >= 10:
         for i in range(10):
-            msgs += f"{i+1}) {messages[i].author}: {messages[i].content}.\n"
+            msgs += f"{i+1}) {messages[i].author}: {messages[i].content}\n"
     else:
         for i in range(len(messages)):
             msgs += f"{i+1}) {messages[i].author}: {messages[i].content}\n"
