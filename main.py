@@ -378,6 +378,7 @@ async def on_guild_channel_update(before, after):
     logs = client.get_channel(818899394719252543)
     async for entry in after.guild.audit_logs(action=discord.AuditLogAction.channel_update,limit = 1):
         member = entry.user
+        reason = entry.reason
         break
     embed = discord.Embed(title = "Channel Updated",description = after.mention,colour = 0xF2922D)
     embed.set_footer(text = f"ID : {after.id}")
@@ -396,9 +397,11 @@ async def on_guild_channel_update(before, after):
         embed.add_field(name = "Type[After]",value = str(after.type).capitalize(),inline = False)
         embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
         await logs.send(embed=embed)
-    print(before)
-    print("-------------------------------------")
-    print(after)
+    elif.before.slowmode_delay != after.slowmode_delay:
+        embed.add_field(name = "Slowmode[Before]",value = before.slowmode_delay)
+        embed.add_field(name = "Slodmode[After]",value = after.slowmode_delay,inline=False)
+        embed.add_field(name = "Resposible User",value = member)
+        await logs.send(embed=embed)
 @client.event
 async def on_member_remove(member):
     logs = client.get_channel(818899394719252543)
