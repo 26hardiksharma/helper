@@ -361,7 +361,7 @@ async def on_guild_channel_create(channel):
     async for entry in channel.guild.audit_logs(action=discord.AuditLogAction.channel_create,limit = 1):
         member = entry.user
         break
-    embed = discord.Embed(title = "Channel Created",description = f"Channel Name : **{channel.name}**\nCategory : **{channel.category}**\nType: : **{str(channel.type).capitalize()}",colour = 0xF2922D)
+    embed = discord.Embed(title = "Channel Created",description = f"Channel Name : **{channel.name}**\nCategory : **{channel.category}**\nType: : **{str(channel.type).capitalize()}**",colour = 0xF2922D)
     embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
     embed.set_footer(text= f"ID : {channel.id}")
     await logs.send(embed = embed)
