@@ -499,7 +499,7 @@ async def on_guild_emojis_update(guild, before, after):
     logs = client.get_channel(818899394719252543)
     if len(before) > len(after):
         async for entry in guild.audit_logs(action = discord.AuditLogAction.emoji_delete,limit = 1):
-            lol = guild.fetch_emoji(entry.target.id)
+            lol = await guild.fetch_emoji(entry.target.id)
             embed = discord.Embed(description = f"An Emoji Was Deleted From The Server.",colour = 0xF2922D,timestamp = datetime.datetime.now())
             embed.add_field(name = "Emoji Details",value = f"Emoji Name: {lol.name}")
             embed.add_field(name = "Responsible User",value = entry.user)
@@ -508,7 +508,7 @@ async def on_guild_emojis_update(guild, before, after):
             break
     elif len(after) > len(before):
         async for entry in guild.audit_logs(action = discord.AuditLogAction.emoji_create,limit = 1):
-            lol = guild.fetch_emoji(entry.target.id)
+            lol = await guild.fetch_emoji(entry.target.id)
             embed = discord.Embed(description= "An Emoji Was Created In The Server.",colour = 0xF2922D,timestamp = datetime.datetime.now())
             embed.add_field(name = "Emoji Details",value = f"Emoji: <:{lol.name}:{lol.id}>\n\nEmoji Name: {lol.name}\n\nEmoji ID: {lol.id}",inline = False)
             embed.add_field(name = "Responsible User",value = entry.user)
