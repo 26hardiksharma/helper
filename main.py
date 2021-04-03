@@ -488,7 +488,7 @@ async def on_bulk_message_delete(messages):
             msgs += f"{i+1}) {messages[i].author}: {messages[i].content}\n"
     async for entry in messages[0].guild.audit_logs(action = discord.AuditLogAction.message_bulk_delete,limit = 1):
         text = f"A Bulk Message Delete Was Triggered By {entry.user}\n\nTarget Channel: {messages[0].channel.mention}\n\nNumber Of Messages Deleted: {len(messages)}"
-        lol = f"Top Messages Retrieved: {msgs}"
+        lol = f"Top Messages Retrieved:\n{msgs}"
         await logs.send(text)
         await logs.send(lol)
         break
