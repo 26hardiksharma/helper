@@ -498,8 +498,8 @@ async def on_bulk_message_delete(messages):
 async def on_guild_emojis_update(guild, before, after):
     logs = client.get_channel(818899394719252543)
     if len(before) > len(after):
-        lol = guild.fetch_emoji(entry.target.id)
         async for entry in guild.audit_logs(action = discord.AuditLogAction.emoji_delete,limit = 1):
+            lol = guild.fetch_emoji(entry.target.id)
             embed = discord.Embed(description = f"An Emoji Was Deleted From The Server.",colour = 0xF2922D,timestamp = datetime.datetime.now())
             embed.add_field(name = "Emoji Details",value = f"Emoji Name: {lol.name}")
             embed.add_field(name = "Responsible User",value = entry.user)
