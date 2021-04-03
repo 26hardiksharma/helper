@@ -500,7 +500,7 @@ async def on_guild_emojis_update(guild, before, after):
     if len(before) > len(after):
         async for entry in guild.audit_logs(action = discord.AuditLogAction.emoji_delete,limit = 1):
             embed = discord.Embed(title = "Emoji Deleted",description = f"An Emoji Was Deleted From The Server.",colour = 0xF2922D,timestamp = datetime.datetime.now())
-            embed.add_field(name = "Emoji Details",value = f"Emoji ID: {lol.id}")
+            embed.add_field(name = "Emoji Details",value = f"Emoji ID: {entry.target.id}")
             embed.add_field(name = "Responsible User",value = entry.user)
             embed.set_footer(text = "Get Deleted lol")
             await logs.send(embed=embed)
