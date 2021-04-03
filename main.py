@@ -397,7 +397,7 @@ async def on_guild_channel_update(before, after):
         embed.add_field(name = "Type[After]",value = str(after.type).capitalize(),inline = False)
         embed.add_field(name = "Responsible User",value = f"{member.name}#{member.discriminator}")
         await logs.send(embed=embed)
-    elif.before.slowmode_delay != after.slowmode_delay:
+    elif before.slowmode_delay != after.slowmode_delay:
         embed.add_field(name = "Slowmode[Before]",value = before.slowmode_delay)
         embed.add_field(name = "Slodmode[After]",value = after.slowmode_delay,inline=False)
         embed.add_field(name = "Resposible User",value = member)
