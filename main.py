@@ -516,5 +516,7 @@ async def on_guild_emojis_update(guild, before, after):
             embed.add_field(name = "Responsible User",value = entry.user)
             await logs.send(embed=embed)
             break
-
+@client.command()
+async def guild(ctx,member : discord.Member):
+    await ctx.send(member.mutual_guilds)
 client.run(TOKEN)
