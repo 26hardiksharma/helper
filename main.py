@@ -103,27 +103,20 @@ async def on_member_update(before,after):
     elif before.nick != after.nick:
         await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
     elif before.roles != after.roles:
-        embed = discord.Embed(description = f"{after.name}#{after.discriminator}'s Roles Have Changed!",colour = 0xFF0000)
-        bef = ""
-        befct = 0
-        for role in before.roles[1:]:
-            bef += f"{role.mention} "
-            befct += 1
-        aft = ""
-        aftct = 0
-        for rr in after.roles[1:]:
-            aft += f"{rr.mention} "
-            aftct += 1
+        embed = discord.Embed(description = f"{after.name}#{after.discriminator}'s Roles Have Changed!",colour = 0xFF0000,timestamp = datetime.datetime.now())
         embed.set_author(name = f"{after.name}#{after.discriminator}",icon_url = after.avatar_url)
-        if befct >= 1:
-            embed.add_field(name = "Before",value = bef,inline = False)
-        else:
-            embed.add_field(name = "Before",value = "None",inline = False)
-        if aftct >= 1:
-            embed.add_field(name = "After",value = aft,inline = False)
-        else:
-            embed.add_field(name = "Before",value = "None",inline = False)
-        await logch.send(embed=embed)
+        if len(before.roles) > len(after.roles):
+            async for entry in after.guild.audit_logs(action = discord.AuditLogAction.member_role_update,limit =1):
+                role = entry.roles[0]
+                embed.add_field(name = "Removed A Role",value = role.mention)
+                await logch.send(embed=embed)
+                break
+        elif len(after.roles) > len(before.roles):
+            async for entry in after.guild.audit_logs(action = discord.AuditLogAction.member_role_update,limit =1):
+                role = entry.roles[0]
+                embed.add_field(name = "Added A Role",value = role.mention)
+                await logch.send(embed=embed)
+                break
     elif before.activity != after.activity:
         if after.bot == False:
             if after.activity == None:
