@@ -62,8 +62,9 @@ async def on_member_join(member):
     else:
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
-        age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-        await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID : {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+        async for entry in member.guild.audit_logs(action = discord.AuditLogAction.bot_add,limit = 1):
+            await logch.send(f"**{entry.user}** Added A Bot **{entry.target}**[ID: `{entry.target.id}`] To The Server.")
+            break
 @client.event
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
