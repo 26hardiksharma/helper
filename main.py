@@ -346,7 +346,7 @@ async def tag(ctx,*,tag = None):
         elif tag.lower() == "spoonfeeding" or tag.lower() =="spoonfeed":
             await ctx.send(f"**Spoonfeeding Is Against The Rules Of The Server, Can Get You Muted Upon Getting Spotted Or Being Reported!**\n\n**P.S:** We Have Functioning Message Logs 😁")
         elif tag.lower() == "help":
-            await ctx.send("_Easy Steps To Get Help_\n\n1) Go To A Help Channel That Is Not Occupied.\n\n2) Paste Your Code.\n\n3) Paste Your Error.\n\n4) Be Patient For Support To Reach You.\n\n_Asked For Help And No One Replied ?_\n\nUse `,helper` To Send A Ping To All The Helpers Of The Specific Language.")
+            await ctx.send("_Easy Steps To Get Help_\n\n1) Go To A Help Channel That Is Not Occupied.\n\n2) Paste Your Code.\n\n3) Paste Your Error.\n\n4) Be Patient For Support To Reach You.\n\n_Asked For Help And No One Replied ?_\n\nUse `,helper` To Send A Ping To All The Helpers Of The Specific Language.\n\n•) Also Be Sure To Thank The Person Who Helped You Upon Receiving Help ;)")
         #elif tag.lower() == ""
 @helper.error
 async def helper_error(ctx,error):
