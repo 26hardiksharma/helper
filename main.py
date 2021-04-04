@@ -107,13 +107,13 @@ async def on_member_update(before,after):
         embed.set_author(name = f"{after.name}#{after.discriminator}",icon_url = after.avatar_url)
         if len(before.roles) > len(after.roles):
             async for entry in after.guild.audit_logs(action = discord.AuditLogAction.member_role_update,limit =1):
-                role = entry.extras.roles[0]
+                role = entry.changed.roles[0]
                 embed.add_field(name = "Removed A Role",value = role.mention)
                 await logch.send(embed=embed)
                 break
         elif len(after.roles) > len(before.roles):
             async for entry in after.guild.audit_logs(action = discord.AuditLogAction.member_role_update,limit =1):
-                role = entry.extras.roles[0]
+                role = entry.changes.roles[0]
                 embed.add_field(name = "Added A Role",value = role.mention)
                 await logch.send(embed=embed)
                 break
