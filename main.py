@@ -568,7 +568,7 @@ rdmd = False
 async def raidmode(ctx,query = None):
     if ctx.author.guild_permissions.ban_members:
         if query == None:
-            await ctx.send(str(rdmd))
+            await ctx.send(rdmd)
             return
         else:
             if query.lower() == "on":
