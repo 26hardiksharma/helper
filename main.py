@@ -541,4 +541,15 @@ async def ascii(ctx,*,text=None):
         return
     kek=text2art(text)
     await ctx.send(f"```\n{kek}\n```")
+@client.command()
+async def blocktext(ctx,text = None):
+    if text == None:
+        await ctx.send("Please Supply A Text To Be Converted To Ascii :)")
+        return
+    if len(text) > 8:
+        await ctx.send('Text Should Not Be Greater Than 8 Characters ;)')
+        return
+    Art=text2art("art",font='block',chr_ignore=True)
+    await ctx.send(f"```\n{Art}\n```")
+
 client.run(TOKEN)
