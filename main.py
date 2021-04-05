@@ -526,7 +526,7 @@ async def toast(ctx,member : discord.Member = None):
     data = BytesIO(await asset.read())
     pfp = Image.open(data)
     pfp = pfp.resize((400,400))
-    okay.paste(pfp,(331,388))
+    okay.paste(pfp,(335,367))
     okay.save("hello.png")
     await ctx.send(file = discord.File("hello.png"))
     #ok
