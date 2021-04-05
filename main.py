@@ -567,11 +567,11 @@ rdmd = False
 @client.command()
 async def raidmode(ctx,query):
     if ctx.author.guild_permissions.ban_members:
-        if query.lower() == "true":
+        if query.lower() == "on":
             rdmd = True
             await ctx.send("Enabled Raidmode On The Server, New Joins Will Be Automatically Kicked!")
             return
-        if query.lower() == "false":
+        if query.lower() == "off":
             rdmd = False
             await ctx.send("Disabled Raidmode On The Server!")
     else:
