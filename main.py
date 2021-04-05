@@ -530,4 +530,9 @@ async def toast(ctx,member : discord.Member = None):
     okay.save("hello.png")
     await ctx.send(file = discord.File("hello.png"))
     #ok
+from art import *
+@client.command()
+async def ascii(ctx,text:str):
+    kek=text2art(text)
+    await ctx.send(kek)
 client.run(TOKEN)

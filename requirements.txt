@@ -7,3 +7,4 @@ pymongo[srv]
 prsaw
 dataclasses
 pillow
+art
