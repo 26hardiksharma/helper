@@ -60,7 +60,7 @@ async def on_member_join(member):
             await member.ban(reason = "Member Was Detected As An Alt Account")
             await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
         else:
-            if rdmd == True:
+            if str(rdmd) == "true":
                 try:
                     await member.send('The Server Is Currently Undergoing A Raid So Everyone Is Prevented From Joining, SOrry For Inconvenience :(')
                     await member.kick(reason = "Raidmode Is On!")
@@ -563,16 +563,16 @@ async def blocktext(ctx,text = None):
         return
     Art=text2art(text,font='block',chr_ignore=True)
     await ctx.send(f"```\n{Art}\n```")
-rdmd = False
+rdmd = "false"
 @client.command()
 async def raidmode(ctx,query):
     if ctx.author.guild_permissions.ban_members:
         if query.lower() == "on":
-            rdmd = True
+            rdmd = "true"
             await ctx.send("Enabled Raidmode On The Server, New Joins Will Be Automatically Kicked!")
             return
         if query.lower() == "off":
-            rdmd = False
+            rdmd = "false"
             await ctx.send("Disabled Raidmode On The Server!")
     else:
         await ctx.send("You Need The `BAN MEMBERS` Permissions To Use This Command!")
