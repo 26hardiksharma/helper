@@ -563,16 +563,16 @@ async def blocktext(ctx,text = None):
         return
     Art=text2art(text,font='block',chr_ignore=True)
     await ctx.send(f"```\n{Art}\n```")
-rdmd = False
+rdmd = []
 @client.command()
 async def raidmode(ctx,query):
     if ctx.author.guild_permissions.ban_members:
         if query.lower() == "on":
+            rdmd = True
             await ctx.send("Enabled Raidmode On The Server, New Joins Will Be Automatically Kicked!")
-            return rdmd = True
         if query.lower() == "off":
+            rdmd = False
             await ctx.send("Disabled Raidmode On The Server!")
-            return rdmd = False
     else:
         await ctx.send("You Need The `BAN MEMBERS` Permissions To Use This Command!")
 
