@@ -12,6 +12,7 @@ import dns
 from prsaw import RandomStuff
 from PIL import Image
 from io import BytesIO
+import os
 intents = discord.Intents.all()
 rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
