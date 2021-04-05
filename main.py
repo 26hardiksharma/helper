@@ -107,7 +107,7 @@ async def on_member_update(before,after):
         async for entry in after.guild.audit_logs(action = discord.AuditLogAction.member_update ,limit = 1):
             member = entry.user
             break
-        await logch.send(f"**{member}**Has Updated Nickname Of **{after.name}#{after.discriminator}**\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
+        await logch.send(f"**{member}** Has Updated Nickname Of **{after.name}#{after.discriminator}**\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
     elif before.roles != after.roles:
         embed = discord.Embed(description = f"{after.name}#{after.discriminator}'s Roles Have Changed!",colour = 0xFF0000,timestamp = datetime.datetime.now())
         embed.set_author(name = f"{after.name}#{after.discriminator}",icon_url = after.avatar_url)
