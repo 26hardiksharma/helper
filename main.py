@@ -104,7 +104,10 @@ async def on_member_update(before,after):
                 await after.remove_roles(playing)
                 await after.remove_roles(listen)
     elif before.nick != after.nick:
-        await logch.send(f"**{after.name}#{after.discriminator}**'s Nickname Has Been Updated\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
+        async for entry in after.guild.audit_logs(action = discord.AuditLogAction.member_update ,limit = 1):
+            member = entry.user
+            break
+        await logch.send(f"**{member}**Has Updated Nickname Of **{after.name}#{after.discriminator}**\n\nBefore :- **``{before.nick}``** || After :- **``{after.nick}``**")
     elif before.roles != after.roles:
         embed = discord.Embed(description = f"{after.name}#{after.discriminator}'s Roles Have Changed!",colour = 0xFF0000,timestamp = datetime.datetime.now())
         embed.set_author(name = f"{after.name}#{after.discriminator}",icon_url = after.avatar_url)
@@ -546,7 +549,7 @@ async def blocktext(ctx,text = None):
     if text == None:
         await ctx.send("Please Supply A Text To Be Converted To Ascii :)")
         return
-    if len(text) > 8:
+    if len(text) > 3:
         await ctx.send('Text Should Not Be Greater Than 8 Characters ;)')
         return
     Art=text2art(text,font='block',chr_ignore=True)
