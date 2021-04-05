@@ -549,7 +549,7 @@ async def blocktext(ctx,text = None):
     if len(text) > 8:
         await ctx.send('Text Should Not Be Greater Than 8 Characters ;)')
         return
-    Art=text2art("art",font='block',chr_ignore=True)
+    Art=text2art(text,font='block',chr_ignore=True)
     await ctx.send(f"```\n{Art}\n```")
 
 client.run(TOKEN)
