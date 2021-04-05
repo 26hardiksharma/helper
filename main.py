@@ -569,12 +569,14 @@ async def raidmode(ctx,query = None):
     if ctx.author.guild_permissions.ban_members:
         if query == None:
             await ctx.send(str(rdmd))
-        if query.lower() == "on":
-            rdmd = True
-            await ctx.send("Enabled Raidmode On The Server, New Joins Will Be Automatically Kicked!")
-        if query.lower() == "off":
-            rdmd = False
-            await ctx.send("Disabled Raidmode On The Server!")
+            return
+        else:
+            if query.lower() == "on":
+                rdmd = True
+                await ctx.send("Enabled Raidmode On The Server, New Joins Will Be Automatically Kicked!")
+            elif query.lower() == "off":
+                rdmd = False
+                await ctx.send("Disabled Raidmode On The Server!")
     else:
         await ctx.send("You Need The `BAN MEMBERS` Permissions To Use This Command!")
 
