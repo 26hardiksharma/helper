@@ -534,5 +534,5 @@ from art import *
 @client.command()
 async def ascii(ctx,text:str):
     kek=text2art(text)
-    await ctx.send(kek)
+    await ctx.send(f"```\n{kek}\n```")
 client.run(TOKEN)
