@@ -522,10 +522,10 @@ async def toast(ctx,member : discord.Member = None):
     if member == None:
         member = ctx.author
     okay = Image.open('op toast.png')
-    asset = member.avatar_url_as(size = 256)
+    asset = member.avatar_url_as(size = 128)
     data = BytesIO(await asset.read())
     pfp = Image.open(data)
-    pfp = pfp.resize((1000,1000))
+    pfp = pfp.resize((300,300))
     okay.paste(pfp,(331,388))
     okay.save("hello.png")
     await ctx.send(file = discord.File("hello.png"))
