@@ -532,7 +532,9 @@ async def toast(ctx,member : discord.Member = None):
     #ok
 from art import *
 @client.command()
-async def ascii(ctx,text:str):
+async def ascii(ctx,*,text=None):
+    if text == None:
+        text = ctx.author.name
     kek=text2art(text)
     await ctx.send(f"```\n{kek}\n```")
 client.run(TOKEN)
