@@ -563,7 +563,7 @@ async def blocktext(ctx,text = None):
         return
     Art=text2art(text,font='block',chr_ignore=True)
     await ctx.send(f"```\n{Art}\n```")
-rdmd = []
+rdmd = False
 @client.command()
 async def raidmode(ctx,query = None):
     if ctx.author.guild_permissions.ban_members:
