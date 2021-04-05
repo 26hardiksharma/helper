@@ -568,7 +568,6 @@ rdmd = False
 async def raidmode(ctx,query = None):
     if ctx.author.guild_permissions.ban_members:
         if query == None:
-            await ctx.send(rdmd)
             return
         else:
             if query.lower() == "on":
@@ -579,5 +578,7 @@ async def raidmode(ctx,query = None):
                 await ctx.send("Disabled Raidmode On The Server!")
     else:
         await ctx.send("You Need The `BAN MEMBERS` Permissions To Use This Command!")
-
+@client.command()
+async def perms(ctx):
+    await ctx.send(ctx.author.guild_permissions)
 client.run(TOKEN)
