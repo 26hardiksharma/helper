@@ -52,6 +52,7 @@ async def on_member_join(member):
     bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
     botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
     if member.bot == False:
+
         created = member.created_at
         now = datetime.datetime.now() 
         if (now-member.created_at).days < 5:
@@ -59,9 +60,17 @@ async def on_member_join(member):
             await member.ban(reason = "Member Was Detected As An Alt Account")
             await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
         else:
-            age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-            await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
-            await member.add_roles(role,reason = "Joined The Guild As A Human")
+            if rdmd == True:
+                try:
+                    await member.send('The Server Is Currently Undergoing A Raid So Everyone Is Prevented From Joining, SOrry For Inconvenience :(')
+                    await member.kick(reason = "Raidmode Is On!")
+                except:
+                    await member.kick(reason = "Raidmode Is On!")
+                return
+            else:
+                age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
+                await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+                await member.add_roles(role,reason = "Joined The Guild As A Human")
     else:
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
@@ -554,5 +563,18 @@ async def blocktext(ctx,text = None):
         return
     Art=text2art(text,font='block',chr_ignore=True)
     await ctx.send(f"```\n{Art}\n```")
+rdmd = False
+@client.command()
+async def raidmode(ctx,query):
+    if ctx.author.guild_permissions.ban_members:
+        if query.lower() == "true":
+            rdmd = True
+            await ctx.send("Enabled Raidmode On The Server, New Joins Will Be Automatically Kicked!")
+            return
+        if query.lower() == "false":
+            rdmd = False
+            await ctx.send("Disabled Raidmode On The Server!")
+    else:
+        await ctx.send("You Need The `BAN MEMBERS` Permissions To Use This Command!")
 
 client.run(TOKEN)
