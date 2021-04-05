@@ -6,3 +6,4 @@ dnspython
 pymongo[srv]
 prsaw
 dataclasses
+pillow

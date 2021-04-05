@@ -10,6 +10,8 @@ import pymongo
 from pymongo import MongoClient
 import dns
 from prsaw import RandomStuff
+from PIL import Image
+from io import BytesIO
 intents = discord.Intents.all()
 rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
@@ -514,4 +516,16 @@ async def on_guild_emojis_update(guild, before, after):
 @client.command()
 async def guild(ctx,member : discord.Member):
     await ctx.send(member.mutual_guilds)
+@client.command()
+async def toast(ctx,member : discord.Member = None):
+    if member == None:
+        member = ctx.author
+    okay = Image.open('op toast.png')
+    asset = member.avatar_url_as(512)
+    data = BytesIO(await asset.read())
+    pfp = Image.open(data)
+    pfp = pfp.resize((1000,1000))
+    okay.paste(pfp,(331,388))
+    okay.save("hello.png")
+    await ctx.send(file = discord.File("hello.png"))
 client.run(TOKEN)
