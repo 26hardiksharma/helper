@@ -534,7 +534,11 @@ from art import *
 @client.command()
 async def ascii(ctx,*,text=None):
     if text == None:
-        text = ctx.author.name
+        await ctx.send("Please Supply A Text To Be Converted To Ascii :)")
+        return
+    if len(text) > 8:
+        await ctx.send('Text Should Not Be Greater Than 8 Characters ;)')
+        return
     kek=text2art(text)
     await ctx.send(f"```\n{kek}\n```")
 client.run(TOKEN)
