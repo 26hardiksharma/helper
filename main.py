@@ -422,7 +422,7 @@ async def on_message_delete(message):
     elif message.author.bot:
         return
     else:
-        embed = discord.Embed(description = f"Message Deleted In {message.channel.mention}\n`{message.content}`",colour = 0xF2922D)
+        embed = discord.Embed(description = f"Message Deleted In {message.channel.mention}\n{message.content}",colour = 0xF2922D)
         embed.set_author(name = message.author,icon_url= message.author.avatar_url)
         embed.set_footer(text=f"Author ID : {message.author.id}")
         await logs.send(embed=embed)
