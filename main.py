@@ -635,9 +635,21 @@ async def on_guild_role_update(before,after):
             async for kek in after.guild.audit_logs(action = discord.AuditLogAction.role_update,limit = 1):
                 perm = kek.after.permissions[0]
                 break           
-            embed.add_field(name = "Changes",value = f"Target: **Permissins**\nGranted A Permission: {perm}")
+            embed.add_field(name = "Changes",value = f"Target: **Permissions**\nGranted A Permission: {perm}")
             embed.add_field(name = "Responsible User",value = user,inline = False)
             await logs.send(embed = embed)
+@client.command()
+async def multikick(ctx,member : discord.Member):
+    if ctx.author.guild_permissions.kick_members:
+        haha =""
+        okay = ""
+        for i message.mentions:
+            try:
+                await i.kick(reason = "Test")
+                okay +=f"Kicked {i.mention}"
+            except:
+                haha += f"Failed Kicking {i.mention}"
+        await ctx.send(f"{okay}\n{haha}")
 
 
 
