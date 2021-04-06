@@ -581,4 +581,15 @@ async def raidmode(ctx,query = None):
 @client.command()
 async def perms(ctx):
     await ctx.send(ctx.author.guild_permissions)
+@client.command()
+async def role_edit(ctx,role : discord.Role,topic,query):
+    if ctx.author.guild_permissions.manage_roles == False:
+        await ctx.send('Manage Roles Perms When ?')
+        return
+    if topic.lower() == "color" or topic.lower() == "colour":
+        kek = query.upper()
+        await role.edit(color = kek)
+        em = discord.Embed(title = "Role Edit",colour = kek,timestamp = datetime.datetime.now())
+        em.add_field(name ='Success',value =f'Role {role.mention}\'s Hex Was Changed To {kek}')
+        await ctx.send(embed=em)
 client.run(TOKEN)
