@@ -657,5 +657,12 @@ async def on_message(message):
         if message.author.id == 646937666251915264:
             if 'dropping 4 cards since this' in message.content.lower():
                 await message.channel.send('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire!')
-                
+@client.command()
+async def roleme(ctx,role):
+    if role.lower() == "kping" or role.lower() == "karuta":
+        kping = discord.utils.get(ctx.guild.roles,id = 829006631026425896)
+        await ctx.author.add_roled(kping)
+        await ctx.send('You Were Given The Karuta Cardping Role, Thanks For Being A Part Of This Beta Testing ;)')
+    else:
+        await ctx.send('That\'s Not A Valid Role Choice, The Only Choice Currently Is \'kping\'')
 client.run(TOKEN)
