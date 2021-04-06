@@ -657,6 +657,7 @@ async def on_message(message):
         if message.author.id == 646937666251915264:
             if 'dropping 4 cards since this' in message.content.lower():
                 await message.channel.send('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire!')
+    await client.process_commands(message)
 @client.command()
 async def roleme(ctx,role):
     if role.lower() == "kping" or role.lower() == "karuta":
