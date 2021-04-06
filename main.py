@@ -154,9 +154,9 @@ async def on_message(message):
     eternal = await client.fetch_user(757589836441059379)
     if message.author.bot == True:
         if message.author.id == 646937666251915264:
-        if 'dropping 4 cards since this' in message.content.lower():
-            await message.channel.send('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire!')
-            
+            if 'dropping 4 cards since this' in message.content.lower():
+                await message.channel.send('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire!')
+
     else:
         if "discord.gg/" in message.content.lower():
             muted = discord.utils.get(message.guild.roles,name = "Muted")
