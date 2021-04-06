@@ -646,9 +646,9 @@ async def multikick(ctx,member : discord.Member):
         for i in ctx.message.mentions:
             try:
                 await i.kick(reason = "Test")
-                okay +=f"Kicked {i.mention}"
+                okay +=f"<:vortex_tick:828972754850021387> Successfully Kicked {i.mention}\n"
             except:
-                haha += f"Failed Kicking {i.mention}"
+                haha += f"<:vError:828972670900371558> Failed Kicking {i.mention}\n"
         await ctx.send(f"{okay}\n{haha}")
 
 
