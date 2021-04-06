@@ -651,6 +651,8 @@ async def multikick(ctx,member : discord.Member):
                 haha += f"Failed Kicking {i.mention}"
         await ctx.send(f"{okay}\n{haha}")
 
+        
+
 
 
 
