@@ -608,6 +608,36 @@ async def on_guild_role_create(role):
     embed.add_field(name = "Characteristics",value = f"ID: **{role.id}**\nMentionable: **{str(role.mentionable).capitalize()}**\nHoisted: **{str(role.hoist).capitalize()}**\nPosition: {role.position}",inline = False)
     embed.add_field(name = "Responsible User",value = user)
     await logs.send(embed=embed)
+@client.event
+async def on_guild_role_update(before,after):
+    logs = client.get_channel(818899394719252543)
+    embed = discord.Embed(title = "Role Updated",color = after.color,timestamp = datetime.datetime.now(),description = f"Role {after.mention} Was Updated!")
+    async for entry in after.guild.audit_logs(action = discord.AuditLogAction.role_update,limit = 1):
+        user = entry.user
+        break
+    if before.name != after.name:
+        embed.add_field(name = "Changes",value = f"Target: **Name**\nBefore: **{before.name}**\nAfter: **{after.name}**")
+        embed.add_field(name = "Responsible User",value = user,inline = False)
+        await logs.send(embed=embed)
+    elif before.color != after.color:
+        embed.add_field(name = "Changes",value = f"Target: **Color**\nBefore: **{before.color}**\nAfter: **{after.color}**")
+        embed.add_field(name = "Responsible User",value = user,inline = False)
+        await logs.send(embed=embed)
+    elif before.permissions != after.permissions:
+        if len(before.permissions) > len(after.permissions):
+            async for kek in after.guild.audit_logs(action = discord.AuditLogAction.role_update,limit = 1):
+                perm = kek.before.permissions[0]
+                break
+            embed.add_field(name = "Changes",value = f"Target: **Permissins**\nRemoved A Permission: {perm}")
+            embed.add_field(name = "Responsible User",value = user,inline = False)
+            await logs.send(embed=embed)
+        elif len(after.permissions) > len(before.permissions):
+            async for kek in after.guild.audit_logs(action = discord.AuditLogAction.role_update,limit = 1):
+                perm = kek.after.permissions[0]
+                break           
+            embed.add_field(name = "Changes",value = f"Target: **Permissins**\nGranted A Permission: {perm}")
+            embed.add_field(name = "Responsible User",value = user,inline = False)
+            await logs.send(embed = embed)
 
 
 
