@@ -169,6 +169,7 @@ async def on_message(message):
                 await msg.edit(content ='<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `10 Seconds`')
                 await asyncio.sleep(10)
                 await msg.edit(content ='The Cards Dropped Have Expired And Can No Longer Be Grabbed')
+                print('Success, Champ! One Drop Successfully Pinged')
     else:
         if "discord.gg/" in message.content.lower():
             muted = discord.utils.get(message.guild.roles,name = "Muted")
