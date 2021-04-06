@@ -154,7 +154,7 @@ async def on_message(message):
     eternal = await client.fetch_user(757589836441059379)
     if message.author.bot == True:
         if message.author.id == 646937666251915264:
-            if 'cards since this server is active' in message.content.lower():
+            if 'since this server is currently active!' in message.content.lower():
                 text = '<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `60 Seconds`'
                 msg = await message.channel.send(text)
                 await asyncio.sleep(10)
