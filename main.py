@@ -596,4 +596,20 @@ async def role_edit(ctx,role : discord.Role,topic,query):
 @client.command()
 async def override(ctx,channel : discord.TextChannel):
     print(channel.overwrites)
+@client.event
+async def on_guild_role_create(role):
+    logs = client.get_channel(818899394719252543)
+    embed = discord.Embed(title = "Role Created",timestamp =datetime.datetime.now())
+    async for entry in role.guild.audit_logs(action = discord.AuditLogAction.role_create,limit = 1):
+        user= entry.user
+        break
+    embed.add_field(name = "Role Name",value = f"**{role.name}**")
+    embed.add_field(name = "Mention",value = role.mention)
+    embed.add_field(name = "Characteristics",value = f"ID: **{role.id}**\nMentionable: **{str(role.mentionable).capitalize()}**\nHoisted: **{str(role.hoist).capitalize()}**\nPosition: {role.position}",inline = False)
+    embed.add_field(name = "Responsible User",value = user)
+    await logs.send(embed=embed)
+
+
+
+
 client.run(TOKEN)
