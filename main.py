@@ -651,9 +651,11 @@ async def multikick(ctx,member : discord.Member):
                 haha += f"<:vError:828972670900371558> Failed Kicking {i.mention}\n"
         await ctx.send(f"{okay}\n{haha}")
 
-
-
-
-
-
+@client.event
+async def on_message(message):
+    if message.channel.id == 829005340677767198:
+        if message.author.id == 646937666251915264:
+            if 'dropping 4 cards since this' in message.content.lower():
+                await message.channel.send('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire!')
+                
 client.run(TOKEN)
