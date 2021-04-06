@@ -554,12 +554,12 @@ async def ascii(ctx,*,text=None):
     kek=text2art(text)
     await ctx.send(f"```\n{kek}\n```")
 @client.command()
-async def blocktext(ctx,text = None):
+async def blocktext(ctx,*,text = None):
     if text == None:
         await ctx.send("Please Supply A Text To Be Converted To Ascii :)")
         return
     if len(text) > 3:
-        await ctx.send('Text Should Not Be Greater Than 8 Characters ;)')
+        await ctx.send('Text Should Not Be Greater Than 3 Characters ;)')
         return
     Art=text2art(text,font='block',chr_ignore=True)
     await ctx.send(f"```\n{Art}\n```")
@@ -588,6 +588,7 @@ async def role_edit(ctx,role : discord.Role,topic,query):
         return
     if topic.lower() == "color" or topic.lower() == "colour":
         kek = query.upper()
+        kek = f"0x{kek}"
         await role.edit(color = kek)
         em = discord.Embed(title = "Role Edit",colour = kek,timestamp = datetime.datetime.now())
         em.add_field(name ='Success',value =f'Role {role.mention}\'s Hex Was Changed To {kek}')
