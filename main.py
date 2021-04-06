@@ -155,7 +155,20 @@ async def on_message(message):
     if message.author.bot == True:
         if message.author.id == 646937666251915264:
             if 'dropping 4 cards since this' in message.content.lower():
-                await message.channel.send('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire!')
+                text = '<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `60` Seconds'
+                msg = await message.channel.send(text)
+                await asyncio.sleep(10)
+                await message.edit('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `50 Seconds`')
+                await asyncio.sleep(10)
+                await message.edit('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `40 Seconds`')
+                await asyncio.sleep(10)
+                await message.edit('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `30 Seconds`')
+                await asyncio.sleep(10)
+                await message.edit('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `20 Seconds`')
+                await asyncio.sleep(10)
+                await message.edit('<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `10 Seconds`')
+                await asyncio.sleep(10)
+                await message.edit('The Cards Dropped Have Expired And Can No Longer Be Grabbed')
 
     else:
         if "discord.gg/" in message.content.lower():
@@ -661,4 +674,7 @@ async def roleme(ctx,role):
         await ctx.send('You Were Given The Karuta Cardping Role, Thanks For Being A Part Of This Beta Testing ;)')
     else:
         await ctx.send('That\'s Not A Valid Role Choice, The Only Choice Currently Is \'kping\'')
+@client.command()
+async def announce(ctx):
+    text = ""
 client.run(TOKEN)
