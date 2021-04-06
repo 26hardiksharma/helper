@@ -643,7 +643,7 @@ async def multikick(ctx,member : discord.Member):
     if ctx.author.guild_permissions.kick_members:
         haha =""
         okay = ""
-        for i message.mentions:
+        for i in ctx.message.mentions:
             try:
                 await i.kick(reason = "Test")
                 okay +=f"Kicked {i.mention}"
@@ -651,7 +651,7 @@ async def multikick(ctx,member : discord.Member):
                 haha += f"Failed Kicking {i.mention}"
         await ctx.send(f"{okay}\n{haha}")
 
-        
+
 
 
 
