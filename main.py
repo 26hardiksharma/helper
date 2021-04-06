@@ -155,7 +155,7 @@ async def on_message(message):
     if message.author.bot == True:
         if message.author.id == 646937666251915264:
             if 'dropping 4 cards since this' in message.content.lower():
-                text = '<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `60` Seconds'
+                text = '<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `60 Seconds`'
                 msg = await message.channel.send(text)
                 await asyncio.sleep(10)
                 await msg.edit(content ='<@&829006631026425896>, Karuta Has Dropped 4 Cards, Quickly Grab Them Before They Expire! Expires In `50 Seconds`')
