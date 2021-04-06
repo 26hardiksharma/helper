@@ -593,4 +593,7 @@ async def role_edit(ctx,role : discord.Role,topic,query):
         em = discord.Embed(title = "Role Edit",colour = kek,timestamp = datetime.datetime.now())
         em.add_field(name ='Success',value =f'Role {role.mention}\'s Hex Was Changed To {kek}')
         await ctx.send(embed=em)
+@client.command()
+async def override(ctx,channel : discord.TextChannel):
+    print(channel.overwrites)
 client.run(TOKEN)
