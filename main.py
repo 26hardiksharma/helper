@@ -662,7 +662,7 @@ async def on_message(message):
 async def roleme(ctx,role):
     if role.lower() == "kping" or role.lower() == "karuta":
         kping = discord.utils.get(ctx.guild.roles,id = 829006631026425896)
-        await ctx.author.add_roled(kping)
+        await ctx.author.add_roles(kping)
         await ctx.send('You Were Given The Karuta Cardping Role, Thanks For Being A Part Of This Beta Testing ;)')
     else:
         await ctx.send('That\'s Not A Valid Role Choice, The Only Choice Currently Is \'kping\'')
