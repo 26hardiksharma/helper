@@ -639,7 +639,7 @@ async def on_guild_role_update(before,after):
             embed.add_field(name = "Responsible User",value = user,inline = False)
             await logs.send(embed = embed)
 @client.command()
-async def multikick(ctx,member : discord.Member):
+async def multikick(ctx,*,member : discord.Member):
     if ctx.author.guild_permissions.kick_members:
         haha =""
         okay = ""
