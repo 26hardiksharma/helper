@@ -154,7 +154,7 @@ async def on_message(message):
     eternal = await client.fetch_user(757589836441059379)
     if message.author.bot:
         return
-    else:
+        else:
         if "discord.gg/" in message.content.lower():
             muted = discord.utils.get(message.guild.roles,name = "Muted")
             guild = message.guild
