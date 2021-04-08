@@ -23,14 +23,14 @@ client.connection_url = secret_file["mongo"]
 logging.basicConfig(level=logging.INFO)
 
 
-bot.cwd = cwd
+client.cwd = cwd
 intents = discord.Intents.all()
 DEFAULTPREFIX = ','
 secret_file = utils.json_loader.read_json("secrets")
 client = commands.Bot(
     command_prefix=get_prefix,
     case_insensitive=True,
-    intents=intents,
+    intents=intents
 ) 
 client.DEFAULTPREFIX = DEFAULTPREFIX
 @client.event
