@@ -1,2 +1,1 @@
-worker: python main.py
-worker1 : python bot.py
+worker: python main.py & python bot.py & wait -n
