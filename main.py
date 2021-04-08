@@ -367,7 +367,7 @@ async def tag(ctx,*,tag = None):
 async def helper_error(ctx,error):
     if isinstance(error, commands.CommandOnCooldown):
         await ctx.send(f"{ctx.author.mention}, You Need To Wait For {round(error.retry_after/60)} Minutes Before Using This Command")
-mongo_url = "mongodb+srv://EternalSlayer:<password>@cluster0.7dkai.mongodb.net/myFirstDatabase?retryWrites=true&w=majority"
+mongo_url = 'mongodb+srv://EternalSlayer:26112005op@cluster0.ogee5.mongodb.net/myFirstDatabase?retryWrites=true&w=majority'
 @client.event
 async def on_guild_channel_create(channel):
     logs = client.get_channel(818899394719252543)
@@ -658,7 +658,5 @@ async def roleme(ctx,role):
         await ctx.send('You Were Given The Karuta Cardping Role, Thanks For Being A Part Of This Beta Testing ;)')
     else:
         await ctx.send('That\'s Not A Valid Role Choice, The Only Choice Currently Is \'kping\'')
-@client.command()
-async def announce(ctx):
-    text = ""
+
 client.run(TOKEN)
