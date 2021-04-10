@@ -228,8 +228,9 @@ async def on_message(message):
             return
         
         kek = ""
+        print(pkmn["moltres"])
         for i in pkmn:
-            if pkmn[i] == message.attachments[0].url:
+            if pkmn[f"{i}"] == message.attachments[0].url:
                 kek += f"i"
             await message.channel.send(kek)
     await client.process_commands(message)
