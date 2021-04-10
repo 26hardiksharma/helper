@@ -22,6 +22,47 @@ intents.members = True
 intents.presences = True
 intents.voice_states = True
 intents.invites = True
+pkmn = {
+    "articuno": ""
+    "moltres":"https://cdn.discordapp.com/attachments/768374978101510165/815136164730241034/pokemon.jpg"
+    "zapdos":"https://cdn.discordapp.com/attachments/768374978101510165/791028193254441021/pokemon.jpg"
+    "mew":"https://cdn.discordapp.com/attachments/768374978101510165/813799078407307315/pokemon.jpg"
+    "mewtwo":"https://cdn.discordapp.com/attachments/768374978101510165/790922679570006016/pokemon.jpg"
+    "raikou":"https://cdn.discordapp.com/attachments/787201527482810369/828670433477263390/pokemon.jpg"
+    "suicune":"https://cdn.discordapp.com/attachments/768374978101510165/815456324619599912/pokemon.jpg"
+    "entei":"https://cdn.discordapp.com/attachments/824731644992815125/828436512315670608/pokemon.jpg"
+    "lugia":"https://cdn.discordapp.com/attachments/768374978101510165/802075846839107614/pokemon.jpg"
+    "ho-oh":"https://cdn.discordapp.com/attachments/768374978101510165/813099391337365524/pokemon.jpg"
+    "regirock":"https://cdn.discordapp.com/attachments/787201698174205964/828813685937799238/pokemon.jpg"
+    "registeel":""
+    "regice":"https://cdn.discordapp.com/attachments/787201698174205964/801819719715389490/pokemon.jpg"
+    "latias":"https://cdn.discordapp.com/attachments/817037912596152370/817260272447258644/pokemon.jpg"
+    "latios":"https://cdn.discordapp.com/attachments/787201527482810369/816581476736172073/pokemon.jpg"
+    "kyogre":"https://cdn.discordapp.com/attachments/787201698174205964/814347027965018123/pokemon.jpg"
+    "groudon":"https://cdn.discordapp.com/attachments/768374978101510165/817688030555013130/pokemon.jpg"
+    "rayquaza":"https://cdn.discordapp.com/attachments/768374978101510165/787000232906195024/pokemon.jpg"
+    "jirachi":"https://cdn.discordapp.com/attachments/768374978101510165/815852783696871434/pokemon.jpg"
+    "deoxys":""
+    "uxie":"https://cdn.discordapp.com/attachments/768374978101510165/815203233047380008/pokemon.jpg"
+    "mesprit":"https://cdn.discordapp.com/attachments/768374978101510165/812731341153239101/pokemon.jpg"
+    "azelf":"https://cdn.discordapp.com/attachments/787201698174205964/816566755831840768/pokemon.jpg"
+    "dialga":"https://cdn.discordapp.com/attachments/768374978101510165/789038326581428264/pokemon.jpg"
+    "palkia":""
+    "giratina":"https://cdn.discordapp.com/attachments/771007263908560896/796968951879172106/pokemon.jpg"
+    "heatran":"https://cdn.discordapp.com/attachments/771007263908560896/823482794691919902/pokemon.jpg"
+    "regigigas":"https://cdn.discordapp.com/attachments/771007263908560896/803584278197567528/pokemon.jpg"
+    "cresselia":"https://cdn.discordapp.com/attachments/796418479132901417/798836069054676992/pokemon.jpg"
+    "phione":"https://cdn.discordapp.com/attachments/768374978101510165/815812339999834122/pokemon.jpg"
+    "manaphy":"https://cdn.discordapp.com/attachments/768374978101510165/814062682528940032/pokemon.jpg"
+    "darkrai":"https://cdn.discordapp.com/attachments/768374978101510165/825386128340549662/pokemon.jpg"
+    "shaymin":"https://cdn.discordapp.com/attachments/768374978101510165/817678684201680916/pokemon.jpg"
+    "arceus":"https://cdn.discordapp.com/attachments/768374978101510165/804757740881707108/pokemon.jpg"
+    "reshiram":""
+    "kyurem":"https://cdn.discordapp.com/attachments/787201698174205964/812024980036255744/pokemon.jpg"
+    "zekrom":"https://cdn.discordapp.com/attachments/787201698174205964/814878891855970334/pokemon.jpg"
+    "solgaleo":""
+    "lunala":"https://cdn.discordapp.com/attachments/787201698174205964/828526638827962368/pokemon.jpg"
+}
 @client.event
 async def on_ready():
     print("Now Online!")
@@ -188,6 +229,9 @@ async def on_message(message):
                         else:
                             await message.channel.send("The Person You Have Mentioned has Left Discord, Please try Again Later :)")
                             break
+        if message.attachments:
+            kek = pkmn.get(message.attachments[0].url)
+            await message.channel.send(kek)
     await client.process_commands(message)
 
 @client.command()
