@@ -57,6 +57,7 @@ pkmn = {
     "zekrom":"https://cdn.discordapp.com/attachments/787201698174205964/814878891855970334/pokemon.jpg",
     "lunala":"https://cdn.discordapp.com/attachments/787201698174205964/828526638827962368/pokemon.jpg"
 }
+pk = ['moltres','zapdos','mew','mewtwo','raikou','suicune','entei','lugia','ho-oh','regirock','regice','latias','latios','kyogre','groudon','rayquaza','jirachi','uxie','azelf','mesprit','dialga','giratina','heatran','regigigas','creselia','phione','manaphy','darkrai','shaymin','arceus','zekrom','kyurem','lunala']
 @client.event
 async def on_ready():
     print("Now Online!")
@@ -229,8 +230,8 @@ async def on_message(message):
         
         kek = ""
         print(pkmn["moltres"])
-        for i in pkmn:
-            if pkmn[f"{i}"] == message.attachments[0].url:
+        for i in pk:
+            if pkmn[i] == message.attachments[0].url:
                 kek += f"i"
             await message.channel.send(kek)
     await client.process_commands(message)
