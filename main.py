@@ -224,8 +224,11 @@ async def on_message(message):
                             await message.channel.send("The Person You Have Mentioned has Left Discord, Please try Again Later :)")
                             break
     if message.attachments:
-        kek = pkmn.get(message.attachments[0].url)
-        await message.channel.send(str(kek).capitalize())
+        kek = ""
+        for i in pkmn:
+            if pkmn[i] == message.attachments[0].url:
+                kek += f"i"
+            await ctx.send(kek)
     await client.process_commands(message)
 
 @client.command()
