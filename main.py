@@ -216,14 +216,6 @@ async def on_message(message):
                     await asyncio.sleep(1)
                     await message.reply(response)
                     await rs.close()
-            else:
-                for i in message.mentions:
-                    if i.id == 757589836441059379:
-                        if message.author.guild_permissions.manage_messages:
-                            return
-                        else:
-                            await message.channel.send("The Person You Have Mentioned has Left Discord, Please try Again Later :)")
-                            break
     if message.attachments:
         if not message.author.id == 757589836441059379:
             return
