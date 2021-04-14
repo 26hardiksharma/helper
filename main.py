@@ -288,28 +288,6 @@ async def helper(ctx):
                 await ctx.send(f"Invalid Language Supplied")
                 ctx.command.reset_cooldown(ctx)
 intents.reactions = True
-@client.event
-async def on_reaction_add(reaction,user):
-    if str(reaction.emoji) == "⭐":
-        starb = client.get_channel(819550103684644874)
-        if reaction.message.channel.id == 819550103684644874:
-            pass
-        else:
-            users = await reaction.message.reactions[0].users().flatten()
-            if len(users) < 3:
-                pass
-            else:
-                embed = discord.Embed(color = 0x00FFFF)
-                embed.set_author(name = f"{reaction.message.author.name}#{reaction.message.author.discriminator}",icon_url = reaction.message.author.avatar_url)
-                if reaction.message.attachments:
-                    url = reaction.message.attachments[0].url
-                    embed.set_image(url = url)
-                else: 
-                    embed.add_field(name = "Content",value = reaction.message.content,inline=False)
-                embed.add_field(name = "Source",value = f"[Jump To Message]({reaction.message.jump_url})")
-                await starb.send(embed=embed)
-                await reaction.message.clear_reactions()
-                await reaction.message.add_reaction('🌟')
 @client.command()
 async def joke(ctx):
     await ctx.send(pyjokes.get_joke())
