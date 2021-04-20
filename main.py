@@ -85,6 +85,7 @@ async def on_user_update(before,after):
 async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
     role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
+    updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES ")
     bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
     botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
     if member.bot == False:
@@ -107,6 +108,7 @@ async def on_member_join(member):
                 age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
                 await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
                 await member.add_roles(role,reason = "Joined The Guild As A Human")
+                await member.add_roles(updates)
     else:
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
