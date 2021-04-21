@@ -88,32 +88,39 @@ async def on_member_join(member):
     updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES ")
     bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
     botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
+    wlcmch = client.get_channel(834329528264294431)
     if member.bot == False:
 
         created = member.created_at
         now = datetime.datetime.now() 
         if (now-member.created_at).days < 5:
-            await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
-            await member.ban(reason = "Member Was Detected As An Alt Account")
-            await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
+            try:
+                await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
+                await member.ban(reason = "Member Was Detected As An Alt Account")
+                await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
+            except:
+                await member.ban(reason = "Member Was Detected As An Alt Account")
+                await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
+
         else:
-            if rdmd == True:
-                try:
-                    await member.send('The Server Is Currently Undergoing A Raid So Everyone Is Prevented From Joining, SOrry For Inconvenience :(')
-                    await member.kick(reason = "Raidmode Is On!")
-                except:
-                    await member.kick(reason = "Raidmode Is On!")
-                return
-            else:
-                age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-                await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
-                await member.add_roles(role,reason = "Joined The Guild As A Human")
-                await member.add_roles(updates)
+            age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
+            await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+            await member.add_roles(role,reason = "Joined The Guild As A Human")
+            await member.add_roles(updates)
+            okay = Image.open('wlcm.png')
+            asset = member.avatar_url_as(size = 256)
+            data = BytesIO(await asset.read())
+            pfp = Image.open(data)
+            pfp = pfp.resize((1289,1185))
+            okay.paste(pfp,(141,685))
+            okay.save("hello.png")
+            msg = f"<:plusone:834325884940713985> {member.mention}, Welcome To **Furious Official**! You Are The {member.guild.member_count}th Member Of The Server.\nThanks For Tuning In!"
+            await wlcmch.send(content = msg,file = discord.File("hello.png"))
     else:
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
         async for entry in member.guild.audit_logs(action = discord.AuditLogAction.bot_add,limit = 1):
-            await logch.send(f"**{entry.user}** Added A Bot **{entry.target}**[ID: `{entry.target.id}`] To The Server.")
+            await logch.send(f"**{entry.user}** Added A Bot **{entry.target}** [ID: `{entry.target.id}`] To The Server.")
             break
 @client.event
 async def on_member_update(before,after):
