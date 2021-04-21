@@ -85,7 +85,7 @@ async def on_user_update(before,after):
 async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
     role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
-    updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES ")
+    updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES")
     bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
     botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
     wlcmch = client.get_channel(834329528264294431)
