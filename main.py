@@ -107,7 +107,7 @@ async def on_member_join(member):
             await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
             await member.add_roles(role,reason = "Joined The Guild As A Human")
             await member.add_roles(updates)
-            okay = Image.open('welcm.png')
+            okay = Image.open('wlcm.png')
             asset = member.avatar_url_as(size = 512)
             data = BytesIO(await asset.read())
             pfp = Image.open(data)
