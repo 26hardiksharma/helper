@@ -108,7 +108,7 @@ async def on_member_join(member):
             await member.add_roles(role,reason = "Joined The Guild As A Human")
             await member.add_roles(updates)
             okay = Image.open('wlcm.png')
-            asset = member.avatar_url_as(size = 256)
+            asset = member.avatar_url_as(size = 512)
             data = BytesIO(await asset.read())
             pfp = Image.open(data)
             pfp = pfp.resize((1289,1185))
