@@ -111,8 +111,8 @@ async def on_member_join(member):
             asset = member.avatar_url_as(size = 512)
             data = BytesIO(await asset.read())
             pfp = Image.open(data)
-            pfp = pfp.resize((533,125))
-            okay.paste(pfp,(649,617))
+            pfp = pfp.resize((645,611))
+            okay.paste(pfp,(539,131))
             okay.save("hello.png")
             msg = f"<:plusone:834325884940713985> {member.mention}, Welcome To **Furious Official**! You Are The {member.guild.member_count}th Member Of The Server.\nThanks For Tuning In!"
             await wlcmch.send(content = msg,file = discord.File("hello.png"))
