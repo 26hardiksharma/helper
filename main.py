@@ -132,6 +132,7 @@ async def on_member_update(before,after):
     playing = discord.utils.get(before.guild.roles,id = 819487049488793620)
     listen = discord.utils.get(before.guild.roles,id = 819487953751506955)
     logch = client.get_channel(818899394719252543)
+    coding = discord.utils.get(before.guild.roles,id = 834759885882916904)
     if before.status != after.status:
         if before.bot == True:
             pass
@@ -185,8 +186,12 @@ async def on_member_update(before,after):
                 await after.remove_roles(listen)
             else:
                 if after.activities[0].type ==  discord.ActivityType.playing:
-                    await after.add_roles(playing,reason = "Started Playing A GAME")
-                    await after.remove_roles(listen)
+                    if 'visual' in str(after.activities[0].name).lower():
+                        await after.add_roles(coding,reason = 'Started Coding')
+                        await after.remove_roles(listen)
+                    else:
+                        await after.add_roles(playing,reason = "Started Playing A GAME")
+                        await after.remove_roles(listen)
                 elif after.activities[0].type == discord.ActivityType.listening:
                     await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
                     await after.remove_roles(playing)
