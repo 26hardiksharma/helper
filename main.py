@@ -195,6 +195,7 @@ async def on_member_update(before,after):
                 elif after.activities[0].type == discord.ActivityType.listening:
                     await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
                     await after.remove_roles(playing)
+                    await after.remove_roles(coding)
 @client.event
 async def on_message(message):
     if str(message.channel.type) == "private":
