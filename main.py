@@ -60,7 +60,7 @@ pkmn = {
 pk = ['moltres','zapdos','mew','mewtwo','raikou','suicune','entei','lugia','ho-oh','regirock','regice','latias','latios','kyogre','groudon','rayquaza','jirachi','uxie','azelf','mesprit','dialga','giratina','heatran','regigigas','creselia','phione','manaphy','darkrai','shaymin','arceus','zekrom','kyurem','lunala']
 @client.event
 async def on_ready():
-    await client.change_presence(activity = discord.Gamer(name = "At Furious's Official Server"))
+    await client.change_presence(activity = discord.Game(name = "At Furious's Official Server"))
     print("Now Online!")
 @client.event
 async def on_user_update(before,after):
