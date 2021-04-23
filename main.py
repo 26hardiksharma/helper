@@ -186,7 +186,7 @@ async def on_member_update(before,after):
                 await after.remove_roles(listen)
             else:
                 if after.activities[0].type ==  discord.ActivityType.playing:
-                    if 'visual' in str(after.activities[0].name).lower():
+                    if 'visual' in str(after.activities[0].name).lower() or 'sublime' in str(after.activities[0].name).lower() or 'pycharm' in str(after.activities[0].name).lower():
                         await after.add_roles(coding,reason = 'Started Coding')
                         await after.remove_roles(listen)
                     else:
