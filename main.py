@@ -135,7 +135,10 @@ async def on_member_update(before,after):
     coding = discord.utils.get(before.guild.roles,id = 834759885882916904)
     if before.status != after.status:
         if before.bot == True:
-            pass
+            if after.id == 790478502909837333:
+                if str(after.status) == "offline":
+                    channel = client.get_channel(835186923558404097)
+                    await channel.send(f"<@&810203124098400307>\nLooks Like **Furious** Has Gone Offline. Kindly Investigate The Problem As Soon As Possible.")
         else:
             if str(after.status) == "online":
                 await after.add_roles(online,reason = "Changed Presence To ONLINE")
