@@ -143,6 +143,10 @@ async def on_member_update(before,after):
                 if str(after.status) == "offline":
                     channel = client.get_channel(835186923558404097)
                     await channel.send(f"<@602330585654099969>\n\nLooks Like **Tesla™️** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
+            elif after.id == 793102312343208006:
+                if str(after.status) == "offline":
+                    channel = client.get_channel(835186923558404097)
+                    await channel.send(f"<@782172604030517258>\n\nLooks Like **Techno** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
         else:
             if str(after.status) == "online":
                 await after.add_roles(online,reason = "Changed Presence To ONLINE")
