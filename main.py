@@ -139,6 +139,10 @@ async def on_member_update(before,after):
                 if str(after.status) == "offline":
                     channel = client.get_channel(835186923558404097)
                     await channel.send(f"<@757589836441059379>\n\nLooks Like **Furious** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
+            elif after.id == 807277936444964865:
+                if str(after.status) == "offline":
+                    channel = client.get_channel(835186923558404097)
+                    await channel.send(f"<@602330585654099969>\n\nLooks Like **Tesla™️** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
         else:
             if str(after.status) == "online":
                 await after.add_roles(online,reason = "Changed Presence To ONLINE")
@@ -687,13 +691,4 @@ async def multikick(ctx,*,args):
             except:
                 haha += f"<:vError:828972670900371558> Failed Kicking {i.mention}\n"
         await ctx.send(f"{okay}\n{haha}")
-@client.command()
-async def roleme(ctx,role):
-    if role.lower() == "kping" or role.lower() == "karuta":
-        kping = discord.utils.get(ctx.guild.roles,id = 829006631026425896)
-        await ctx.author.add_roles(kping)
-        await ctx.send('You Were Given The Karuta Cardping Role, Thanks For Being A Part Of This Beta Testing ;)')
-    else:
-        await ctx.send('That\'s Not A Valid Role Choice, The Only Choice Currently Is \'kping\'')
-
 client.run(TOKEN)
