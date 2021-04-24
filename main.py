@@ -695,4 +695,40 @@ async def multikick(ctx,*,args):
             except:
                 haha += f"<:vError:828972670900371558> Failed Kicking {i.mention}\n"
         await ctx.send(f"{okay}\n{haha}")
+@client.command(aliases = ['eval'])
+async def evaluate(ctx, *, arg = None):
+
+    if not ctx.author.id == 757589836441059379:
+        return
+    if arg == None:
+        await ctx.send('I Got Nothing To Evaluate, Bro!')
+        return
+    if "token" in arg.lower():
+        return await ctx.send('My Token Is Damn Secret And Cannot Be Leaked.')
+    code = clean_code(arg)
+    local_variables = {
+        "discord": discord,
+        "commands": commands,
+        "client": client,
+        "ctx": ctx,
+        "channel": ctx.channel,
+        "author": ctx.author,
+        "guild": ctx.guild,
+        "message": ctx.message}
+
+    stdout = io.StringIO()
+    try:
+        with contextlib.redirect_stdout(stdout):
+        exec(f"async def func():\n{textwrap.indent(code, '    ')}", local_variables,)
+        obj = await local_variables["func"]()
+        result = f"{stdout.getvalue()}"
+    except Exception as e:
+        kekek = f"{e}, {e}, {e.__traceback__}"
+        result = "".join(kekek)
+    embed = discord.Embed(title = "Eval",color = ctx.author.color)
+    embed.add_field(name = "Command",value = f"{arg}")
+    embed.add_field(name = "Result",value = result,inline= False)
+    await ctx.send(embed = embed)
+
 client.run(TOKEN)
+
