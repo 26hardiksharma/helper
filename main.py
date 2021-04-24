@@ -695,6 +695,14 @@ async def multikick(ctx,*,args):
             except:
                 haha += f"<:vError:828972670900371558> Failed Kicking {i.mention}\n"
         await ctx.send(f"{okay}\n{haha}")
+import io
+import contextlib
+def clean_code(content):
+    if content.startswith("```") and content.endswith("```"):
+        return "\n".join(content.split("\n")[1:])[:-3]
+    else:
+        return content
+import textwrap
 @client.command(aliases = ['eval'])
 async def evaluate(ctx, *, arg = None):
 
