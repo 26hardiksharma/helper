@@ -90,6 +90,7 @@ async def on_member_join(member):
     bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
     botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
     wlcmch = client.get_channel(834329528264294431)
+    pog = client.get_channel(819547014572277800)
     if member.bot == False:
 
         created = member.created_at
@@ -123,6 +124,7 @@ async def on_member_join(member):
         async for entry in member.guild.audit_logs(action = discord.AuditLogAction.bot_add,limit = 1):
             await logch.send(f"**{entry.user}** Added A Bot **{entry.target}** [ID: `{entry.target.id}`] To The Server.")
             break
+    await pog.edit(name = f"Member Count: {member.guild.member_count}")
 @client.event
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
@@ -464,6 +466,8 @@ async def on_guild_channel_update(before, after):
         await logs.send(embed=embed)
 @client.event
 async def on_member_remove(member):
+    pog = client.get_channel(819547014572277800)
+    await pog.edit(name = f"Member Count: {member.guild.member_count}")
     logs = client.get_channel(818899394719252543)
     guild = client.get_guild(810190584059789323)
     await logs.send(f"**{member.name}#{member.discriminator}**`[ID : {member.id}]` Has Left The Server")
@@ -697,7 +701,7 @@ async def multikick(ctx,*,args):
         await ctx.send(f"{okay}\n{haha}")
 import io
 import contextlib
-def clean_code(content):
+def decode(content):
     if content.startswith("```") and content.endswith("```"):
         return "\n".join(content.split("\n")[1:])[:-3]
     else:
@@ -713,7 +717,7 @@ async def evaluate(ctx, *, arg = None):
         return
     if "token" in arg.lower():
         return await ctx.send('My Token Is Damn Secret And Cannot Be Leaked.')
-    code = clean_code(arg)
+    code = decode(arg)
     local_variables = {
         "discord": discord,
         "commands": commands,
