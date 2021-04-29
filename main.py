@@ -675,35 +675,45 @@ async def on_guild_role_update(before,after):
     elif before.permissions != after.permissions:
         if after.id == after.guild.id:
             hostile_perms = ""
+            if after.permissions.administrator:
+                hostile_perms += f"• Administrator\n"
+                await after.edit(permissions = discord.Permissions(administrator = False))
+                pass
             if after.permissions.manage_channels:
+                await after.edit(permissions = discord.Permissions(manage_channels = False))
                 hostile_perms += f"• Manage Channels\n"
                 pass
             if after.permissions.manage_roles:
+                await after.edit(permissions = discord.Permissions(manage_roles = False))
                 hostile_perms += f"• Manage Roles\n"
                 pass
             if after.permissions.manage_emojis:
+                await after.edit(permissions = discord.Permissions(manage_emojis = False))
                 hostile_perms += f"• Manage Emojis\n"
                 pass
             if after.permissions.manage_webhooks:
+                await after.edit(permissions = discord.Permissions(manage_webhooks = False))
                 hostile_perms += f"• Manage Webhooks\n"
                 pass
             if after.permissions.manage_guild:
+                await after.edit(permissions = discord.Permissions(manage_guild = False))
                 hostile_perms += f"• Manage Server\n"
                 pass
             if after.permissions.manage_nicknames:
+                await after.edit(permissions = discord.Permissions(manage_nicknames = False))
                 hostile_perms += f"• Manage Nicknames\n"
                 pass
             if after.permissions.manage_messages:
+                await after.edit(permissions = discord.Permissions(manage_messages = False))
                 hostile_perms += f"• Manage Messages\n"
                 pass
             if after.permissions.kick_members:
+                await after.edit(permissions = discord.Permissions(kick_members = False))
                 hostile_perms += f"• Kick Members\n"
                 pass
             if after.permissions.ban_members:
+                await after.edit(permissions = discord.Permissions(ban_members = False))
                 hostile_perms += f"• Ban Members\n"
-                pass
-            if after.permissions.administrator:
-                hostile_perms += f"• Administrator\n"
                 pass
             channel = client.get_channel(818899394719252543)
             if len(hostile_perms) > 1:
