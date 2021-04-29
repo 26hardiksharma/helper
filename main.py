@@ -706,7 +706,8 @@ async def on_guild_role_update(before,after):
                 hostile_perms += f"• Administrator\n"
                 pass
             channel = client.get_channel(818899394719252543)
-            await channel.send(content = f"<@&833998663550369852>\nThe Everyone Role Was Granted These Hostile Permissions:\n{hostile_perms}")
+            if len(hostile_perms) > 1:
+                await channel.send(content = f"<@&833998663550369852>\nThe Everyone Role Was Granted These Hostile Permissions:\n{hostile_perms}")
 @client.command()
 async def multikick(ctx,*,args):
     if ctx.author.guild_permissions.kick_members:
