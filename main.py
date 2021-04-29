@@ -673,20 +673,40 @@ async def on_guild_role_update(before,after):
         embed.add_field(name = "Responsible User",value = user,inline = False)
         await logs.send(embed=embed)
     elif before.permissions != after.permissions:
-        if len(before.permissions) > len(after.permissions):
-            async for kek in after.guild.audit_logs(action = discord.AuditLogAction.role_update,limit = 1):
-                perm = kek.before.permissions[0]
-                break
-            embed.add_field(name = "Changes",value = f"Target: **Permissins**\nRemoved A Permission: {perm}")
-            embed.add_field(name = "Responsible User",value = user,inline = False)
-            await logs.send(embed=embed)
-        elif len(after.permissions) > len(before.permissions):
-            async for kek in after.guild.audit_logs(action = discord.AuditLogAction.role_update,limit = 1):
-                perm = kek.after.permissions[0]
-                break           
-            embed.add_field(name = "Changes",value = f"Target: **Permissions**\nGranted A Permission: {perm}")
-            embed.add_field(name = "Responsible User",value = user,inline = False)
-            await logs.send(embed = embed)
+        if after.id == after.guild.id:
+            hostile_perms = ""
+            if after.permissions.manage_channels:
+                hostile_perms += f"• Manage Channels\n"
+                pass
+            if after.permissions.manage_roles:
+                hostile_perms += f"• Manage Roles\n"
+                pass
+            if after.permissions.manage_emojis:
+                hostile_perms += f"• Manage Emojis\n"
+                pass
+            if after.permissions.manage_webhooks:
+                hostile_perms += f"• Manage Webhooks\n"
+                pass
+            if after.permissions.manage_guild:
+                hostile_perms += f"• Manage Server\n"
+                pass
+            if after.permissions.manage_nicknames:
+                hostile_perms += f"• Manage Nicknames\n"
+                pass
+            if after.permissions.manage_messages:
+                hostile_perms += f"• Manage Messages\n"
+                pass
+            if after.permissions.kick_members:
+                hostile_perms += f"• Kick Members\n"
+                pass
+            if after.permissions.ban_members:
+                hostile_perms += f"• Ban Members\n"
+                pass
+            if after.permissions.administrator:
+                hostile_perms += f"• Administrator\n"
+                pass
+            channel = client.get_channel(818899394719252543)
+            await channel.send(content = f"<@&833998663550369852>\nThe Everyone Role Was Granted These Hostile Permissions:\n{hostile_perms}")
 @client.command()
 async def multikick(ctx,*,args):
     if ctx.author.guild_permissions.kick_members:
