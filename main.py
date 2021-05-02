@@ -353,6 +353,7 @@ async def modapply(ctx):
         embed.add_field(name = "Answers",value = mystring)
         await channel.send(embed=embed)
         await ctx.send("Submitted Your Application For Being A Mod, Please Be Patient And Wait For It To Be Reviewed")
+        
     else:
         await ctx.send("Your Enthusiam To Become A Mod Is Appreciated But Please Use This Command Only In <#820587228321153034>")
         ctx.command.reset_cooldown(ctx)
