@@ -751,6 +751,11 @@ async def docs(ctx,query = None):
     if not query.lower() in doclist:
         return await ctx.send("Not Found!")
     await ctx.send(doclist[query.lower()])
-
+@client.event
+async def on_command_error(ctx,error):
+    if isinstance(error,commands.CommandNotFound):
+        return
+    else:
+        raise error
 client.run(TOKEN)
 
