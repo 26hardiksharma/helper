@@ -355,6 +355,7 @@ async def modapply(ctx):
         await ctx.send("Submitted Your Application For Being A Mod, Please Be Patient And Wait For It To Be Reviewed")
     else:
         await ctx.send("Your Enthusiam To Become A Mod Is Appreciated But Please Use This Command Only In <#820587228321153034>")
+        ctx.command.reset_cooldown(ctx)
         
 @client.command()
 async def load(ctx,type):
