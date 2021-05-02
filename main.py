@@ -748,9 +748,9 @@ doclist = {
 async def docs(ctx,query = None):
     if not query:
         return 
-    if not query.lower() in docs:
+    if not query.lower() in doclist:
         return await ctx.send("Not Found!")
-    await ctx.send(data[query.lower()])
+    await ctx.send(doclist[query.lower()])
 
 client.run(TOKEN)
 
