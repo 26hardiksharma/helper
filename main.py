@@ -326,6 +326,9 @@ async def chatrevive(ctx):
 @commands.cooldown(1,1000,commands.BucketType.user)
 async def modapply(ctx):
     channel = client.get_channel(820291816280424448)
+    if ctx.author.guild_permissions.manage_messages:
+        return await ctx.send(f"You Already Are A Mod Smh.")
+        ctx.command.reset_cooldown(ctx)
     if ctx.channel.id == 820587228321153034:
         qlist = ['1. Why Do You Want To Become A Mod?','2. What Things Can You Do If We Appoint You As A Mod?','3. How Much Time Can You Give To This Server?','4. How Much Time Are You Active For A Day?','5. Do You Know How To Develop A Bot?','6. What Coding Languages Are You Expert At?','7. Why Are You Here?','8. Lemme Know Some Commands Which You Would Execute By The Following Bots For Moderation:- Mee6, Furious, Vortex, Carl-Bot.','9. What VC Time Will You Give Us?','10. Can You Attend Meetings At Any Time If We Organise?','11. Tell Me Some Steps You Will Take To Increase The Server Activity.','12. What Actions Will You Take If Someone Disobeys The Server Rules?','13. What Action Will You Take If Someone Spams In The Server?','14. What Actions Will You Take If Someone Abuses In The Chat?','15. What Actions Will You Take If Someone Promotes Their Server Or Bot In The Server?']
         answers = []
@@ -353,7 +356,7 @@ async def modapply(ctx):
         embed.add_field(name = "Answers",value = mystring)
         await channel.send(embed=embed)
         await ctx.send("Submitted Your Application For Being A Mod, Please Be Patient And Wait For It To Be Reviewed")
-        
+
     else:
         await ctx.send("Your Enthusiam To Become A Mod Is Appreciated But Please Use This Command Only In <#820587228321153034>")
         ctx.command.reset_cooldown(ctx)
