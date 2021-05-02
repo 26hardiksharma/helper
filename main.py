@@ -728,5 +728,21 @@ async def evaluate(ctx, *, arg = None):
     embed.add_field(name = "Command",value = f"{arg}")
     embed.add_field(name = "Result",value = result,inline= False)
     await ctx.send(embed = embed)
+docs = {
+    "client": "https://discordpy.readthedocs.io/en/latest/api.html#client",
+    "autoshardedclient":"https://discordpy.readthedocs.io/en/latest/api.html#autoshardedclient",
+    "events":"https://discordpy.readthedocs.io/en/latest/api.html#event-reference",
+    "utils":"https://discordpy.readthedocs.io/en/latest/api.html#utility-functions",
+    "clientuser":"https://discordpy.readthedocs.io/en/latest/api.html#clientuser",
+    "user":"https://discordpy.readthedocs.io/en/latest/api.html#id7",
+    "attachment":"https://discordpy.readthedocs.io/en/latest/api.html#attachment",
+    "asset":"https://discordpy.readthedocs.io/en/latest/api.html#asset",
+    "message":"https://discordpy.readthedocs.io/en/latest/api.html#message",
+    "reaction":"https://discordpy.readthedocs.io/en/latest/api.html#reaction",
+    "guild":"https://discordpy.readthedocs.io/en/latest/api.html#guild",
+    "integration":"https://discordpy.readthedocs.io/en/latest/api.html#integration",
+    "member":"https://discordpy.readthedocs.io/en/latest/api.html#member",
+    "role":"https://discordpy.readthedocs.io/en/latest/api.html#role",
+}
 client.run(TOKEN)
 
