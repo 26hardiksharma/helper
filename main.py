@@ -715,5 +715,9 @@ async def evaluate(ctx, *, arg = None):
     embed.add_field(name = "Command",value = f"{arg}")
     embed.add_field(name = "Result",value = result,inline= False)
     await ctx.send(embed = embed)
+
+@client.event
+async def on_raw_message_edit(payload):
+    print(payload.data)
 client.run(TOKEN)
 
