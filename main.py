@@ -728,7 +728,7 @@ async def evaluate(ctx, *, arg = None):
     embed.add_field(name = "Command",value = f"{arg}")
     embed.add_field(name = "Result",value = result,inline= False)
     await ctx.send(embed = embed)
-docs = {
+doclist = {
     "client": "https://discordpy.readthedocs.io/en/latest/api.html#client",
     "autoshardedclient":"https://discordpy.readthedocs.io/en/latest/api.html#autoshardedclient",
     "events":"https://discordpy.readthedocs.io/en/latest/api.html#event-reference",
