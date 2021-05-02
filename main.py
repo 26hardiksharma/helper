@@ -246,17 +246,6 @@ async def on_message(message):
                     await asyncio.sleep(1)
                     await message.reply(response)
                     await rs.close()
-    if message.attachments:
-        if not message.author.id == 757589836441059379:
-            return
-        
-        kek = ""
-        print(pkmn["moltres"])
-        for i in pk:
-            if str(pkmn[i]) == str(message.attachments[0].url):
-                
-                kek += f"i"
-            await message.channel.send(kek)
     await client.process_commands(message)
 
 @client.command()
@@ -726,6 +715,8 @@ async def evaluate(ctx, *, arg = None):
     embed.add_field(name = "Command",value = f"{arg}")
     embed.add_field(name = "Result",value = result,inline= False)
     await ctx.send(embed = embed)
-
+@client.event
+async def on_raw_message_edit(payload):
+    print(payload)
 client.run(TOKEN)
 
