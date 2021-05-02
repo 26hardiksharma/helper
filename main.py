@@ -744,5 +744,13 @@ docs = {
     "member":"https://discordpy.readthedocs.io/en/latest/api.html#member",
     "role":"https://discordpy.readthedocs.io/en/latest/api.html#role",
 }
+@client.command()
+async def docs(ctx,query = None):
+    if not query:
+        return 
+    if not query.lower() in docs:
+        return await ctx.send("Not Found!")
+    await ctx.send(data[query.lower()])
+
 client.run(TOKEN)
 
