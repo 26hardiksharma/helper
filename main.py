@@ -77,9 +77,9 @@ async def on_user_update(before,after):
     elif before.avatar_url != after.avatar_url:
         embed = discord.Embed(title = f"{after.name}",description = f"{after.mention} Has Updated Their Avatar")
         asset = before.avatar_url_as(size = 512)
-        asset.save("hello.png")
+        kek = await asset.save("hello.png")
         channel = client.get_channel(833262747801878608)
-        msg = await channel.send(file = discord.File("hello.png"))
+        msg = await channel.send(file = kek)
         url = msg.attachments[0].url
         embed.add_field(name = "Avatar",value = f"[Current]({after.avatar_url}) 𒌋━━━ [Before]({url})")
         embed.set_thumbnail(url = after.avatar_url)
