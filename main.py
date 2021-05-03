@@ -76,7 +76,12 @@ async def on_user_update(before,after):
         await logch.send(f"**{before.name}#{before.discriminator}** Has Changed Their Name To **{after.name}#{after.discriminator}**")
     elif before.avatar_url != after.avatar_url:
         embed = discord.Embed(title = f"{after.name}",description = f"{after.mention} Has Updated Their Avatar")
-        embed.add_field(name = "Avatar",value = f"[Current]({after.avatar_url}) 𒌋━━━ [Before]({before.avatar_url})")
+        asset = before.avatar_url_as(size = 512)
+        asset.save("hello.png")
+        channel = client.get_channel(833262747801878608)
+        msg = await channel.send(file = discord.File("hello.png"))
+        url = msg.attachments[0].url
+        embed.add_field(name = "Avatar",value = f"[Current]({after.avatar_url}) 𒌋━━━ [Before]({url})")
         embed.set_thumbnail(url = after.avatar_url)
         await logch.send(embed=embed)
     elif before.discriminator != after.discriminator:
