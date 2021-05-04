@@ -777,8 +777,8 @@ async def on_command_error(ctx,error):
 async def check(ctx,query = None):
     if ctx.author.id != 757589836441059379:
         return
-    docs = requests.get('https://discordpy.readthedocs.io/en/latest/api.html')
-    data = docd[query]
+    doc = requests.get('https://discordpy.readthedocs.io/en/latest/api.html')
+    data = doc[query]
     await ctx.send(data)
 client.run(TOKEN)
 
