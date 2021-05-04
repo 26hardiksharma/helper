@@ -760,9 +760,12 @@ doclist = {
 async def docs(ctx,query = None):
     if not query:
         return 
-    if not query.lower() in doclist:
-        return await ctx.send("Not Found!")
-    await ctx.send(doclist[query.lower()])
+    string = ""
+    for i in doclist:
+        if query.lower() in i.lower():
+            string += f"[{i}]({doclist[i]})"
+    embed = discord.Embed(title = "Docs Search",description = f"Values: \n{string}")
+    await ctx.send(embed=embed)
 @client.event
 async def on_command_error(ctx,error):
     if isinstance(error,commands.CommandNotFound):
