@@ -9,6 +9,7 @@ import aiohttp
 import pymongo
 from pymongo import MongoClient
 import dns
+import json
 from prsaw import RandomStuff
 from PIL import Image
 from io import BytesIO
@@ -777,8 +778,8 @@ async def on_command_error(ctx,error):
 async def check(ctx,query = None):
     if ctx.author.id != 757589836441059379:
         return
-    doc = requests.get('https://discordpy.readthedocs.io/en/latest/api.html')
-    data = doc[query]
+    doc = requests.get('https://discordpy.readthedocs.io/en/latest/api.html').json()
+    print(doc)
     await ctx.send(data)
 client.run(TOKEN)
 
