@@ -717,6 +717,7 @@ async def evaluate(ctx, *, arg = None):
         return await ctx.send('My Token Is Damn Secret And Cannot Be Leaked.')
     code = decode(arg)
     local_variables = {
+        "pkmn" : pkmn,
         "discord": discord,
         "commands": commands,
         "client": client,
