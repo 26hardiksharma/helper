@@ -764,7 +764,7 @@ async def docs(ctx,query = None):
     for i in doclist:
         if query.lower() in i.lower():
             string += f"[{i.capitalize()}]({doclist[i]})\n"
-    embed = discord.Embed(title = "Docs Search",description = f"Values: \n{string}")
+    embed = discord.Embed(title = "Docs Search",description = f"Values: \n{string}",color = ctx.author.color,timestamp = datetime.datetime.now())
     await ctx.send(embed=embed)
 @client.event
 async def on_command_error(ctx,error):
