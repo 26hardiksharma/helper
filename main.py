@@ -763,7 +763,7 @@ async def docs(ctx,query = None):
     string = ""
     for i in doclist:
         if query.lower() in i.lower():
-            string += f"[{i}]({doclist[i]})"
+            string += f"[{i.capitalize()}]({doclist[i]})\n"
     embed = discord.Embed(title = "Docs Search",description = f"Values: \n{string}")
     await ctx.send(embed=embed)
 @client.event
