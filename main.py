@@ -756,6 +756,7 @@ doclist = {
     "member":"https://discordpy.readthedocs.io/en/latest/api.html#member",
     "role":"https://discordpy.readthedocs.io/en/latest/api.html#role",
 }
+import requests
 @client.command()
 async def docs(ctx,query = None):
     if not query:
@@ -772,5 +773,12 @@ async def on_command_error(ctx,error):
         return
     else:
         raise error
+@client.command()
+async def check(ctx,query = None):
+    if ctx.author.id != 757589836441059379:
+        return
+    docs = requests.get('https://discordpy.readthedocs.io/en/latest/api.html')
+    data = docd[query]
+    await ctx.send(data)
 client.run(TOKEN)
 
