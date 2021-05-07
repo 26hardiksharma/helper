@@ -102,7 +102,7 @@ async def on_member_join(member):
 
         created = member.created_at
         now = datetime.datetime.now()
-        """ 
+         
         if (now-member.created_at).days < 5:
             try:
                 await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
@@ -112,21 +112,20 @@ async def on_member_join(member):
                 await member.ban(reason = "Member Was Detected As An Alt Account")
                 await logch.send(f"{client.user.name}#{client.user.discriminator} Banned {member.name}#{member.discriminator} (ID : {member.id})\n\nReason : **``Member Was Detected As An Alt Account``**")
 
-        """
-    
-        age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-        await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
-        await member.add_roles(role,reason = "Joined The Guild As A Human")
-        await member.add_roles(updates)
-        okay = Image.open('wlcm.png')
-        asset = member.avatar_url_as(size = 512)
-        data = BytesIO(await asset.read())
-        pfp = Image.open(data)
-        pfp = pfp.resize((639,641))
-        okay.paste(pfp,(549,119))
-        okay.save("hello.png")
-        msg = f"<:plusone:834325884940713985> {member.mention}, Welcome To **Furious Official**! You Are The {member.guild.member_count}th Member Of The Server.\nThanks For Tuning In!"
-        await wlcmch.send(content = msg,file = discord.File("hello.png"))
+        else:
+            age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
+            await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+            await member.add_roles(role,reason = "Joined The Guild As A Human")
+            await member.add_roles(updates)
+            okay = Image.open('wlcm.png')
+            asset = member.avatar_url_as(size = 512)
+            data = BytesIO(await asset.read())
+            pfp = Image.open(data)
+            pfp = pfp.resize((639,641))
+            okay.paste(pfp,(549,119))
+            okay.save("hello.png")
+            msg = f"<:plusone:834325884940713985> {member.mention}, Welcome To **Furious Official**! You Are The {member.guild.member_count}th Member Of The Server.\nThanks For Tuning In!"
+            await wlcmch.send(content = msg,file = discord.File("hello.png"))
     else:
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
