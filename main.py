@@ -220,6 +220,7 @@ async def on_member_update(before,after):
 blacklist = []
 @client.event
 async def on_message(message):
+    list = ['owner','creator','develop','maker','coder']
     if str(message.channel.type) == "private":
         return
     muted = discord.utils.get(message.guild.roles,name = "Muted")
@@ -249,13 +250,15 @@ async def on_message(message):
             if message.channel.id ==826043636063273010:
                 if message.is_system():
                     return
-                if 'develop' in message.content.lower():
-                    return await message.channel.send("I Was Created By Eternal Slayer#1671")
-                else:
-                    response = await rs.get_ai_response(message.content.lower())
-                    await asyncio.sleep(1)
-                    await message.reply(response)
-                    await rs.close()
+                for word in list:
+                    if word in message.content.lower():
+                        return await message.channel.send("I Was Created By Eternal Slayer#1671")
+                        break
+                    return  
+                response = await rs.get_ai_response(message.content.lower())
+                await asyncio.sleep(1)
+                await message.reply(response)
+                await rs.close()
     if message.author.id in blacklist:
         return
     await client.process_commands(message)
