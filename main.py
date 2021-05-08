@@ -101,8 +101,7 @@ async def on_member_join(member):
     if member.bot == False:
 
         created = member.created_at
-        now = datetime.datetime.now()
-         
+        now = datetime.datetime.now() 
         if (now-member.created_at).days < 5:
             try:
                 await member.send(f"You Were Banned In {member.guild.name} For Reason : **``Account Tracked As An Alt``**")
@@ -249,7 +248,9 @@ async def on_message(message):
         else:
             if message.channel.id ==826043636063273010:
                 if message.is_system():
-                    pass
+                    return
+                if 'develop' in message.content.lower():
+                    return await ctx.send("I Was Created By Eternal Slayer#1671")
                 else:
                     response = await rs.get_ai_response(message.content.lower())
                     await asyncio.sleep(1)
