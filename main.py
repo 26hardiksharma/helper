@@ -250,7 +250,7 @@ async def on_message(message):
                 if message.is_system():
                     return
                 if 'develop' in message.content.lower():
-                    return await ctx.send("I Was Created By Eternal Slayer#1671")
+                    return await message.channel.send("I Was Created By Eternal Slayer#1671")
                 else:
                     response = await rs.get_ai_response(message.content.lower())
                     await asyncio.sleep(1)
