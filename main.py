@@ -487,10 +487,13 @@ async def on_guild_channel_update(before, after):
 @client.event
 async def on_member_remove(member):
     pog = client.get_channel(819547014572277800)
+    roles = ""
+    for i in member.roles:
+        roles += f"**`{role.name}`** "
     await pog.edit(name = f"Member Count: {member.guild.member_count}")
     logs = client.get_channel(818899394719252543)
     guild = client.get_guild(810190584059789323)
-    await logs.send(f"**{member.name}#{member.discriminator}**`[ID : {member.id}]` Has Left The Server")
+    await logs.send(f"**{member.name}#{member.discriminator}**`[ID : {member.id}]` Has Left The Server\nRoles: {roles}")
     async for entry in guild.audit_logs(action=discord.AuditLogAction.kick,limit = 1):
         if member == entry.target:
             await logs.send(f"**{entry.user}** Kicked **{entry.target}**`[ID : {entry.target.id}]` For Reason : `{entry.reason}`")
