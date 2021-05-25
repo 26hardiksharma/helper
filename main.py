@@ -220,7 +220,7 @@ async def on_member_update(before,after):
                     await after.remove_roles(coding)
 blacklist = []
 def urlcheck(message):
-    string = message
+    string = str(message)
     regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|(([^\s()<>]+|(([^\s()<>]+)))))+(?:(([^\s()<>]+|(([^\s()<>]+))))|[^\s`!()[]{};:'\".,<>?«»“”‘’]))"
     url = re.findall(regex,string)
     ok = str(url[0])[2:-34]
