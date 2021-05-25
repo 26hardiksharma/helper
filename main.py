@@ -132,6 +132,7 @@ async def on_member_join(member):
             await logch.send(f"**{entry.user}** Added A Bot **{entry.target}** [ID: `{entry.target.id}`] To The Server.")
             break
     await pog.edit(name = f"Member Count: {member.guild.member_count}")
+import re
 @client.event
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
