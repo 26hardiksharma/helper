@@ -132,7 +132,6 @@ async def on_member_join(member):
             await logch.send(f"**{entry.user}** Added A Bot **{entry.target}** [ID: `{entry.target.id}`] To The Server.")
             break
     await pog.edit(name = f"Member Count: {member.guild.member_count}")
-import re
 @client.event
 async def on_member_update(before,after):
     dnd = discord.utils.get(before.guild.roles,id = 818900025023135784)
@@ -219,15 +218,14 @@ async def on_member_update(before,after):
                     await after.remove_roles(playing)
                     await after.remove_roles(coding)
 blacklist = []
-def urlcheck(message):
-    string = str(message)
+"""def urlcheck(message):
+    string = "https://discord.gg/5zbU6wEhkh"
     regex = r"(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|(([^\s()<>]+|(([^\s()<>]+)))))+(?:(([^\s()<>]+|(([^\s()<>]+))))|[^\s`!()[]{};:'\".,<>?«»“”‘’]))"
     url = re.findall(regex,string)
-    print(url) 
     ok = str(url[0])[2:-34]
     invite = ok[:-2]
     return invite
-
+"""
 @client.event
 async def on_message(message):
     list = ['owner','creator','develop','maker','coder']
@@ -241,19 +239,21 @@ async def on_message(message):
         return
     else:
         if "discord.gg/" in message.content.lower():
-            invite = urlcheck(message)
-            kek = ""
-            try:
-                inv = await client.fetch_invite(invite)
-                if inv.guild.id != message.guild.id:
-                    kek += "someother"
-                else:
-                    kek += "GG"
-            except:
-                kek += "someother"
-            if kek != "GG":
+            muted = discord.utils.get(message.guild.roles,name = "Muted")
+            guild = message.guild
+            if message.author.guild_permissions.manage_messages:
+                pass
+            else:
                 await message.delete()
-            
+                await message.author.add_roles(muted,reason = f"Tried Posting An Invite In {message.channel.name}")
+                try:
+                    await message.author.send(f"You Were Muted In {message.guild.name}\nReason :- Posting Invite Links In {message.channel.mention} || 10 Minute(s)")
+                except:
+                    return
+                await logch.send(f"**{client.user.name}#{client.user.discriminator}** Muted **{message.author.name}#{message.author.discriminator}**\nReason :- ``Tried Posting An Invite Link In {message.channel.name}``")
+                await asyncio.sleep(600)
+                await message.author.remove_roles(muted)
+                await message.author.send(f"You have Been Unmuted In {message.guild.name}\nReason :- Mute Duration Expired")
         else:
             if message.channel.id ==826043636063273010:
                 if message.is_system():
