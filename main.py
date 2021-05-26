@@ -157,7 +157,7 @@ async def on_member_update(before,after):
                     channel = client.get_channel(835186923558404097)
                     def check(a,b):
                         return b.id == after.id and str(b.status) == "online"
-                    msg = await channel.send(f"<@757589836441059379>\n\nLooks Like **Furious** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
+                    msg = await channel.send(f"<@602330585654099969>\n\nLooks Like **Tesla™️** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
                     a,b = await client.wait_for('member_update',check = check)
                     await msg.edit(content = f"~~{msg.content}~~\n\n{after} Is Back Online!")
             elif after.id == 793102312343208006:
@@ -165,7 +165,7 @@ async def on_member_update(before,after):
                     channel = client.get_channel(835186923558404097)
                     def check(a,b):
                         return b.id == after.id and str(b.status) == "online"
-                    msg = await channel.send(f"<@757589836441059379>\n\nLooks Like **Furious** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
+                    msg = await channel.send(f"<@782172604030517258>\n\nLooks Like **Techno** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
                     a,b = await client.wait_for('member_update',check = check)
                     await msg.edit(content = f"~~{msg.content}~~\n\n{after} Is Back Online!")
         else:
