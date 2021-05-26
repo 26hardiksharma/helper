@@ -148,7 +148,7 @@ async def on_member_update(before,after):
                 if str(after.status) == "offline":
                     channel = client.get_channel(835186923558404097)
                     def check(a,b):
-                        return b.id == after.id and str(a.status) == "offline" and str(b.status) == "online"
+                        return b.id == after.id and str(b.status) == "online"
                     msg = await channel.send(f"<@757589836441059379>\n\nLooks Like **Furious** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
                     a,b = await client.wait_for('member_update',check = check)
                     await msg.edit(content = f"~~{msg.content}~~\n\n{after} Is Back Online!")
@@ -156,7 +156,7 @@ async def on_member_update(before,after):
                 if str(after.status) == "offline":
                     channel = client.get_channel(835186923558404097)
                     def check(a,b):
-                        return b.id == after.id and str(a.status) == "offline" and str(b.status) == "online"
+                        return b.id == after.id and str(b.status) == "online"
                     msg = await channel.send(f"<@757589836441059379>\n\nLooks Like **Furious** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
                     a,b = await client.wait_for('member_update',check = check)
                     await msg.edit(content = f"~~{msg.content}~~\n\n{after} Is Back Online!")
@@ -164,7 +164,7 @@ async def on_member_update(before,after):
                 if str(after.status) == "offline":
                     channel = client.get_channel(835186923558404097)
                     def check(a,b):
-                        return b.id == after.id and str(a.status) == "offline" and str(b.status) == "online"
+                        return b.id == after.id and str(b.status) == "online"
                     msg = await channel.send(f"<@757589836441059379>\n\nLooks Like **Furious** Has Gone Offline.\n\nKindly Investigate The Problem As Soon As Possible.")
                     a,b = await client.wait_for('member_update',check = check)
                     await msg.edit(content = f"~~{msg.content}~~\n\n{after} Is Back Online!")
