@@ -242,7 +242,7 @@ blacklist = []
 async def on_message(message):
     list = ['owner','creator','develop','maker','coder']
     if str(message.channel.type) == "private":
-        return
+        await client.process_commands(message)
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
