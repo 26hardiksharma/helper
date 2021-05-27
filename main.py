@@ -614,8 +614,12 @@ async def on_guild_emojis_update(guild, before, after):
     elif len(after) > len(before):
         async for entry in guild.audit_logs(action = discord.AuditLogAction.emoji_create,limit = 1):
             lol = await guild.fetch_emoji(entry.target.id)
+            if lol.animated:
+                string = f"<a:{lol.name}:{lol.id}>"
+            else:
+                string = f"<:{lol.name}:{lol.id}>"
             embed = discord.Embed(title = "Emoji Created",description= "An Emoji Was Created In The Server.",colour = 0xF2922D,timestamp = datetime.datetime.now())
-            embed.add_field(name = "Emoji Details",value = f"Emoji: <:{lol.name}:{lol.id}>\n\nEmoji Name: {lol.name}\n\nEmoji ID: {lol.id}",inline = False)
+            embed.add_field(name = "Emoji Details",value = f"Emoji: {string}\n\nEmoji Name: {lol.name}\n\nEmoji ID: {lol.id}",inline = False)
             embed.add_field(name = "Responsible User",value = entry.user)
             await logs.send(embed=embed)
             break
