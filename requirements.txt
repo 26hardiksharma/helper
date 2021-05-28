@@ -10,3 +10,4 @@ pillow
 art
 motor
 requests
+DiscordUtils
