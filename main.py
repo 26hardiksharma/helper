@@ -1,4 +1,5 @@
 import discord
+from discord import invite
 from discord.ext import commands
 from discord import Webhook, AsyncWebhookAdapter
 import asyncio
@@ -58,11 +59,16 @@ pkmn = {
     "zekrom":"https://cdn.discordapp.com/attachments/787201698174205964/814878891855970334/pokemon.jpg",
     "lunala":"https://cdn.discordapp.com/attachments/787201698174205964/828526638827962368/pokemon.jpg"
 }
+tracker = DiscordUtils.InviteTracker(bot)
 pk = ['moltres','zapdos','mew','mewtwo','raikou','suicune','entei','lugia','ho-oh','regirock','regice','latias','latios','kyogre','groudon','rayquaza','jirachi','uxie','azelf','mesprit','dialga','giratina','heatran','regigigas','creselia','phione','manaphy','darkrai','shaymin','arceus','zekrom','kyurem','lunala']
 @client.event
 async def on_ready():
     await client.change_presence(activity = discord.Game(name = "At Furious's Official Server"))
     print("Now Online!")
+    await tracker.cache_invites()
+    print('Cached Invites')
+    guild = client.get_guild(810190584059789323)
+    await tracker.update_guild_cache(guild)
 @client.event
 async def on_user_update(before,after):
     logch = client.get_channel(818899394719252543)
@@ -113,7 +119,8 @@ async def on_member_join(member):
 
         else:
             age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
-            await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server, {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
+            inviter = await tracker.fetch_inviter(member)
+            await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server (Invited By **{inviter}**), {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
             await member.add_roles(role,reason = "Joined The Guild As A Human")
             await member.add_roles(updates)
             okay = Image.open('wlcm.png')
@@ -545,6 +552,7 @@ async def on_message_edit(before,after):
         await logs.send(embed=embed)
 @client.event
 async def on_invite_create(invite):
+    await tracker.update_invite_cache(invite)
     logs = client.get_channel(826794273357561896)
     if invite.inviter.bot:
         return
