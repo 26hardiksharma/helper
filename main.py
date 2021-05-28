@@ -1,6 +1,5 @@
 import discord
 import DiscordUtils
-from discord import invite
 from discord.ext import commands
 from discord import Webhook, AsyncWebhookAdapter
 import asyncio
@@ -60,7 +59,7 @@ pkmn = {
     "zekrom":"https://cdn.discordapp.com/attachments/787201698174205964/814878891855970334/pokemon.jpg",
     "lunala":"https://cdn.discordapp.com/attachments/787201698174205964/828526638827962368/pokemon.jpg"
 }
-tracker = DiscordUtils.InviteTracker(bot)
+tracker = DiscordUtils.InviteTracker(client)
 pk = ['moltres','zapdos','mew','mewtwo','raikou','suicune','entei','lugia','ho-oh','regirock','regice','latias','latios','kyogre','groudon','rayquaza','jirachi','uxie','azelf','mesprit','dialga','giratina','heatran','regigigas','creselia','phione','manaphy','darkrai','shaymin','arceus','zekrom','kyurem','lunala']
 @client.event
 async def on_ready():
