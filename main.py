@@ -828,7 +828,7 @@ async def on_lmao_ded(message: discord.Message):
     await message.channel.send(f"**{message.content}**")
 @client.command()
 async def pog(ctx):
-    client.dispatch('lmaoded',ctx.message)
+    client.dispatch('lmao_ded',ctx.message)
 
 client.run(TOKEN)
 
