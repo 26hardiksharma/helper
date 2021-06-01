@@ -823,5 +823,12 @@ async def check(ctx,query = None):
     doc = requests.get('https://discordpy.readthedocs.io/en/latest/api.html').json()
     print(doc)
     await ctx.send(data)
+@client.event
+async def on_lmao_ded(message: discord.Message):
+    await message.channel.send(f"**{message.content}**")
+@client.command()
+async def pog(ctx):
+    client.dispatch('lmaoded',ctx.message)
+
 client.run(TOKEN)
 
