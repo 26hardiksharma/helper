@@ -829,7 +829,7 @@ async def check(ctx,query = None):
 @client.event
 async def on_lmao_ded(message: discord.Message):
     await message.channel.send(f"**{message.content}**")
-@slash.slash(name = "test")
+@slash.slash()
 async def pog(ctx:SlashContext):
     embed = discord.Embed(title = "Success")
     await ctx.send(embed=embed)
