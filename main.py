@@ -69,6 +69,7 @@ async def on_ready():
     print("Now Online!")
     await tracker.cache_invites()
     print('Cached Invites')
+    print(slash)
     guild = client.get_guild(810190584059789323)
     await tracker.update_guild_cache(guild)
 @client.event
