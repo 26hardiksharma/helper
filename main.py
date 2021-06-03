@@ -15,10 +15,12 @@ from prsaw import RandomStuff
 from PIL import Image
 from io import BytesIO
 import os
+from discord_slash import SlashCommand, SlashContext
 intents = discord.Intents.all()
 rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
 client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True,strip_after_prefix = True)
+slash = SlashCommand(client)
 intents.messages = True
 intents.members = True
 intents.presences = True
@@ -827,9 +829,9 @@ async def check(ctx,query = None):
 @client.event
 async def on_lmao_ded(message: discord.Message):
     await message.channel.send(f"**{message.content}**")
-@client.command()
-async def pog(ctx):
-    client.dispatch('lmao_ded',ctx.message)
-
+@slash.slash(name = "test")
+async def pog(ctx:SlashContext):
+    embed = discord.Embed(title = "Success")
+    await ctx.send(embed=embed)
 client.run(TOKEN)
 

@@ -11,3 +11,4 @@ art
 motor
 requests
 DiscordUtils
+discord-py-slash-command
