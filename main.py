@@ -550,6 +550,7 @@ async def on_message_edit(before,after):
         embed.set_author(name = after.author,icon_url= after.author.avatar_url)
         embed.set_footer(text=f"Author ID : {after.author.id}")
         await logs.send(embed=embed)
+    await client.process_commands(after)
 @client.event
 async def on_invite_create(invite):
     await tracker.update_invite_cache(invite)
