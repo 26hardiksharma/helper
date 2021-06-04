@@ -256,7 +256,6 @@ async def on_message(message):
     muted = discord.utils.get(message.guild.roles,name = "Muted")
     guild = message.guild
     logch = client.get_channel(818899394719252543)
-    eternal = await client.fetch_user(757589836441059379)
     if message.author.bot:
         return
     else:
@@ -287,6 +286,9 @@ async def on_message(message):
                 await asyncio.sleep(1)
                 await message.reply(response)
                 await rs.close()
+            else:
+                if message.mention_everyone:
+                    client.dispatch('everyone_ping',message)
     if message.author.id in blacklist:
         return
     await client.process_commands(message)
@@ -834,5 +836,9 @@ async def on_lmao_ded(message: discord.Message):
 async def pog(ctx:SlashContext):
     embed = discord.Embed(title = "Success")
     await ctx.send(embed=embed)
+@client.event
+async def on_everyone_ping(message : discord.Message):
+    log = client.get_channel(818899394719252543)
+    await log.send("{} Pinged Everyone In {}".format(message.author,message.channel))
 client.run(TOKEN)
 
