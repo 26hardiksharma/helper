@@ -317,7 +317,7 @@ async def on_voice_state_update(member,before,after):
 @commands.has_permissions(administrator = True)
 @commands.is_owner()
 async def kek(ctx):
-    for i in ctx.commands.checks:
+    for i in ctx.command.checks:
         print(i)
 @client.command()
 @commands.cooldown(1,1800,commands.BucketType.user)
