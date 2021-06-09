@@ -19,7 +19,7 @@ from discord_slash import SlashCommand, SlashContext
 intents = discord.Intents.all()
 rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
-client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True,strip_after_prefix = True)
+client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True,strip_after_prefix = True,owner_id = 757589836441059379)
 slash = SlashCommand(client)
 intents.messages = True
 intents.members = True
@@ -313,6 +313,12 @@ async def on_voice_state_update(member,before,after):
         await logch.send(f"**{member.name}#{member.discriminator}** Joined A Voice Channel :- **{after.channel.name}**")
     elif voice_state == None:
         await logch.send(f"**{member.name}#{member.discriminator}** Left A Voice Channel :- **{before.channel.name}**")
+@client.command()
+@commands.has_permissions(administrator = True)
+@commands.is_owner()
+async def kek(ctx):
+    for i in ctx.commands.checks:
+        print(i)
 @client.command()
 @commands.cooldown(1,1800,commands.BucketType.user)
 async def helper(ctx):
