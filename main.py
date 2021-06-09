@@ -318,7 +318,7 @@ async def on_voice_state_update(member,before,after):
 @commands.is_owner()
 async def kek(ctx):
     for i in ctx.command.checks:
-        print(i)
+        print(i.name)
 @client.command()
 @commands.cooldown(1,1800,commands.BucketType.user)
 async def helper(ctx):
