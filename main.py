@@ -101,10 +101,6 @@ async def on_user_update(before,after):
 @client.event
 async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
-    role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
-    updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES")
-    bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
-    botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
     wlcmch = client.get_channel(834329528264294431)
     pog = client.get_channel(819547014572277800)
     if member.bot == False:
@@ -136,6 +132,8 @@ async def on_member_join(member):
             msg = f"<:plusone:834325884940713985> {member.mention}, Welcome To **Furious Official**! You Are The {member.guild.member_count}th Member Of The Server.\nThanks For Tuning In!"
             await wlcmch.send(content = msg,file = discord.File("hello.png"))
     else:
+        bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
+        botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
         await member.add_roles(bots,reason = "Joined The Guild As A Bot")
         await member.add_roles(botss,reason = "Joined The Guild As A Bot")
         async for entry in member.guild.audit_logs(action = discord.AuditLogAction.bot_add,limit = 1):
@@ -239,6 +237,12 @@ async def on_member_update(before,after):
                     await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
                     await after.remove_roles(playing)
                     await after.remove_roles(coding)
+    elif before.pending == True and after.pending == False:
+        role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
+        updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES")
+        await after.add_roles(role)
+        await after.add_roles(updates)
+
 blacklist = []
 """def urlcheck(message):
     string = "https://discord.gg/5zbU6wEhkh"
