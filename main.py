@@ -120,8 +120,6 @@ async def on_member_join(member):
             age = member.created_at.strftime("%a, %#d %B %Y, %I:%M %p UTC")
             inviter = await tracker.fetch_inviter(member)
             await logch.send(f"📥 **{member.name}#{member.discriminator}**[ID = {member.id}] Has Joined The Server (Invited By **{inviter}**), {member.guild.member_count}th Member To Join\nTheir Account Was Created At {age}")
-            await member.add_roles(role,reason = "Joined The Guild As A Human")
-            await member.add_roles(updates)
             okay = Image.open('wlcm.png')
             asset = member.avatar_url_as(size = 512)
             data = BytesIO(await asset.read())
@@ -238,8 +236,8 @@ async def on_member_update(before,after):
                     await after.remove_roles(playing)
                     await after.remove_roles(coding)
     elif before.pending == True and after.pending == False:
-        role = discord.utils.get(member.guild.roles, name ="➵MEMBERS")
-        updates = discord.utils.get(member.guild.roles,name = "➵BOT UPDATES")
+        role = discord.utils.get(after.guild.roles, name ="➵MEMBERS")
+        updates = discord.utils.get(after.guild.roles,name = "➵BOT UPDATES")
         await after.add_roles(role)
         await after.add_roles(updates)
 
