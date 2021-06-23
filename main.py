@@ -102,6 +102,7 @@ async def on_user_update(before,after):
 async def on_member_join(member):
     logch = client.get_channel(818899394719252543)
     wlcmch = client.get_channel(834329528264294431)
+    
     pog = client.get_channel(819547014572277800)
     if member.bot == False:
 
