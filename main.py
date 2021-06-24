@@ -149,6 +149,11 @@ async def on_member_update(before,after):
     listen = discord.utils.get(before.guild.roles,id = 819487953751506955)
     logch = client.get_channel(818899394719252543)
     coding = discord.utils.get(before.guild.roles,id = 834759885882916904)
+    if before.pending == True and after.pending == False:
+        role = discord.utils.get(after.guild.roles, name ="➵MEMBERS")
+        updates = discord.utils.get(after.guild.roles,name = "➵BOT UPDATES")
+        await after.add_roles(role)
+        await after.add_roles(updates)
     if before.status != after.status:
         if before.bot == True:
             if after.id == 790478502909837333:
@@ -236,11 +241,6 @@ async def on_member_update(before,after):
                     await after.add_roles(listen,reason = "Started Listening To SPOTIFY")
                     await after.remove_roles(playing)
                     await after.remove_roles(coding)
-    elif before.pending == True and after.pending == False:
-        role = discord.utils.get(after.guild.roles, name ="➵MEMBERS")
-        updates = discord.utils.get(after.guild.roles,name = "➵BOT UPDATES")
-        await after.add_roles(role)
-        await after.add_roles(updates)
 
 blacklist = []
 """def urlcheck(message):
