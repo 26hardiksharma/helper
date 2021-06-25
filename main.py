@@ -20,7 +20,7 @@ intents = discord.Intents.all()
 rs = RandomStuff(async_mode = True)
 TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
 client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True,strip_after_prefix = True,owner_id = 757589836441059379)
-slash = SlashCommand(client)
+slash = SlashCommand(client,sync_commands = True)
 intents.messages = True
 intents.members = True
 intents.presences = True
@@ -849,5 +849,9 @@ async def pog(ctx:SlashContext):
 async def on_everyone_ping(message : discord.Message):
     log = client.get_channel(818899394719252543)
     await log.send("{} Pinged Everyone In {}".format(message.author,message.channel))
+@slash.slash(name = "ping",guild_ids = [i.id for i in client.guilds])
+async def _ping(ctx):
+    cmd = client.get_command('ping')
+    await cmd(ctx)
 client.run(TOKEN)
 
