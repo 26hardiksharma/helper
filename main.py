@@ -130,7 +130,7 @@ async def on_member_join(member):
             okay.save("hello.png")
             msg = f"<:plusone:834325884940713985> {member.mention}, Welcome To **Furious Official**! You Are The {member.guild.member_count}th Member Of The Server.\nThanks For Tuning In!"
             await wlcmch.send(content = msg,file = discord.File("hello.png"))
-            await member.add_roles(ctx.guild.get_role(861434738614992907))
+            await member.add_roles(member.guild.get_role(861434738614992907))
     else:
         bots = discord.utils.get(member.guild.roles,id = 810876781828505621)
         botss = discord.utils.get(member.guild.roles,id = 819138008749441034)
