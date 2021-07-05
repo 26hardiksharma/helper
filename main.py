@@ -524,7 +524,7 @@ async def on_guild_channel_update(before, after):
         embed.add_field(name = "Slowmode[Before]",value = f"{before.slowmode_delay} Seconds")
         embed.add_field(name = "Slowmode[After]",value = f"{after.slowmode_delay} Seconds",inline=False)
         embed.add_field(name = "Resposible User",value = member)
-        await logs.send(embed=embed)
+        await logs.send(embed=embed)                 
 @client.event
 async def on_member_remove(member):
     pog = client.get_channel(819547014572277800)
@@ -853,5 +853,11 @@ async def on_everyone_ping(message : discord.Message):
 async def _ping(ctx):
     cmd = client.get_command('ping')
     await cmd(ctx)
+@client.event
+async def on_raw_reaction_add(payload):
+    if payload.message_id == 861433005703430154:
+        if str(payload.emoji) == '✅':
+            guild = client.get_guild(810190584059789323)
+            await payload.member.remove_roles(discord.utils.get(guild.roles,id = 861434738614992907))
+            
 client.run(TOKEN)
-
