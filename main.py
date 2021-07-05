@@ -150,11 +150,6 @@ async def on_member_update(before,after):
     listen = discord.utils.get(before.guild.roles,id = 819487953751506955)
     logch = client.get_channel(818899394719252543)
     coding = discord.utils.get(before.guild.roles,id = 834759885882916904)
-    if before.pending == True and after.pending == False:
-        role = discord.utils.get(after.guild.roles, name ="➵MEMBERS")
-        updates = discord.utils.get(after.guild.roles,name = "➵BOT UPDATES")
-        await after.add_roles(role)
-        await after.add_roles(updates)
     if before.status != after.status:
         if before.bot == True:
             if after.id == 790478502909837333:
@@ -860,5 +855,9 @@ async def on_raw_reaction_add(payload):
         if str(payload.emoji) == '✅':
             guild = client.get_guild(810190584059789323)
             await payload.member.remove_roles(discord.utils.get(guild.roles,id = 861434738614992907))
+            role = discord.utils.get(guild.roles, name ="➵MEMBERS")
+            updates = discord.utils.get(guild.roles,name = "➵BOT UPDATES")
+            await payload.member.add_roles(role)
+            await payload.member.add_roles(updates)
 
 client.run(TOKEN)
