@@ -17,7 +17,7 @@ from io import BytesIO
 import os
 from discord_slash import SlashCommand, SlashContext
 intents = discord.Intents.all()
-TOKEN = "ODE4ODk0MzIwMTY1ODQ3MDQx.YEesxA.pHVyHcEhb600-BVR9omFCHu4sfI"
+
 client = commands.Bot(command_prefix = ",",intents = intents,case_insensitive = True,strip_after_prefix = True,owner_id = 757589836441059379)
 slash = SlashCommand(client,sync_commands = True)
 intents.messages = True
